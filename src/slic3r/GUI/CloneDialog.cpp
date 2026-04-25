@@ -1,4 +1,5 @@
 #include "CloneDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
@@ -8,7 +9,7 @@ namespace Slic3r { namespace GUI {
 CloneDialog::CloneDialog(wxWindow *parent)
     : DPIDialog(parent ? parent : static_cast<wxWindow *>(wxGetApp().mainframe), wxID_ANY, _L("Clone"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetFont(Label::Body_14);
 
     m_plater = wxGetApp().plater();

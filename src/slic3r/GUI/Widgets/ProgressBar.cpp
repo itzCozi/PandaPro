@@ -1,4 +1,5 @@
 #include "ProgressBar.hpp"
+#include "StateColor.hpp"
 #include "../I18N.hpp"
 #include <wx/dcclient.h>
 #include <wx/dcgraph.h>
@@ -14,7 +15,7 @@ END_EVENT_TABLE()
 ProgressBar::ProgressBar(wxWindow *parent, wxWindowID id, int max, const wxPoint &pos, const wxSize &size, bool shown)
 {
     m_shownumber = shown;
-    SetBackgroundColour(wxColour(255,255,255));
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     if (size.y >= miniHeight) {
         m_miniHeight = size.y;

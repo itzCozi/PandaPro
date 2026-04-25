@@ -1,4 +1,5 @@
 #include "CalibrationWizard.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 #include "GUI_App.hpp"
 #include "MsgDialog.hpp"
@@ -81,7 +82,7 @@ CalibrationWizard::CalibrationWizard(wxWindow* parent, CalibMode mode, wxWindowI
 
     m_scrolledWindow = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
     m_scrolledWindow->SetScrollRate(5, 5);
-    m_scrolledWindow->SetBackgroundColour(*wxWHITE);
+    m_scrolledWindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* padding_sizer = new wxBoxSizer(wxHORIZONTAL);
     padding_sizer->Add(0, 0, 1);

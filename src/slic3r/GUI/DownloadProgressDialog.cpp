@@ -1,4 +1,5 @@
 #include "DownloadProgressDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <wx/settings.h>
 #include <wx/sizer.h>
@@ -40,7 +41,7 @@ DownloadProgressDialog::DownloadProgressDialog(wxString title)
     wxString download_failed_msg = _L("Failed to download the plug-in. Please check your firewall settings and VPN software and retry.");
     wxString install_failed_msg = _L("Failed to install the plug-in. The plug-in file may be in use. Please restart OrcaSlicer and try again. Also check whether it is blocked or deleted by anti-virus software.");
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -67,7 +68,7 @@ DownloadProgressDialog::DownloadProgressDialog(wxString title)
     wxBoxSizer* sizer_download_failed = new wxBoxSizer(wxVERTICAL);
 
     auto m_statictext_download_failed = new wxStaticText(m_panel_download_failed, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
-    m_statictext_download_failed->SetForegroundColour(*wxBLACK);
+    m_statictext_download_failed->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_statictext_download_failed->SetLabel(format_text(m_statictext_download_failed, download_failed_msg, FromDIP(360)));
     m_statictext_download_failed->Wrap(FromDIP(360));
 
@@ -89,7 +90,7 @@ DownloadProgressDialog::DownloadProgressDialog(wxString title)
     wxBoxSizer* sizer_install_failed = new wxBoxSizer(wxVERTICAL);
 
     auto m_statictext_install_failed = new wxStaticText(m_panel_install_failed, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
-    m_statictext_install_failed->SetForegroundColour(*wxBLACK);
+    m_statictext_install_failed->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_statictext_install_failed->SetLabel(format_text(m_statictext_install_failed, install_failed_msg,FromDIP(360)));
     m_statictext_install_failed->Wrap(FromDIP(360));
 

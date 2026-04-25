@@ -1,4 +1,5 @@
 #include "wx/clipbrd.h"
+#include "Widgets/StateColor.hpp"
 #include "wx/display.h"
 
 #include "SelectMachine.hpp"
@@ -2902,7 +2903,7 @@ void ObjectTablePanel::load_data()
     wxGridCellAttr *attr;
     attr = new wxGridCellAttr;
     //attr->SetBackgroundColour(wxColour(191, 191, 255));
-    attr->SetBackgroundColour(*wxWHITE);
+    attr->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     attr->SetTextColour(*wxBLACK);
     attr->SetAlignment(wxALIGN_LEFT, wxALIGN_CENTRE);
     attr->SetReadOnly(true);
@@ -3289,7 +3290,7 @@ ObjectTableDialog::ObjectTableDialog(wxWindow* parent, Plater* platerObj, Model 
     //m_top_sizer = new wxBoxSizer( wxVERTICAL );
 
     //m_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize(wxSize(-1, FromDIP(480)));
 
     //m_static_title = new wxStaticText( m_panel, wxID_ANY, wxT("Totally Objects, Parts"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -3313,7 +3314,7 @@ ObjectTableDialog::ObjectTableDialog(wxWindow* parent, Plater* platerObj, Model 
     m_main_sizer->Add(m_line_top, 0, wxEXPAND, 0);
 
     m_obj_panel = new ObjectTablePanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE, wxEmptyString, m_plater, m_model);
-    m_obj_panel->SetBackgroundColour(*wxWHITE);
+    m_obj_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     //m_top_sizer->Add(m_obj_panel, 1, wxALL | wxEXPAND, 5);
 
     wxSize panel_size = m_obj_panel->get_init_size();

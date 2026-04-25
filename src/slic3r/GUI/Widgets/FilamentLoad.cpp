@@ -1,4 +1,5 @@
 #include "FilamentLoad.hpp"
+#include "StateColor.hpp"
 #include "Label.hpp"
 #include "../BitmapCache.hpp"
 #include "../I18N.hpp"
@@ -17,7 +18,7 @@ namespace Slic3r {
 FilamentLoad::FilamentLoad(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size)
     : wxSimplebook(parent, wxID_ANY, pos, size)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_filament_load_steps = new FilamentStepIndicator(this, wxID_ANY);
     m_filament_unload_steps = new ::FilamentStepIndicator(this, wxID_ANY);
     m_filament_vt_load_steps = new ::FilamentStepIndicator(this, wxID_ANY);

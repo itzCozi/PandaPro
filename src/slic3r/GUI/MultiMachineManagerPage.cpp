@@ -1,4 +1,5 @@
 #include "MultiMachineManagerPage.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
 
@@ -10,7 +11,7 @@ namespace GUI {
 MultiMachineItem::MultiMachineItem(wxWindow* parent, MachineObject* obj)
     : DeviceItem(parent, obj)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
     SetMaxSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
 
@@ -273,7 +274,7 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
 #endif //__WINDOWS__
     SetBackgroundColour(wxColour(0xEEEEEE));
     m_main_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_main_panel->SetBackgroundColour(*wxWHITE);
+    m_main_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_main_sizer = new wxBoxSizer(wxVERTICAL);
 
     StateColor head_bg(
@@ -396,7 +397,7 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     });
 
     m_machine_list = new wxScrolledWindow(m_main_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_machine_list->SetBackgroundColour(*wxWHITE);
+    m_machine_list->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_machine_list->SetScrollRate(0, 5);
     m_machine_list->SetMinSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), 10 * FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
     m_machine_list->SetMaxSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), 10 * FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
@@ -414,7 +415,7 @@ MultiMachineManagerPage::MultiMachineManagerPage(wxWindow* parent)
     m_flipping_panel = new wxPanel(m_main_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     m_flipping_panel->SetMinSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), -1));
     m_flipping_panel->SetMaxSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), -1));
-    m_flipping_panel->SetBackgroundColour(*wxWHITE);
+    m_flipping_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_flipping_page_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_page_sizer = new wxBoxSizer(wxVERTICAL);

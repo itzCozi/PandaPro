@@ -1,4 +1,5 @@
 #include "MultiTaskManagerPage.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "GUI_App.hpp"
@@ -16,7 +17,7 @@ MultiTaskItem::MultiTaskItem(wxWindow* parent, MachineObject* obj, int type)
     : DeviceItem(parent, obj),
     m_task_type(type)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
     SetMaxSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
 
@@ -538,7 +539,7 @@ LocalTaskManagerPage::LocalTaskManagerPage(wxWindow* parent)
 #endif //__WINDOWS__
     SetBackgroundColour(wxColour(0xEEEEEE));
     m_main_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_main_panel->SetBackgroundColour(*wxWHITE);
+    m_main_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_main_sizer = new wxBoxSizer(wxVERTICAL);
 
     StateColor head_bg(
@@ -674,7 +675,7 @@ LocalTaskManagerPage::LocalTaskManagerPage(wxWindow* parent)
     m_tip_text->Wrap(-1);
 
     m_task_list = new wxScrolledWindow(m_main_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_task_list->SetBackgroundColour(*wxWHITE);
+    m_task_list->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_task_list->SetScrollRate(0, 5);
     m_task_list->SetMinSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
     m_task_list->SetMaxSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), 10 * FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
@@ -696,7 +697,7 @@ LocalTaskManagerPage::LocalTaskManagerPage(wxWindow* parent)
     );
 
     m_ctrl_btn_panel = new wxPanel(m_main_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_ctrl_btn_panel->SetBackgroundColour(*wxWHITE);
+    m_ctrl_btn_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_ctrl_btn_panel->SetMinSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), -1));
     m_ctrl_btn_panel->SetMaxSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), -1));
     m_btn_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -903,7 +904,7 @@ CloudTaskManagerPage::CloudTaskManagerPage(wxWindow* parent)
 
     SetBackgroundColour(wxColour(0xEEEEEE));
     m_main_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_main_panel->SetBackgroundColour(*wxWHITE);
+    m_main_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_main_sizer = new wxBoxSizer(wxVERTICAL);
 
     StateColor head_bg(
@@ -1055,7 +1056,7 @@ CloudTaskManagerPage::CloudTaskManagerPage(wxWindow* parent)
     m_loading_text->Show(false);
 
     m_task_list = new wxScrolledWindow(m_main_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_task_list->SetBackgroundColour(*wxWHITE);
+    m_task_list->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_task_list->SetScrollRate(0, 5);
     m_task_list->SetMinSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
     m_task_list->SetMaxSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), 10 * FromDIP(DEVICE_ITEM_MAX_HEIGHT)));
@@ -1076,7 +1077,7 @@ CloudTaskManagerPage::CloudTaskManagerPage(wxWindow* parent)
     m_flipping_panel = new wxPanel(m_main_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     m_flipping_panel->SetMinSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), -1));
     m_flipping_panel->SetMaxSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), -1));
-    m_flipping_panel->SetBackgroundColour(*wxWHITE);
+    m_flipping_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_flipping_page_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_page_sizer = new wxBoxSizer(wxVERTICAL);
@@ -1152,7 +1153,7 @@ CloudTaskManagerPage::CloudTaskManagerPage(wxWindow* parent)
     m_main_sizer->Add(m_flipping_panel, 0, wxALIGN_CENTER_HORIZONTAL, 0);
 
     m_ctrl_btn_panel = new wxPanel(m_main_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_ctrl_btn_panel->SetBackgroundColour(*wxWHITE);
+    m_ctrl_btn_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_ctrl_btn_panel->SetMinSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), -1));
     m_ctrl_btn_panel->SetMaxSize(wxSize(FromDIP(CLOUD_TASK_ITEM_MAX_WIDTH), -1));
     m_btn_sizer = new wxBoxSizer(wxHORIZONTAL);

@@ -1,4 +1,5 @@
 #include "AMSItem.hpp"
+#include "StateColor.hpp"
 #include "Label.hpp"
 #include "../BitmapCache.hpp"
 #include "../I18N.hpp"
@@ -763,7 +764,7 @@ void AMSextruder::TurnOff()
 void AMSextruder::create(wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size, int nozzle_num)
 {
     wxWindow::Create(parent, id, pos, wxSize(-1, FromDIP(36)), wxBORDER_NONE);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     updateNozzleNum(nozzle_num);
     Layout();
@@ -2231,7 +2232,7 @@ AMSRoadDownPart::AMSRoadDownPart(wxWindow* parent, wxWindowID id, const wxPoint&
     this->SetSize(AMS_DOWN_ROAD_SIZE);
 
     Bind(wxEVT_PAINT, &AMSRoadDownPart::paintEvent, this);
-    wxWindow::SetBackgroundColour(*wxWHITE);
+    wxWindow::SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 }
 

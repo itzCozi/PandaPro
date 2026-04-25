@@ -1,4 +1,5 @@
 #include "CameraPopup.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include "I18N.hpp"
 #include "Widgets/Label.hpp"
@@ -41,7 +42,7 @@ CameraPopup::CameraPopup(wxWindow *parent)
     SetDoubleBuffered(true);
 #endif
     m_panel = new wxScrolledWindow(this, wxID_ANY);
-    m_panel->SetBackgroundColour(*wxWHITE);
+    m_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_panel->SetMinSize(wxSize(FromDIP(180),-1));
     m_panel->Bind(wxEVT_MOTION, &CameraPopup::OnMouse, this);
 
@@ -248,7 +249,7 @@ void CameraPopup::Popup(wxWindow *WXUNUSED(focus))
 wxWindow* CameraPopup::create_item_radiobox(wxString title, wxWindow* parent, wxString tooltip, int padding_left)
 {
     wxWindow *item = new wxWindow(parent, wxID_ANY, wxDefaultPosition, wxSize(-1, FromDIP(20)));
-    item->SetBackgroundColour(*wxWHITE);
+    item->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     RadioBox *radiobox = new RadioBox(item);
     radiobox->SetPosition(wxPoint(padding_left, (item->GetSize().GetHeight() - radiobox->GetSize().GetHeight()) / 2));
@@ -262,7 +263,7 @@ wxWindow* CameraPopup::create_item_radiobox(wxString title, wxWindow* parent, wx
         });
 
     wxStaticText *text = new wxStaticText(item, wxID_ANY, title, wxDefaultPosition, wxDefaultSize);
-    text->SetForegroundColour(*wxBLACK);
+    text->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     resolution_texts.push_back(text);
     text->SetPosition(wxPoint(padding_left + radiobox->GetSize().GetWidth() + 10, (item->GetSize().GetHeight() - text->GetSize().GetHeight()) / 2));
     text->SetFont(Label::Body_13);

@@ -1,4 +1,5 @@
 #include "UpgradePanel.hpp"
+#include "Widgets/StateColor.hpp"
 #include <slic3r/GUI/Widgets/SideTools.hpp>
 #include <slic3r/GUI/Widgets/Label.hpp>
 #include <slic3r/GUI/I18N.hpp>
@@ -40,7 +41,7 @@ enum FIRMWARE_STASUS
 MachineInfoPanel::MachineInfoPanel(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name)
     :wxPanel(parent, id, pos, size, style)
 {
-    this->SetBackgroundColour(wxColour(255, 255, 255));
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     init_bitmaps();
 

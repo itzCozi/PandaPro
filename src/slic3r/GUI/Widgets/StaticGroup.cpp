@@ -1,9 +1,10 @@
 #include "StaticGroup.hpp"
+#include "StateColor.hpp"
 
 StaticGroup::StaticGroup(wxWindow *parent, wxWindowID id, const wxString &label)
     : LabeledStaticBox(parent, label)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetForegroundColour("#CECECE");
 }
 

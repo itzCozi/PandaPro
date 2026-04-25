@@ -1,4 +1,5 @@
 #include "EditGCodeDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <vector>
 #include <string>
@@ -37,7 +38,7 @@ EditGCodeDialog::EditGCodeDialog(wxWindow* parent, const std::string& key, const
     DPIDialog(parent, wxID_ANY, format_wxstr(_L("Edit Custom G-code (%1%)"), key), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
     SetFont(wxGetApp().normal_font());
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxGetApp().UpdateDarkUI(this);
     wxGetApp().UpdateDlgDarkUI(this);
 
@@ -55,7 +56,7 @@ EditGCodeDialog::EditGCodeDialog(wxWindow* parent, const std::string& key, const
     m_search_bar->ShowSearchButton(true);
     m_search_bar->ShowCancelButton(true);
     m_search_bar->SetDescriptiveText(_L("Search G-code placeholders"));
-    m_search_bar->SetForegroundColour(*wxBLACK);
+    m_search_bar->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     wxGetApp().UpdateDarkUI(m_search_bar);
 
     m_search_bar->Bind(wxEVT_SET_FOCUS, [](wxFocusEvent&) {

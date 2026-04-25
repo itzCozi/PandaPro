@@ -1,4 +1,5 @@
 #include "SafetyOptionsDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 #include "GUI_App.hpp"
 #include "libslic3r/Utils.hpp"
@@ -27,12 +28,12 @@ SafetyOptionsDialog::SafetyOptionsDialog(wxWindow* parent)
     this->SetDoubleBuffered(true);
     std::string icon_path = (boost::format("%1%/images/OrcaSlicerTitle.ico") % resources_dir()).str();
     SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetSize(FromDIP(480),FromDIP(320));
 
     m_scrollwindow = new wxScrolledWindow(this, wxID_ANY);
     m_scrollwindow->SetScrollRate(0, FromDIP(10));
-    m_scrollwindow->SetBackgroundColour(*wxWHITE);
+    m_scrollwindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scrollwindow->SetMinSize(wxSize(FromDIP(480), wxDefaultCoord));
     m_scrollwindow->SetMaxSize(wxSize(FromDIP(480), wxDefaultCoord));
 
@@ -171,14 +172,14 @@ void SafetyOptionsDialog::updateIdelHeatingProtect(MachineObject *obj)
         m_cb_idel_heating_protection->Enable(false);
         m_text_idel_heating_protection->SetForegroundColour(wxColour(170, 170, 170));
         m_text_idel_heating_protection_caption->SetForegroundColour(wxColour(170, 170, 170));
-        m_cb_idel_heating_protection->SetBackgroundColour(wxColour(255, 255, 255));
+        m_cb_idel_heating_protection->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         m_idel_protect_unavailable = true;
     } else {
         m_cb_idel_heating_protection->Enable(true);
         m_cb_idel_heating_protection->SetValue(obj->GetPrintOptions()->GetIdelHeatingProtectEenabled());
-        m_text_idel_heating_protection->SetForegroundColour(*wxBLACK);
+        m_text_idel_heating_protection->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
         m_text_idel_heating_protection_caption->SetForegroundColour(STATIC_TEXT_CAPTION_COL);
-        m_cb_idel_heating_protection->SetForegroundColour(*wxBLACK);
+        m_cb_idel_heating_protection->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
         m_idel_protect_unavailable = false;
     }
 }
@@ -205,7 +206,7 @@ wxBoxSizer* SafetyOptionsDialog::create_settings_group(wxWindow* parent)
 
     //Idle Heating Protect
     m_idel_heating_container = new wxPanel(parent, wxID_ANY);
-    m_idel_heating_container->SetBackgroundColour(*wxWHITE);
+    m_idel_heating_container->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* idel_container_sizer = new wxBoxSizer(wxVERTICAL);
 
     line_sizer = new wxBoxSizer(wxHORIZONTAL);

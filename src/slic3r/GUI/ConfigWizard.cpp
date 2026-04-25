@@ -1,6 +1,7 @@
 // FIXME: extract absolute units -> em
 
 #include "ConfigWizard_private.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <algorithm>
 #include <numeric>
@@ -461,7 +462,7 @@ ConfigWizardPage::ConfigWizardPage(ConfigWizard *parent, wxString title, wxStrin
     auto *text = new wxStaticText(this, wxID_ANY, std::move(title), wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
     const auto font = GetFont().MakeBold().Scaled(1.5);
     text->SetFont(font);
-    text->SetForegroundColour(*wxBLACK);
+    text->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     sizer->Add(text, 0, wxALIGN_LEFT, 0);
     sizer->AddSpacer(10);
 
@@ -646,7 +647,7 @@ PageMaterials::PageMaterials(ConfigWizard *parent, Materials *materials, wxStrin
     , list_vendor(new StringList(this))
     , list_profile(new PresetList(this))
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     append_spacer(VERTICAL_SPACING);
 
     const int em = parent->em_unit();
@@ -2639,7 +2640,7 @@ ConfigWizard::ConfigWizard(wxWindow *parent)
     , p(new priv(this))
 {
     this->SetFont(wxGetApp().normal_font());
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     p->load_vendors();
     //BBS: add bed exclude areas
     p->custom_config.reset(DynamicPrintConfig::new_from_defaults_keys({

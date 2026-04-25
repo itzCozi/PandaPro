@@ -1,4 +1,5 @@
 #include "SliceInfoPanel.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <boost/log/trivial.hpp>
 #include "I18N.hpp"
@@ -52,7 +53,7 @@ SliceInfoPopup::SliceInfoPopup(wxWindow *parent, wxBitmap bmp, BBLSliceInfo *inf
     SetDoubleBuffered(true);
 #endif
     m_panel = new wxScrolledWindow(this, wxID_ANY);
-    m_panel->SetBackgroundColour(*wxWHITE);
+    m_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_panel->Bind(wxEVT_MOTION, &SliceInfoPopup::OnMouse, this);
 
@@ -172,7 +173,7 @@ SliceInfoPanel::SliceInfoPanel(wxWindow *parent, wxBitmap &prediction, wxBitmap 
     wxWindowID id, const wxPoint &pos, const wxSize &size, long style, const wxString &name)
     : wxPanel(parent, id, pos, size, style, name)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_item_top_sizer = new wxBoxSizer(wxHORIZONTAL);
 

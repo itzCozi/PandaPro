@@ -1,4 +1,5 @@
 #include "DeviceErrorDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "HMS.hpp"
 
 #include "Widgets/Button.hpp"
@@ -27,7 +28,7 @@ DeviceErrorDialog::DeviceErrorDialog(MachineObject* obj, wxWindow* parent, wxWin
 {
     std::string icon_path = (boost::format("%1%/images/OrcaSlicerTitle.ico") % resources_dir()).str();
     SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     SetTitle(_L("Error"));
 
@@ -36,7 +37,7 @@ DeviceErrorDialog::DeviceErrorDialog(MachineObject* obj, wxWindow* parent, wxWin
 
     m_scroll_area = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     m_scroll_area->SetScrollRate(0, 5);
-    m_scroll_area->SetBackgroundColour(*wxWHITE);
+    m_scroll_area->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scroll_area->SetMinSize(wxSize(FromDIP(320), FromDIP(250)));
 
     wxBoxSizer* text_sizer = new wxBoxSizer(wxVERTICAL);

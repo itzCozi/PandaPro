@@ -1,4 +1,5 @@
 #include "WebGuideDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "ConfigWizard.hpp"
 
 #include <boost/filesystem/operations.hpp>
@@ -111,7 +112,7 @@ GuideFrame::GuideFrame(GUI_App *pGUI, long style)
     : DPIDialog((wxWindow *) (pGUI->mainframe), wxID_ANY, "OrcaSlicer", wxDefaultPosition, wxDefaultSize, style),
 	m_appconfig_new()
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     // INI
     m_SectionName = "firstguide";
     PrivacyUse    = false;

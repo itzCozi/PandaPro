@@ -1,4 +1,5 @@
 #include "DragCanvas.hpp"
+#include "Widgets/StateColor.hpp"
 #include "wxExtensions.hpp"
 #include "GUI_App.hpp"
 
@@ -15,7 +16,7 @@ DragCanvas::DragCanvas(wxWindow* parent, const std::vector<std::string>& colors,
     , m_drag_mode(DragMode::NONE)
     , m_max_shape_pos(wxPoint(0, 0))
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_background_color = StateColor::darkModeColorFor("#FFFFFF"); // ORCA
     m_border_color     = StateColor::darkModeColorFor("#DBDBDB"); // ORCA

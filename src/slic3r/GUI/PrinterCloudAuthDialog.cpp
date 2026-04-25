@@ -1,4 +1,5 @@
 #include "PrinterCloudAuthDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include <wx/sizer.h>
 #include <wx/toolbar.h>
 #include <wx/textdlg.h>
@@ -25,7 +26,7 @@ namespace Slic3r { namespace GUI {
 PrinterCloudAuthDialog::PrinterCloudAuthDialog(wxWindow* parent, PrintHost* host)
     : wxDialog((wxWindow*) (wxGetApp().mainframe), wxID_ANY, "Login")
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     // Url
     host->get_login_url(m_TargetUrl);
     BOOST_LOG_TRIVIAL(info) << "login url = " << m_TargetUrl.ToStdString();

@@ -1,4 +1,5 @@
 #include "SwitchButton.hpp"
+#include "StateColor.hpp"
 #include "Label.hpp"
 #include "StaticBox.hpp"
 
@@ -389,7 +390,7 @@ SwitchBoard::SwitchBoard(wxWindow *parent, wxString leftL, wxString right, wxSiz
     SetDoubleBuffered(true);
 #endif //__WINDOWS__
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 	leftLabel = leftL;
     rightLabel = right;
 

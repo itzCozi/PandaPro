@@ -1,4 +1,5 @@
 #include "libslic3r/libslic3r.h"
+#include "Widgets/StateColor.hpp"
 #include "libslic3r/PresetBundle.hpp"
 #include "GUI_ObjectList.hpp"
 #include "GUI_Factories.hpp"
@@ -140,7 +141,7 @@ ObjectList::ObjectList(wxWindow* parent) :
 #ifdef __linux__
     // Temporary fix for incorrect dark mode application regarding list item's text color.
     // See: https://github.com/OrcaSlicer/OrcaSlicer/issues/2086
-    this->SetForegroundColour(*wxBLACK);
+    this->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
 #endif
 
     SetFont(Label::sysFont(13));

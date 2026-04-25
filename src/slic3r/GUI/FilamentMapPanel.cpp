@@ -1,4 +1,5 @@
 #include "FilamentMapPanel.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include <wx/dcbuffer.h>
 #include <wx/utils.h>
@@ -114,7 +115,7 @@ void FilamentMapManualPanel::Show()
 
 GUI::FilamentMapBtnPanel::FilamentMapBtnPanel(wxWindow *parent, const wxString &label, const wxString &detail, const std::string &icon) : wxPanel(parent)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetBackgroundStyle(wxBG_STYLE_PAINT);
     m_hover = false;
 
@@ -361,7 +362,7 @@ FilamentMapDefaultPanel::FilamentMapDefaultPanel(wxWindow *parent) : wxPanel(par
 
     m_label = new Label(this, _L("The filament grouping method for current plate is determined by the dropdown option at the slicing plate button."));
     m_label->SetFont(Label::Body_14);
-    m_label->SetBackgroundColour(*wxWHITE);
+    m_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_label->Wrap(FromDIP(500));
 
     sizer->AddStretchSpacer();

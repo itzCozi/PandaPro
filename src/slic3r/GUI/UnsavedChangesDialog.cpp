@@ -1,4 +1,5 @@
 #include "UnsavedChangesDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <cstddef>
 #include <string>
@@ -836,7 +837,7 @@ inline int UnsavedChangesDialog::ShowModal()
 
 void UnsavedChangesDialog::build(Preset::Type type, PresetCollection *dependent_presets, const std::string &new_selected_preset, const wxString &header)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
 
@@ -1752,7 +1753,7 @@ FullCompareDialog::FullCompareDialog(const wxString& option_name, const wxString
                                      const wxString& old_value_header, const wxString& new_value_header)
     : wxDialog(nullptr, wxID_ANY, option_name, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     int border = 10;
 
@@ -2062,7 +2063,7 @@ DiffPresetDialog::DiffPresetDialog(MainFrame* mainframe)
 
     // Create UI items
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     create_info_lines();
 

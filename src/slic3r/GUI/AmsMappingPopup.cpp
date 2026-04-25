@@ -1,4 +1,5 @@
 #include "AmsMappingPopup.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -76,7 +77,7 @@ static void _add_containers(const AmsMapingPopup *                 win,
     SetSize(MATERIAL_ITEM_SIZE);
     SetMinSize(MATERIAL_ITEM_SIZE);
     SetMaxSize(MATERIAL_ITEM_SIZE);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     Bind(wxEVT_PAINT, &MaterialItem::paintEvent, this);
     wxGetApp().UpdateDarkUI(this);
@@ -620,7 +621,7 @@ AmsMapingPopup::AmsMapingPopup(wxWindow *parent, bool use_in_sync_dialog) :
      #endif
 
 
-     SetBackgroundColour(*wxWHITE);
+     SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
      m_sizer_main = new wxBoxSizer(wxVERTICAL);
      m_sizer_ams = new wxBoxSizer(wxHORIZONTAL);
@@ -712,7 +713,7 @@ AmsMapingPopup::AmsMapingPopup(wxWindow *parent, bool use_in_sync_dialog) :
                                       wxBU_EXACTFIT | wxNO_BORDER, true, 14);
      m_reset_btn->SetName(wxGetApp().dark_mode() ? "erase_dark" : "erase");
      m_reset_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent &e) { reset_ams_info(); });
-     m_reset_btn->SetBackgroundColour(*wxWHITE);
+     m_reset_btn->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      m_reset_btn->SetToolTip(_L("Reset current filament mapping"));
 
      m_sizer_ams_right_horizonal->AddStretchSpacer();
@@ -805,7 +806,7 @@ void AmsMapingPopup::msw_rescale()
     wxBoxSizer* sizer_split_ams = new wxBoxSizer(wxHORIZONTAL);
     auto ams_title_text = new Label(parent, text);
     ams_title_text->SetFont(::Label::Body_13);
-    ams_title_text->SetBackgroundColour(*wxWHITE);
+    ams_title_text->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     ams_title_text->SetForegroundColour(0x909090);
     auto m_split_left_line = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     m_split_left_line->SetBackgroundColour(0xeeeeee);
@@ -1667,7 +1668,7 @@ int MappingItem::get_remain_area_height() const
 AmsMapingTipPopup::AmsMapingTipPopup(wxWindow *parent)
     :PopupWindow(parent, wxBORDER_NONE)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
 
     m_sizer_main->Add(0, 0, 1, wxTOP, FromDIP(28));
@@ -1677,20 +1678,20 @@ AmsMapingTipPopup::AmsMapingTipPopup(wxWindow *parent)
     m_sizer_body->Add(0, 0, 0, wxEXPAND | wxLEFT, FromDIP(20));
 
     m_panel_enable_ams = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(220), -1), wxTAB_TRAVERSAL);
-    m_panel_enable_ams->SetBackgroundColour(*wxWHITE);
+    m_panel_enable_ams->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *sizer_enable_ams = new wxBoxSizer(wxVERTICAL);
 
     m_title_enable_ams = new wxStaticText(m_panel_enable_ams, wxID_ANY, _L("Enable AMS"), wxDefaultPosition, wxDefaultSize, 0);
-    m_title_enable_ams->SetForegroundColour(*wxBLACK);
-    m_title_enable_ams->SetBackgroundColour(*wxWHITE);
+    m_title_enable_ams->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
+    m_title_enable_ams->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_title_enable_ams->Wrap(-1);
     sizer_enable_ams->Add(m_title_enable_ams, 0, 0, 0);
 
     m_tip_enable_ams = new wxStaticText(m_panel_enable_ams, wxID_ANY, _L("Print with filaments in the AMS"), wxDefaultPosition, wxDefaultSize, 0);
     m_tip_enable_ams->SetMinSize(wxSize(FromDIP(200), FromDIP(50)));
     m_tip_enable_ams->Wrap(FromDIP(200));
-    m_tip_enable_ams->SetForegroundColour(*wxBLACK);
-    m_tip_enable_ams->SetBackgroundColour(*wxWHITE);
+    m_tip_enable_ams->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
+    m_tip_enable_ams->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     sizer_enable_ams->Add(m_tip_enable_ams, 0, wxTOP, 8);
 
     wxBoxSizer *sizer_enable_ams_img;
@@ -1712,21 +1713,21 @@ AmsMapingTipPopup::AmsMapingTipPopup(wxWindow *parent)
     m_sizer_body->Add(m_split_lines, 0, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, FromDIP(10));
 
     m_panel_disable_ams = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(220), -1), wxTAB_TRAVERSAL);
-    m_panel_disable_ams->SetBackgroundColour(*wxWHITE);
+    m_panel_disable_ams->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *sizer_disable_ams;
     sizer_disable_ams = new wxBoxSizer(wxVERTICAL);
 
     m_title_disable_ams = new wxStaticText(m_panel_disable_ams, wxID_ANY, _L("Disable AMS"), wxDefaultPosition, wxDefaultSize, 0);
-    m_title_disable_ams->SetBackgroundColour(*wxWHITE);
-    m_title_disable_ams->SetForegroundColour(*wxBLACK);
+    m_title_disable_ams->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    m_title_disable_ams->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_title_disable_ams->Wrap(-1);
     sizer_disable_ams->Add(m_title_disable_ams, 0, 0, 0);
 
     m_tip_disable_ams = new wxStaticText(m_panel_disable_ams, wxID_ANY, _L("Print with the filament mounted on the back of chassis"), wxDefaultPosition, wxDefaultSize, 0);
     m_tip_disable_ams->SetMinSize(wxSize(FromDIP(200), FromDIP(50)));
     m_tip_disable_ams->Wrap(FromDIP(200));
-    m_tip_disable_ams->SetForegroundColour(*wxBLACK);
-    m_tip_disable_ams->SetBackgroundColour(*wxWHITE);
+    m_tip_disable_ams->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
+    m_tip_disable_ams->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     sizer_disable_ams->Add(m_tip_disable_ams, 0, wxTOP, FromDIP(8));
 
     wxBoxSizer *sizer_disable_ams_img;
@@ -1771,7 +1772,7 @@ bool AmsMapingTipPopup::ProcessLeftDown(wxMouseEvent &event) {
 AmsHumidityTipPopup::AmsHumidityTipPopup(wxWindow* parent)
     :PopupWindow(parent, wxBORDER_NONE)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -1905,7 +1906,7 @@ AmsTutorialPopup::AmsTutorialPopup(wxWindow* parent)
 :PopupWindow(parent, wxBORDER_NONE)
 {
     Bind(wxEVT_PAINT, &AmsTutorialPopup::paintEvent, this);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* sizer_main;
     sizer_main = new wxBoxSizer(wxVERTICAL);
@@ -2008,7 +2009,7 @@ AmsIntroducePopup::AmsIntroducePopup(wxWindow* parent)
 :PopupWindow(parent, wxBORDER_NONE)
 {
     Bind(wxEVT_PAINT, &AmsIntroducePopup::paintEvent, this);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     SetMinSize(wxSize(FromDIP(200), FromDIP(200)));
     SetMaxSize(wxSize(FromDIP(200), FromDIP(200)));
@@ -2175,7 +2176,7 @@ AmsReplaceMaterialDialog::AmsReplaceMaterialDialog(wxWindow* parent)
 #ifdef __WINDOWS__
     SetDoubleBuffered(true);
 #endif //__WINDOWS__
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     create();
     wxGetApp().UpdateDlgDarkUI(this);
 }
@@ -2471,7 +2472,7 @@ AmsRMGroup::AmsRMGroup(wxWindow* parent, std::map<std::string, wxColour> group_i
     SetSize(wxSize(FromDIP(166), FromDIP(166)));
     SetMinSize(wxSize(FromDIP(166), FromDIP(166)));
     SetMaxSize(wxSize(FromDIP(166), FromDIP(166)));
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     backup_current_use_white    =  ScalableBitmap(this, "backup_current_use1",8);
     backup_current_use_black    =  ScalableBitmap(this, "backup_current_use2", 8);
@@ -2688,7 +2689,7 @@ AmsHumidityLevelList::AmsHumidityLevelList(wxWindow* parent)
     SetSize(wxSize(FromDIP(680), FromDIP(104)));
     SetMinSize(wxSize(FromDIP(680), FromDIP(104)));
     SetMaxSize(wxSize(FromDIP(680), FromDIP(104)));
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     background_img = ScalableBitmap(this, "humidity_list_background", 104);
 

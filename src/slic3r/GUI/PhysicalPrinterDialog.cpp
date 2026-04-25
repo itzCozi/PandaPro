@@ -1,4 +1,5 @@
 #include "PhysicalPrinterDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "PresetComboBoxes.hpp"
 #include "PrinterCloudAuthDialog.hpp"
 
@@ -52,7 +53,7 @@ PhysicalPrinterDialog::PhysicalPrinterDialog(wxWindow* parent) :
     DPIDialog(parent, wxID_ANY, _L("Physical Printer"), wxDefaultPosition, wxSize(45 * wxGetApp().em_unit(), -1), wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
     SetFont(wxGetApp().normal_font());
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     // input the preset name
     Tab *tab = wxGetApp().get_tab(Preset::TYPE_PRINTER);
@@ -74,7 +75,7 @@ PhysicalPrinterDialog::PhysicalPrinterDialog(wxWindow* parent) :
     wxBoxSizer *input_sizer_v  = new wxBoxSizer(wxVERTICAL);
 
     m_input_ctrl = new wxTextCtrl(m_input_area, -1, from_u8(preset_name), wxDefaultPosition, wxSize(wxSize(FromDIP(360), FromDIP(32)).x, -1), 0 | wxBORDER_NONE);
-    m_input_ctrl->SetBackgroundColour(wxColour(255, 255, 255));
+    m_input_ctrl->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_input_ctrl->Bind(wxEVT_TEXT, [this](wxCommandEvent &) { update(); });
 
 

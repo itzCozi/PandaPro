@@ -1,4 +1,5 @@
 #include <regex>
+#include "Widgets/StateColor.hpp"
 #include "CalibrationWizardPresetPage.hpp"
 #include "I18N.hpp"
 #include "Widgets/Label.hpp"
@@ -31,7 +32,7 @@ CaliPresetCaliStagePanel::CaliPresetCaliStagePanel(
     long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_top_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -54,14 +55,14 @@ void CaliPresetCaliStagePanel::create_panel(wxWindow* parent)
     m_top_sizer->AddSpacer(FromDIP(15));
 
     m_complete_radioBox = new wxRadioButton(parent, wxID_ANY, _L("Complete Calibration"));
-    m_complete_radioBox->SetForegroundColour(*wxBLACK);
+    m_complete_radioBox->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     
     m_complete_radioBox->SetValue(true);
     m_stage = CALI_MANUAL_STAGE_1;
     m_top_sizer->Add(m_complete_radioBox);
     m_top_sizer->AddSpacer(FromDIP(10));
     m_fine_radioBox = new wxRadioButton(parent, wxID_ANY, _L("Fine Calibration based on flow ratio"));
-    m_fine_radioBox->SetForegroundColour(*wxBLACK);
+    m_fine_radioBox->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_top_sizer->Add(m_fine_radioBox);
 
     input_panel = new wxPanel(parent);
@@ -176,7 +177,7 @@ CaliComboBox::CaliComboBox(wxWindow* parent,
     , m_title(title)
     , m_on_value_change_call_back(on_value_change)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_top_sizer = new wxBoxSizer(wxVERTICAL);
     m_top_sizer->AddSpacer(PRESET_GAP);
     auto combo_title = new Label(this, title);
@@ -236,7 +237,7 @@ CaliPresetWarningPanel::CaliPresetWarningPanel(
     long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_top_sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -270,7 +271,7 @@ CaliPresetCustomRangePanel::CaliPresetCustomRangePanel(
     : wxPanel(parent, id, pos, size, style)
     , m_input_value_nums(input_value_nums)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_title_texts.resize(input_value_nums);
     m_value_inputs.resize(input_value_nums);
@@ -503,7 +504,7 @@ CalibrationPresetPage::CalibrationPresetPage(
     : CalibrationWizardPage(parent, id, pos, size, style)
     , m_show_custom_range(custom_range)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_cali_mode = cali_mode;
     m_page_type = CaliPageType::CALI_PAGE_PRESET;
@@ -623,7 +624,7 @@ void CalibrationPresetPage::create_selection_panel(wxWindow* parent)
     // single extruder
     {
         m_single_nozzle_info_panel = new wxPanel(parent);
-        m_single_nozzle_info_panel->SetBackgroundColour(*wxWHITE);
+        m_single_nozzle_info_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         auto single_nozzle_sizer = new wxBoxSizer(wxVERTICAL);
         auto nozzle_combo_text = new Label(m_single_nozzle_info_panel, _L("Nozzle Diameter"));
         nozzle_combo_text->SetFont(Label::Head_14);
@@ -662,7 +663,7 @@ void CalibrationPresetPage::create_selection_panel(wxWindow* parent)
     // multi extruder
     {
         m_multi_nozzle_info_panel = new wxPanel(parent);
-        m_multi_nozzle_info_panel->SetBackgroundColour(*wxWHITE);
+        m_multi_nozzle_info_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         auto nozzle_volume_sizer = new wxBoxSizer(wxVERTICAL);
         auto nozzle_info_text = new Label(m_multi_nozzle_info_panel, _L("Nozzle Info"));
         nozzle_info_text->SetFont(Label::Head_14);
@@ -777,7 +778,7 @@ void CalibrationPresetPage::create_selection_panel(wxWindow* parent)
     filament_for_title_sizer->Add(filament_for_text, 0, wxALIGN_CENTER);
     filament_for_title_sizer->AddSpacer(FromDIP(25));
     m_ams_sync_button = new ScalableButton(parent, wxID_ANY, "ams_fila_sync", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, false, 18);
-    m_ams_sync_button->SetBackgroundColour(*wxWHITE);
+    m_ams_sync_button->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_ams_sync_button->SetToolTip(_L("Synchronize filament list from AMS"));
     filament_for_title_sizer->Add(m_ams_sync_button, 0, wxALIGN_CENTER);
     panel_sizer->Add(filament_for_title_sizer);
@@ -913,7 +914,7 @@ void CalibrationPresetPage::create_filament_list_panel(wxWindow* parent)
         auto filament_comboBox_sizer = new wxBoxSizer(wxHORIZONTAL);
         wxRadioButton* radio_btn = new wxRadioButton(m_filament_list_panel, wxID_ANY, "");
         CheckBox* check_box = new CheckBox(m_filament_list_panel);
-        check_box->SetBackgroundColour(*wxWHITE);
+        check_box->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         FilamentComboBox* fcb = new FilamentComboBox(m_filament_list_panel, i);
         fcb->SetRadioBox(radio_btn);
         fcb->SetCheckBox(check_box);
@@ -1056,7 +1057,7 @@ void CalibrationPresetPage::create_multi_extruder_filament_list_panel(wxWindow *
             auto           filament_comboBox_sizer = new wxBoxSizer(wxHORIZONTAL);
             wxRadioButton *radio_btn               = new wxRadioButton(m_multi_exutrder_filament_list_panel, wxID_ANY, "");
             CheckBox *     check_box               = new CheckBox(m_multi_exutrder_filament_list_panel);
-            check_box->SetBackgroundColour(*wxWHITE);
+            check_box->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
             FilamentComboBox *fcb = new FilamentComboBox(m_multi_exutrder_filament_list_panel, i + 4);
             fcb->SetRadioBox(radio_btn);
             fcb->SetCheckBox(check_box);
@@ -1100,7 +1101,7 @@ void CalibrationPresetPage::create_multi_extruder_filament_list_panel(wxWindow *
             auto           filament_comboBox_sizer = new wxBoxSizer(wxHORIZONTAL);
             wxRadioButton *radio_btn               = new wxRadioButton(m_multi_exutrder_filament_list_panel, wxID_ANY, "");
             CheckBox *     check_box               = new CheckBox(m_multi_exutrder_filament_list_panel);
-            check_box->SetBackgroundColour(*wxWHITE);
+            check_box->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
             FilamentComboBox *fcb = new FilamentComboBox(m_multi_exutrder_filament_list_panel, i);
             fcb->SetRadioBox(radio_btn);
             fcb->SetCheckBox(check_box);
@@ -1179,16 +1180,16 @@ void CalibrationPresetPage::create_page(wxWindow* parent)
     m_top_sizer->Add(m_cali_stage_panel, 0);
 
     m_selection_panel = new wxPanel(parent);
-    m_selection_panel->SetBackgroundColour(*wxWHITE);
+    m_selection_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     create_selection_panel(m_selection_panel);
     init_selection_values();
 
     m_filament_list_panel = new wxPanel(parent);
-    m_filament_list_panel->SetBackgroundColour(*wxWHITE);
+    m_filament_list_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     create_filament_list_panel(m_filament_list_panel);
 
     m_multi_exutrder_filament_list_panel = new wxPanel(parent);
-    m_multi_exutrder_filament_list_panel->SetBackgroundColour(*wxWHITE);
+    m_multi_exutrder_filament_list_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     create_multi_extruder_filament_list_panel(m_multi_exutrder_filament_list_panel);
 
     if (m_cali_mode == CalibMode::Calib_PA_Line || m_cali_mode == CalibMode::Calib_PA_Pattern) {

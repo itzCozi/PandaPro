@@ -65,7 +65,7 @@ FilamentPickerDialog::FilamentPickerDialog(wxWindow *parent, const wxString& fil
         wxDefaultSize,
         wxBORDER_NONE | wxFRAME_NO_TASKBAR | wxFRAME_SHAPED)
 {
-    SetBackgroundColour(wxColour(255, 255, 255));
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_color_query = new FilamentColorCodeQuery();
     m_is_data_loaded = LoadFilamentData(fila_id);

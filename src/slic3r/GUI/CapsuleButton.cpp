@@ -1,4 +1,5 @@
 #include "GUI_App.hpp"
+#include "Widgets/StateColor.hpp"
 #include "CapsuleButton.hpp"
 #include <wx/dcbuffer.h>
 #include "wx/graphics.h"
@@ -17,7 +18,7 @@ static const wxColour BorderSelectColor = wxColour("#009688");
 
 CapsuleButton::CapsuleButton(wxWindow *parent, wxWindowID id, const wxString &label, bool selected) : wxPanel(parent, id)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     m_hovered  = false;
@@ -29,7 +30,7 @@ CapsuleButton::CapsuleButton(wxWindow *parent, wxWindowID id, const wxString &la
     tag_off_bmp = create_scaled_bitmap("capsule_tag_off", nullptr, FromDIP(16));
 
     m_btn = new wxBitmapButton(this, wxID_ANY, selected?tag_on_bmp:tag_off_bmp, wxDefaultPosition, wxDefaultSize, wxNO_BORDER);
-    m_btn->SetBackgroundColour(*wxWHITE);
+    m_btn->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_label = new Label(this, label);
 

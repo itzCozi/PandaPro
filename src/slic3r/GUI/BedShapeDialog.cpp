@@ -1,4 +1,5 @@
 #include "BedShapeDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "OptionsGroup.hpp"
 
@@ -141,7 +142,7 @@ void BedShapeDialog::build_dialog(const Pointfs& default_pt, const ConfigOptionS
 {
     SetFont(wxGetApp().normal_font());
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 	m_panel = new BedShapePanel(this);
     m_panel->build_panel(default_pt, custom_texture, custom_model);
 
@@ -277,7 +278,7 @@ void BedShapePanel::build_panel(const Pointfs& default_pt, const std::string& cu
 ConfigOptionsGroupShp BedShapePanel::init_shape_options_page(const wxString& title)
 {
     wxPanel* panel = new wxPanel(m_shape_options_book);
-    panel->SetBackgroundColour(*wxWHITE);
+    panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     ConfigOptionsGroupShp optgroup = std::make_shared<ConfigOptionsGroup>(panel, _L("Settings"));
 
     optgroup->label_width = 10;
@@ -301,7 +302,7 @@ void BedShapePanel::activate_options_page(ConfigOptionsGroupShp options_group)
 wxPanel* BedShapePanel::init_texture_panel()
 {
     wxPanel* panel = new wxPanel(this);
-    panel->SetBackgroundColour(*wxWHITE);
+    panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     ConfigOptionsGroupShp optgroup = std::make_shared<ConfigOptionsGroup>(panel, _L("Texture"));
 
     optgroup->label_width = 10;
@@ -362,7 +363,7 @@ wxPanel* BedShapePanel::init_texture_panel()
 
         remove_btn->Bind(wxEVT_UPDATE_UI, ([this](wxUpdateUIEvent& e) { e.Enable(m_custom_texture != NONE); }));
 
-        parent->SetBackgroundColour(*wxWHITE);
+        parent->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
         return sizer;
     };
@@ -377,7 +378,7 @@ wxPanel* BedShapePanel::init_texture_panel()
 wxPanel* BedShapePanel::init_model_panel()
 {
     wxPanel* panel = new wxPanel(this);
-    panel->SetBackgroundColour(*wxWHITE);
+    panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     ConfigOptionsGroupShp optgroup = std::make_shared<ConfigOptionsGroup>(panel, _L("Model"));
 
     optgroup->label_width = 10;
@@ -440,7 +441,7 @@ wxPanel* BedShapePanel::init_model_panel()
 
         remove_btn->Bind(wxEVT_UPDATE_UI, ([this](wxUpdateUIEvent& e) { e.Enable(m_custom_model != NONE); }));
 
-        parent->SetBackgroundColour(*wxWHITE);
+        parent->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
         return sizer;
     };

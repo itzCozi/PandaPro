@@ -1,4 +1,5 @@
 #include "WebUserLoginDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <string.h>
 #include "I18N.hpp"
@@ -42,13 +43,13 @@ int ZUserLogin::web_sequence_id = 20000;
 
 ZUserLogin::ZUserLogin() : wxDialog((wxWindow *) (wxGetApp().mainframe), wxID_ANY, "OrcaSlicer")
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     const auto bblnetwork_enabled =wxGetApp().app_config->get_bool("installed_networking");
     // Url
     NetworkAgent* agent = wxGetApp().getAgent();
     if (!agent && bblnetwork_enabled) {
 
-        SetBackgroundColour(*wxWHITE);
+        SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
         wxBoxSizer* m_sizer_main = new wxBoxSizer(wxVERTICAL);
         auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
@@ -56,7 +57,7 @@ ZUserLogin::ZUserLogin() : wxDialog((wxWindow *) (wxGetApp().mainframe), wxID_AN
         m_sizer_main->Add(m_line_top, 0, wxEXPAND, 0);
 
         auto* m_message = new wxStaticText(this, wxID_ANY, _L("Bambu Network plug-in not detected."), wxDefaultPosition, wxDefaultSize, 0);
-        m_message->SetForegroundColour(*wxBLACK);
+        m_message->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
         m_message->Wrap(FromDIP(360));
 
         // ORCA standardized HyperLink

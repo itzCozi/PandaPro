@@ -1,4 +1,5 @@
 #include "SendMultiMachinePage.hpp"
+#include "Widgets/StateColor.hpp"
 #include "TaskManager.hpp"
 #include "I18N.hpp"
 
@@ -32,7 +33,7 @@ public:
 SendDeviceItem::SendDeviceItem(wxWindow* parent,  MachineObject* obj)
     : DeviceItem(parent, obj)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_bitmap_check_disable = ScalableBitmap(this, "check_off_disabled", 18);
     m_bitmap_check_off = ScalableBitmap(this, "check_off_focused", 18);
     m_bitmap_check_on = ScalableBitmap(this, "check_on", 18);
@@ -266,7 +267,7 @@ SendMultiMachinePage::SendMultiMachinePage(Plater* plater)
 
     app_config = get_app_config();
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -276,7 +277,7 @@ SendMultiMachinePage::SendMultiMachinePage(Plater* plater)
     main_sizer->AddSpacer(FromDIP(10));
 
     m_main_scroll = new ScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
-    m_main_scroll->SetBackgroundColour(*wxWHITE);
+    m_main_scroll->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_main_scroll->SetScrollRate(5, 5);
 
     m_sizer_body = new wxBoxSizer(wxVERTICAL);
@@ -1060,12 +1061,12 @@ void SendMultiMachinePage::on_set_finish_mapping(wxCommandEvent& evt)
 wxPanel* SendMultiMachinePage::create_page()
 {
     auto main_page = new wxPanel(m_main_scroll, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    main_page->SetBackgroundColour(*wxWHITE);
+    main_page->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
     // add title
     m_title_panel = new wxPanel(main_page, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_title_panel->SetBackgroundColour(*wxWHITE);
+    m_title_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_title_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     m_rename_switch_panel = new wxSimplebook(m_title_panel);
@@ -1073,7 +1074,7 @@ wxPanel* SendMultiMachinePage::create_page()
     m_rename_switch_panel->SetMaxSize(wxSize(FromDIP(240), FromDIP(25)));
 
     m_rename_normal_panel = new wxPanel(m_rename_switch_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_rename_normal_panel->SetBackgroundColour(*wxWHITE);
+    m_rename_normal_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     rename_sizer_v = new wxBoxSizer(wxVERTICAL);
     rename_sizer_h = new wxBoxSizer(wxHORIZONTAL);
 
@@ -1082,7 +1083,7 @@ wxPanel* SendMultiMachinePage::create_page()
     m_task_name->SetMinSize(wxSize(FromDIP(200), -1));
     m_task_name->SetMaxSize(wxSize(FromDIP(200), -1));
     m_rename_button = new ScalableButton(m_rename_normal_panel, wxID_ANY, "ams_editable");
-    m_rename_button->SetBackgroundColour(*wxWHITE);
+    m_rename_button->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     rename_sizer_h->Add(m_task_name, 0, wxALIGN_CENTER, 0);
     rename_sizer_h->Add(m_rename_button, 0, wxALIGN_CENTER, 0);
     rename_sizer_v->Add(rename_sizer_h, 1, wxALIGN_CENTER, 0);
@@ -1092,7 +1093,7 @@ wxPanel* SendMultiMachinePage::create_page()
 
     //rename edit
     m_rename_edit_panel = new wxPanel(m_rename_switch_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_rename_edit_panel->SetBackgroundColour(*wxWHITE);
+    m_rename_edit_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto rename_edit_sizer_v = new wxBoxSizer(wxVERTICAL);
 
     m_rename_input = new ::TextInput(m_rename_edit_panel, wxEmptyString, wxEmptyString, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
@@ -1351,7 +1352,7 @@ wxPanel* SendMultiMachinePage::create_page()
     });
 
     scroll_macine_list = new wxScrolledWindow(main_page, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(800), FromDIP(300)), wxHSCROLL | wxVSCROLL);
-    scroll_macine_list->SetBackgroundColour(*wxWHITE);
+    scroll_macine_list->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     scroll_macine_list->SetScrollRate(5, 5);
     scroll_macine_list->SetMinSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), 10 * FromDIP(SEND_ITEM_MAX_HEIGHT)));
     scroll_macine_list->SetMaxSize(wxSize(FromDIP(DEVICE_ITEM_MAX_WIDTH), 10 * FromDIP(SEND_ITEM_MAX_HEIGHT)));

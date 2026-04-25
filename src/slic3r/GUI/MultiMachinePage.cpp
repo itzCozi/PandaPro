@@ -1,4 +1,5 @@
 #include "MultiMachinePage.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
 
@@ -116,7 +117,7 @@ void MultiMachinePage::clear_page()
 DevicePickItem::DevicePickItem(wxWindow* parent, MachineObject* obj)
     : DeviceItem(parent, obj)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_bitmap_check_disable = ScalableBitmap(this, "check_off_disabled", 18);
     m_bitmap_check_off = ScalableBitmap(this, "check_off_focused", 18);
     m_bitmap_check_on = ScalableBitmap(this, "check_on", 18);
@@ -308,7 +309,7 @@ MultiMachinePickPage::MultiMachinePickPage(Plater* plater /*= nullptr*/)
 
     app_config = get_app_config();
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -321,7 +322,7 @@ MultiMachinePickPage::MultiMachinePickPage(Plater* plater /*= nullptr*/)
     scroll_macine_list->SetSize(wxSize(FromDIP(400), FromDIP(10 * 30)));
     scroll_macine_list->SetMinSize(wxSize(FromDIP(400), FromDIP(10 * 30)));
     scroll_macine_list->SetMaxSize(wxSize(FromDIP(400), FromDIP(10 * 30)));
-    scroll_macine_list->SetBackgroundColour(*wxWHITE);
+    scroll_macine_list->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     scroll_macine_list->SetScrollRate(0, 5);
 
     sizer_machine_list = new wxBoxSizer(wxVERTICAL);

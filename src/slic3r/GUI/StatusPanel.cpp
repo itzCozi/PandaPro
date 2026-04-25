@@ -1,4 +1,5 @@
 #include "StatusPanel.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 #include "Widgets/Label.hpp"
 #include "Widgets/Button.hpp"
@@ -142,7 +143,7 @@ Description:Extruder
 ExtruderImage::ExtruderImage(wxWindow* parent, wxWindowID id, int nozzle_num, const wxPoint& pos, const wxSize& size)
 {
     wxWindow::Create(parent, id, pos, wxSize(FromDIP(45), FromDIP(112)));
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_nozzle_num = nozzle_num;
     SetSize(wxSize(FromDIP(45), FromDIP(112)));
     SetMinSize(wxSize(FromDIP(45), FromDIP(112)));
@@ -494,7 +495,7 @@ PrintingTaskPanel::PrintingTaskPanel(wxWindow* parent, PrintingTaskType type)
     m_type = type;
     m_question_button = nullptr;
     create_panel(this);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_bitmap_background = ScalableBitmap(this, "thumbnail_grid", m_bitmap_thumbnail->GetSize().y);
 
     m_bitmap_thumbnail->Bind(wxEVT_PAINT, &PrintingTaskPanel::paint, this);
@@ -545,7 +546,7 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     #else
     m_staticText_subtask_value->SetFont(wxFont(13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("HarmonyOS Sans SC")));
     #endif
-    m_staticText_subtask_value->SetForegroundColour(wxColour(44, 44, 46));
+    m_staticText_subtask_value->SetForegroundColour(StateColor::darkModeColorFor(wxColour(44, 44, 46)));
 
     m_bitmap_static_use_time = new wxStaticBitmap(task_name_panel, wxID_ANY, m_bitmap_use_time.bmp(), wxDefaultPosition, wxSize(FromDIP(16), FromDIP(16)));
 
@@ -590,7 +591,7 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     m_staticText_profile_value->SetForegroundColour(0x6B6B6B);
 
     m_progress_lr_panel = new wxPanel(parent, wxID_ANY);
-    m_progress_lr_panel->SetBackgroundColour(*wxWHITE);
+    m_progress_lr_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto progress_lr_panel = m_progress_lr_panel;
 
     m_gauge_progress = new ProgressBar(progress_lr_panel, wxID_ANY, 100, wxDefaultPosition, wxDefaultSize);
@@ -659,8 +660,8 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     wxPanel* penel_text = m_panel_progress_text;
     wxPanel* penel_finish_time = m_panel_finish_time;
 
-    penel_text->SetBackgroundColour(*wxWHITE);
-    penel_finish_time->SetBackgroundColour(*wxWHITE);
+    penel_text->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    penel_finish_time->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *sizer_percent = new wxBoxSizer(wxVERTICAL);
     sizer_percent->Add(0, 0, 1, wxEXPAND, 0);
@@ -761,7 +762,7 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     // Create question button
     m_question_button = new ScalableButton(m_printing_stage_panel, wxID_ANY, "thermal_question", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
     m_question_button->SetToolTip(_L("Click to view thermal preconditioning explanation"));
-    m_question_button->SetBackgroundColour(wxColour(255, 255, 255));
+    m_question_button->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_question_button->Hide(); // Hide by default
     m_question_button->Bind(wxEVT_LEFT_UP, &PrintingTaskPanel::on_stage_clicked, this);
     m_question_button->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent &event) {
@@ -847,7 +848,7 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     m_staticline->Hide();
 
     m_panel_error_txt = new wxPanel(parent, wxID_ANY);
-    m_panel_error_txt->SetBackgroundColour(*wxWHITE);
+    m_panel_error_txt->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *static_text_sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -879,7 +880,7 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     sizer->Add(0, 0, 0, wxTOP, FromDIP(15));
     sizer->Add(m_score_staticline, 0, wxEXPAND | wxALL, FromDIP(10));
     m_request_failed_panel    = new wxPanel(parent, wxID_ANY);
-    m_request_failed_panel->SetBackgroundColour(*wxWHITE);
+    m_request_failed_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *static_request_failed_panel_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_request_failed_info = new wxStaticText(m_request_failed_panel, wxID_ANY, _L("You have completed printing the mall model, \nbut the synchronization of rating information has failed."), wxDefaultPosition, wxDefaultSize, 0);
     m_request_failed_info->Wrap(-1);
@@ -898,7 +899,7 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
 
 
     m_score_subtask_info = new wxPanel(parent, wxID_ANY);
-    m_score_subtask_info->SetBackgroundColour(*wxWHITE);
+    m_score_subtask_info->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *  static_score_sizer = new wxBoxSizer(wxVERTICAL);
     wxStaticText *static_score_text  = new wxStaticText(m_score_subtask_info, wxID_ANY, _L("How do you like this printing file?"), wxDefaultPosition, wxDefaultSize, 0);
@@ -906,7 +907,7 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     static_score_sizer->Add(static_score_text, 1, wxEXPAND | wxALL, FromDIP(10));
     m_has_rated_prompt = new wxStaticText(m_score_subtask_info, wxID_ANY, _L("(The model has already been rated. Your rating will overwrite the previous rating.)"), wxDefaultPosition, wxDefaultSize, 0);
     m_has_rated_prompt->Wrap(-1);
-    m_has_rated_prompt->SetForegroundColour(*wxBLACK);
+    m_has_rated_prompt->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_has_rated_prompt->SetFont(::Label::Body_10);
     m_has_rated_prompt->Hide();
 
@@ -1385,7 +1386,7 @@ StatusBasePanel::StatusBasePanel(wxWindow *parent, wxWindowID id, const wxPoint 
     bSizer_status_below->Add(m_panel_separator_middle, 0, wxEXPAND | wxALL, 0);
 
     m_machine_ctrl_panel = new wxPanel(this);
-    m_machine_ctrl_panel->SetBackgroundColour(*wxWHITE);
+    m_machine_ctrl_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_machine_ctrl_panel->SetDoubleBuffered(true);
     auto m_machine_control = create_machine_control_page(m_machine_ctrl_panel);
     m_machine_ctrl_panel->SetSizer(m_machine_control);
@@ -1925,7 +1926,7 @@ wxPanel *StatusBasePanel::create_bed_control(wxWindow *parent)
 {
     wxBoxSizer *bSizer_z_ctrl = new wxBoxSizer(wxHORIZONTAL);
     auto        panel         = new wxPanel(parent, wxID_ANY);
-    panel->SetBackgroundColour(*wxWHITE);
+    panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     StateColor z_10_ctrl_bg(std::pair<wxColour, int>(BUTTON_PRESS_COL, StateColor::Pressed), std::pair<wxColour, int>(BUTTON_NORMAL1_COL, StateColor::Normal));
     StateColor z_10_ctrl_bd(std::pair<wxColour, int>(BUTTON_HOVER_COL, StateColor::Hovered), std::pair<wxColour, int>(BUTTON_NORMAL1_COL, StateColor::Normal));
@@ -1995,7 +1996,7 @@ wxBoxSizer *StatusBasePanel::create_extruder_control(wxWindow *parent)
     wxBoxSizer *bSizer_e_ctrl = new wxBoxSizer(wxVERTICAL);
     auto        panel = new wxPanel(parent,wxID_ANY);
 
-    panel->SetBackgroundColour(*wxWHITE);
+    panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     panel->SetSize(wxSize(FromDIP(143), -1));
     panel->SetMinSize(wxSize(FromDIP(143), -1));
     panel->SetMaxSize(wxSize(FromDIP(143), -1));
@@ -2068,7 +2069,7 @@ wxBoxSizer *StatusBasePanel::create_ams_group(wxWindow *parent)
     m_ams_control_box->SetCornerRadius(5);
 
     m_ams_control_box->SetMinSize(wxSize(FromDIP(586), -1));
-    m_ams_control_box->SetBackgroundColour(*wxWHITE);
+    m_ams_control_box->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 #if !BBL_RELEASE_TO_PUBLIC
     m_ams_debug = new wxStaticText(m_ams_control_box, wxID_ANY, _L("Debug Info"), wxDefaultPosition, wxDefaultSize, 0);
     sizer_box->Add(m_ams_debug, 0, wxALIGN_CENTER_HORIZONTAL, 0);
@@ -2080,7 +2081,7 @@ wxBoxSizer *StatusBasePanel::create_ams_group(wxWindow *parent)
     m_ams_control->SetDoubleBuffered(true);
     sizer_box->Add(m_ams_control, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, FromDIP(10));
 
-    m_ams_control_box->SetBackgroundColour(*wxWHITE);
+    m_ams_control_box->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_ams_control_box->SetSizer(sizer_box);
     m_ams_control_box->Layout();
     m_ams_control_box->Fit();
@@ -2096,10 +2097,10 @@ wxBoxSizer* StatusBasePanel::create_filament_group(wxWindow* parent)
     m_scale_panel          = new wxPanel(parent);
     m_scale_panel->SetMinSize(wxSize(FromDIP(586), FromDIP(40)));
     m_scale_panel->SetMaxSize(wxSize(FromDIP(586), FromDIP(40)));
-    m_scale_panel->SetBackgroundColour(*wxWHITE);
+    m_scale_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     auto m_title_filament_loading = new Label(m_scale_panel, _L("Filament loading..."));
-    m_title_filament_loading->SetBackgroundColour(*wxWHITE);
+    m_title_filament_loading->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_title_filament_loading->SetForegroundColour(wxColour(0, 137, 123));
     m_title_filament_loading->SetFont(::Label::Body_14);
 
@@ -2129,17 +2130,17 @@ wxBoxSizer* StatusBasePanel::create_filament_group(wxWindow* parent)
     m_filament_load_box->SetCornerRadius(5);
     m_filament_load_box->SetMinSize(wxSize(FromDIP(586), -1));
     m_filament_load_box->SetMaxSize(wxSize(FromDIP(586), -1));
-    m_filament_load_box->SetBackgroundColour(*wxWHITE);
+    m_filament_load_box->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_filament_load_box->SetSizer(sizer_box);
 
     m_filament_step = new FilamentLoad(m_filament_load_box, wxID_ANY);
     m_filament_step->SetDoubleBuffered(true);
     m_filament_step->set_min_size(wxSize(wxSize(FromDIP(300), FromDIP(215))));
     m_filament_step->set_max_size(wxSize(wxSize(FromDIP(300), FromDIP(215))));
-    m_filament_step->SetBackgroundColour(*wxWHITE);
+    m_filament_step->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_filament_load_img = new wxStaticBitmap(m_filament_load_box, wxID_ANY, wxNullBitmap);
-    m_filament_load_img->SetBackgroundColour(*wxWHITE);
+    m_filament_load_img->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *steps_sizer = new wxBoxSizer(wxHORIZONTAL);
     steps_sizer->Add(m_filament_step, 0, wxALIGN_LEFT, FromDIP(20));
@@ -2159,7 +2160,7 @@ wxBoxSizer* StatusBasePanel::create_filament_group(wxWindow* parent)
     sizer_box->Add(steps_sizer, 0, wxEXPAND | wxTOP, FromDIP(5));
     sizer_box->Add(m_button_retry, 0, wxLEFT, FromDIP(28));
     sizer_box->Add(0, 0, 0, wxTOP, FromDIP(5));
-    m_filament_load_box->SetBackgroundColour(*wxWHITE);
+    m_filament_load_box->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_filament_load_box->Layout();
     m_filament_load_box->Fit();
     m_filament_load_box->Hide();
@@ -5638,7 +5639,7 @@ wxBoxSizer *ScoreDialog::create_broad_sizer(wxStaticBitmap *bitmap, ImageMsg& cu
 }
 
 void ScoreDialog::init() {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize(wxSize(FromDIP(540), FromDIP(380)));
 
     fail_image = wxImage(Slic3r::resources_dir() + "/images/oss_picture_load_failed.png", wxBITMAP_TYPE_ANY);
@@ -5721,7 +5722,7 @@ void ScoreDialog::create_comment_text(const wxString& comment) {
         m_comment_text->SetValue(comment);
     }
     m_comment_text->SetHint(_L("Rate this print"));
-    m_comment_text->SetBackgroundColour(*wxWHITE);
+    m_comment_text->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     //m_comment_text->SetForegroundColour(wxColor("#BBBBBB"));
     m_comment_text->SetMinSize(wxSize(FromDIP(492), FromDIP(104)));
 
@@ -5741,13 +5742,13 @@ wxBoxSizer *ScoreDialog::get_photo_btn_sizer() {
     wxStaticBitmap *little_photo_img   = new wxStaticBitmap(this, wxID_ANY, little_photo.bmp(), wxDefaultPosition, wxSize(FromDIP(20), FromDIP(20)), 0);
     m_photo_sizer->Add(little_photo_img, 0, wxEXPAND | wxLEFT, FromDIP(24));
     m_add_photo = new Label(this, _L("Add Photo"));
-    m_add_photo->SetBackgroundColour(*wxWHITE);
+    m_add_photo->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     //m_add_photo->SetForegroundColour(wxColor("#898989"));
     m_add_photo->SetSize(wxSize(-1, FromDIP(20)));
     m_photo_sizer->Add(m_add_photo, 0, wxEXPAND | wxLEFT, FromDIP(12));
 
     m_delete_photo = new Label(this, _L("Delete Photo"));
-    m_delete_photo->SetBackgroundColour(*wxWHITE);
+    m_delete_photo->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     //m_delete_photo->SetForegroundColour(wxColor("#898989"));
     m_delete_photo->SetSize(wxSize(-1, FromDIP(20)));
     m_photo_sizer->Add(m_delete_photo, 0, wxEXPAND | wxLEFT, FromDIP(12));

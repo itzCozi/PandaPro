@@ -1,4 +1,5 @@
 #include "ConnectPrinter.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include <slic3r/GUI/I18N.hpp>
 #include <slic3r/GUI/Widgets/Label.hpp>
@@ -10,7 +11,7 @@ namespace Slic3r { namespace GUI {
 ConnectPrinterDialog::ConnectPrinterDialog(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, long style)
     : DPIDialog(parent, id, _L("Connect Printer (LAN)"), pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 
     wxBoxSizer *main_sizer;
@@ -42,7 +43,7 @@ ConnectPrinterDialog::ConnectPrinterDialog(wxWindow *parent, wxWindowID id, cons
     m_textCtrl_code->SetMinSize(wxSize(FromDIP(330), FromDIP(40)));
     m_textCtrl_code->GetTextCtrl()->SetSize(wxSize(-1, FromDIP(22)));
     m_textCtrl_code->GetTextCtrl()->SetMinSize(wxSize(-1, FromDIP(22)));
-    m_textCtrl_code->SetBackgroundColour(*wxWHITE);
+    m_textCtrl_code->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_textCtrl_code->GetTextCtrl()->SetForegroundColour(wxColour(107, 107, 107));
     sizer_connect->Add(m_textCtrl_code, 0, wxALL | wxALIGN_CENTER_VERTICAL, 0);
 

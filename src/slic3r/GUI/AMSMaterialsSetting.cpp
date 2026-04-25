@@ -1,4 +1,5 @@
 #include "AMSMaterialsSetting.hpp"
+#include "Widgets/StateColor.hpp"
 #include "ExtrusionCalibration.hpp"
 #include "MsgDialog.hpp"
 #include "GUI_App.hpp"
@@ -44,7 +45,7 @@ AMSMaterialsSetting::AMSMaterialsSetting(wxWindow *parent, wxWindowID id)
 
 void AMSMaterialsSetting::create()
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
 
     m_panel_normal = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
@@ -167,14 +168,14 @@ void AMSMaterialsSetting::create_panel_normal(wxWindow* parent)
 
     m_clr_picker = new ColorPicker(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     m_clr_picker->set_show_full(true);
-    m_clr_picker->SetBackgroundColour(*wxWHITE);
+    m_clr_picker->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 
     m_clr_picker->Bind(wxEVT_LEFT_DOWN, &AMSMaterialsSetting::on_clr_picker, this);
     m_sizer_colour->Add(m_clr_picker, 0, 0, 0);
     m_clr_name = new Label(parent, wxEmptyString);
-    m_clr_name->SetForegroundColour(*wxBLACK);
-    m_clr_name->SetBackgroundColour(*wxWHITE);
+    m_clr_name->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
+    m_clr_name->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_clr_name->SetFont(Label::Body_13);
     m_sizer_colour->Add(m_clr_name, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(10));
 
@@ -253,7 +254,7 @@ void AMSMaterialsSetting::create_panel_normal(wxWindow* parent)
     m_sizer_SN_inside->Add(0, 0, 0, wxEXPAND, 0);
 
     m_sn_number = new wxStaticText(m_panel_SN, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize);
-    m_sn_number->SetForegroundColour(*wxBLACK);
+    m_sn_number->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_sizer_SN_inside->Add(m_sn_number, 0, wxALIGN_CENTER, 0);
     m_sizer_SN->Add(m_sizer_SN_inside);
 
@@ -263,8 +264,8 @@ void AMSMaterialsSetting::create_panel_normal(wxWindow* parent)
 
     wxBoxSizer* m_tip_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_tip_readonly = new Label(parent, "");
-    m_tip_readonly->SetForegroundColour(*wxBLACK);
-    m_tip_readonly->SetBackgroundColour(*wxWHITE);
+    m_tip_readonly->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
+    m_tip_readonly->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_tip_readonly->SetMinSize(wxSize(FromDIP(380), -1));
     m_tip_readonly->SetMaxSize(wxSize(FromDIP(380), -1));
     m_tip_readonly->Hide();

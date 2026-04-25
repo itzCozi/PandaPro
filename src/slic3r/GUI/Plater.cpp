@@ -1,4 +1,5 @@
 #include "Plater.hpp"
+#include "Widgets/StateColor.hpp"
 #include "libslic3r/Config.hpp"
 #include "libslic3r_version.h"
 
@@ -315,10 +316,10 @@ SlicedInfo::SlicedInfo(wxWindow *parent) :
 
     auto init_info_label = [this, parent, grid_sizer](wxString text_label) {
         auto *text = new wxStaticText(parent, wxID_ANY, text_label);
-        text->SetForegroundColour(*wxBLACK);
+        text->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
         text->SetFont(wxGetApp().small_font());
         auto info_label = new wxStaticText(parent, wxID_ANY, "N/A");
-        info_label->SetForegroundColour(*wxBLACK);
+        info_label->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
         info_label->SetFont(wxGetApp().small_font());
         grid_sizer->Add(text, 0);
         grid_sizer->Add(info_label, 0);
@@ -942,7 +943,7 @@ public:
     AMSCountPopupWindow(ExtruderGroup *extruder, int index)
         : PopupWindow(extruder, wxBORDER_NONE | wxPU_CONTAINS_CONTROLS)
     {
-        SetBackgroundColour(*wxWHITE);
+        SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         auto msg  = new wxStaticText(this, wxID_ANY, _L("Set the number of AMS installed on the nozzle."));
         msg->SetFont(Label::Body_14);
         msg->SetForegroundColour("#262E30");
@@ -951,9 +952,9 @@ public:
         box->SetBackgroundColor(0xF8F8F8);
         box->SetBorderWidth(0);
         auto img4 = new ScalableButton(box, wxID_ANY, "ams_4_tray", {}, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, false, 44);
-        //img4->SetBackgroundColour(*wxWHITE);
+        //img4->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         auto img1 = new ScalableButton(box, wxID_ANY, "ams_1_tray", {}, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, false, 44);
-        //img1->SetBackgroundColour(*wxWHITE);
+        //img1->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         auto txt4 = new wxStaticText(box, wxID_ANY, _L("AMS(4 slots)"));
         txt4->SetFont(Label::Body_14);
         txt4->SetBackgroundColour(0xF8F8F8);
@@ -1003,7 +1004,7 @@ public:
                 dc.DrawRoundedRectangle(0, 0, GetSize().x, GetSize().y, 0);
             });
 
-        SetBackgroundColour(*wxWHITE);
+        SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         wxGetApp().UpdateDarkUIWin(this);
     }
 
@@ -1090,7 +1091,7 @@ ExtruderGroup::ExtruderGroup(wxWindow * parent, int index, wxString const &title
 #ifdef __WXOSX__
         btn_edit->SetBackgroundColour("#F7F7F7");
 #else
-        btn_edit->SetBackgroundColour(*wxWHITE);
+        btn_edit->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 #endif
         btn_edit->Hide();
         btn_edit->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this, index](auto &evt) {
@@ -1128,7 +1129,7 @@ ExtruderGroup::ExtruderGroup(wxWindow * parent, int index, wxString const &title
     hsizer_ams->Add(ams_not_installed_msg, 0, wxALIGN_CENTER);
 
     btn_up = new ScalableButton(this, wxID_ANY, "page_up", "", {FromDIP(14), FromDIP(14)}, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, false, 14);
-    btn_up->SetBackgroundColour(*wxWHITE);
+    btn_up->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     btn_up->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this, index](auto &evt) {
         if (page_cur > 0)
             --page_cur;
@@ -1136,7 +1137,7 @@ ExtruderGroup::ExtruderGroup(wxWindow * parent, int index, wxString const &title
     });
     btn_up->Hide();
     btn_down = new ScalableButton(this, wxID_ANY, "page_down", "", {FromDIP(14), FromDIP(14)}, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, false, 14);
-    btn_down->SetBackgroundColour(*wxWHITE);
+    btn_down->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     btn_down->Bind(wxEVT_COMMAND_BUTTON_CLICKED, [this, index](auto &evt) {
         if (page_cur + 1 < page_num)
             ++page_cur;
@@ -1639,7 +1640,7 @@ Sidebar::Sidebar(Plater *parent)
     // As a result we can see the empty block at the bottom of the sidebar
     // But if we set this value to 5, layout will be better
     //p->scrolled->SetScrollRate(0, 5);
-    p->scrolled->SetBackgroundColour(*wxWHITE);
+    p->scrolled->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 
     SetFont(wxGetApp().normal_font());
@@ -1742,7 +1743,7 @@ Sidebar::Sidebar(Plater *parent)
         /*************************** 2. add printer content ************************/
 
         p->m_panel_printer_content = new wxPanel(p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        p->m_panel_printer_content->SetBackgroundColour(wxColour(255, 255, 255));
+        p->m_panel_printer_content->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
         struct PanelColors {
             wxColour bg_normal = "#FFFFFF";
@@ -1814,7 +1815,7 @@ Sidebar::Sidebar(Plater *parent)
 
         /* ORCA This part moved to titlebar
         p->btn_connect_printer = new ScalableButton(p->panel_printer_preset, wxID_ANY, "monitor_signal_strong");
-        p->btn_connect_printer->SetBackgroundColour(wxColour(255, 255, 255));
+        p->btn_connect_printer->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         p->btn_connect_printer->SetToolTip(_L("Connection"));
         p->btn_connect_printer->Bind(wxEVT_BUTTON, [this, combo_printer](wxCommandEvent)
             {
@@ -2174,7 +2175,7 @@ Sidebar::Sidebar(Plater *parent)
     p->m_panel_filament_content->SetScrollbars(0, 100, 1, 2);
     p->m_panel_filament_content->SetScrollRate(0, 5);
     //p->m_panel_filament_content->SetMaxSize(wxSize{-1, FromDIP(174)});
-    p->m_panel_filament_content->SetBackgroundColour(wxColour(255, 255, 255));
+    p->m_panel_filament_content->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     //wxBoxSizer* bSizer_filament_content;
     //bSizer_filament_content = new wxBoxSizer( wxHORIZONTAL );
@@ -13810,7 +13811,7 @@ ProjectDropDialog::ProjectDropDialog(const std::string &filename)
     m_fname_title->Wrap(-1);
     m_fname_title->SetFont(::Label::Body_14);
     m_fname_title->SetForegroundColour(wxColour(107, 107, 107));
-    m_fname_title->SetBackgroundColour(wxColour(255, 255, 255));
+    m_fname_title->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_sizer_fline->Add(m_fname_title, 0, wxALL, 0);
     m_sizer_fline->Add(0, 0, 0, wxEXPAND | wxLEFT, 5);

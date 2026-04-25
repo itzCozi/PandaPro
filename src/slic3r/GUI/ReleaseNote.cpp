@@ -1,4 +1,5 @@
 #include "ReleaseNote.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -48,7 +49,7 @@ wxDEFINE_EVENT(EVT_ERROR_DIALOG_BTN_CLICKED, wxCommandEvent);
 ReleaseNoteDialog::ReleaseNoteDialog(Plater *plater /*= nullptr*/)
     : DPIDialog(static_cast<wxWindow *>(wxGetApp().mainframe), wxID_ANY, _L("Release Note"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -115,7 +116,7 @@ void ReleaseNoteDialog::update_release_note(wxString release_note, std::string v
 UpdatePluginDialog::UpdatePluginDialog(wxWindow* parent /*= nullptr*/)
     : DPIDialog(static_cast<wxWindow*>(wxGetApp().mainframe), wxID_ANY, _L("Network plug-in update"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -237,7 +238,7 @@ void UpdatePluginDialog::update_info(std::string json_path)
 UpdateVersionDialog::UpdateVersionDialog(wxWindow *parent)
     : DPIDialog(parent, wxID_ANY, _L("New version of Orca Slicer"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
@@ -508,7 +509,7 @@ SecondaryCheckDialog::SecondaryCheckDialog(wxWindow* parent, wxWindowID id, cons
 {
     m_button_style = btn_style;
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(400), 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -521,7 +522,7 @@ SecondaryCheckDialog::SecondaryCheckDialog(wxWindow* parent, wxWindowID id, cons
 
     m_vebview_release_note = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     m_vebview_release_note->SetScrollRate(0, 5);
-    m_vebview_release_note->SetBackgroundColour(*wxWHITE);
+    m_vebview_release_note->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_vebview_release_note->SetMinSize(wxSize(FromDIP(400), FromDIP(380)));
     m_sizer_right->Add(m_vebview_release_note, 0, wxEXPAND | wxRIGHT | wxLEFT, FromDIP(15));
 
@@ -792,7 +793,7 @@ void SecondaryCheckDialog::rescale()
 PrintErrorDialog::PrintErrorDialog(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
     :DPIFrame(parent, id, title, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(350), 1));
@@ -806,7 +807,7 @@ PrintErrorDialog::PrintErrorDialog(wxWindow* parent, wxWindowID id, const wxStri
 
     m_vebview_release_note = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     m_vebview_release_note->SetScrollRate(0, 5);
-    m_vebview_release_note->SetBackgroundColour(*wxWHITE);
+    m_vebview_release_note->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_vebview_release_note->SetMinSize(wxSize(FromDIP(320), FromDIP(250)));
     m_sizer_right->Add(m_vebview_release_note, 0, wxEXPAND | wxRIGHT | wxLEFT, FromDIP(15));
 
@@ -1092,7 +1093,7 @@ void PrintErrorDialog::rescale()
 ConfirmBeforeSendDialog::ConfirmBeforeSendDialog(wxWindow* parent, wxWindowID id, const wxString& title, enum VisibleButtons btn_style, const wxPoint& pos, const wxSize& size, long style, bool not_show_again_check)
     :DPIDialog(parent, id, title, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(400), 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -1105,7 +1106,7 @@ ConfirmBeforeSendDialog::ConfirmBeforeSendDialog(wxWindow* parent, wxWindowID id
 
     m_vebview_release_note = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     m_vebview_release_note->SetScrollRate(0, 5);
-    m_vebview_release_note->SetBackgroundColour(*wxWHITE);
+    m_vebview_release_note->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_vebview_release_note->SetMinSize(wxSize(FromDIP(400), FromDIP(380)));
     m_sizer_right->Add(m_vebview_release_note, 0, wxEXPAND | wxRIGHT | wxLEFT, FromDIP(15));
 
@@ -1369,7 +1370,7 @@ InputIpAddressDialog::InputIpAddressDialog(wxWindow *parent)
                 wxDefaultSize,
                 wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_result                       = -1;
     wxBoxSizer *m_sizer_body       = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
@@ -1403,8 +1404,8 @@ InputIpAddressDialog::InputIpAddressDialog(wxWindow *parent)
     ip_input_top_panel = new wxPanel(this);
     ip_input_bot_panel = new wxPanel(this);
 
-    ip_input_top_panel->SetBackgroundColour(*wxWHITE);
-    ip_input_bot_panel->SetBackgroundColour(*wxWHITE);
+    ip_input_top_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    ip_input_bot_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     auto m_input_top_sizer = new wxBoxSizer(wxVERTICAL);
     auto m_input_bot_sizer = new wxBoxSizer(wxVERTICAL);
@@ -1554,9 +1555,9 @@ InputIpAddressDialog::InputIpAddressDialog(wxWindow *parent)
     auto m_step_icon_panel2 = new wxWindow(this, wxID_ANY);
     m_step_icon_panel3      = new wxWindow(this, wxID_ANY);
 
-    m_step_icon_panel1->SetBackgroundColour(*wxWHITE);
-    m_step_icon_panel2->SetBackgroundColour(*wxWHITE);
-    m_step_icon_panel3->SetBackgroundColour(*wxWHITE);
+    m_step_icon_panel1->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    m_step_icon_panel2->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    m_step_icon_panel3->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     auto m_sizer_step_icon_panel1 = new wxBoxSizer(wxVERTICAL);
     auto m_sizer_step_icon_panel2 = new wxBoxSizer(wxVERTICAL);
@@ -2079,7 +2080,7 @@ void InputIpAddressDialog::on_dpi_changed(const wxRect& suggested_rect)
      SetMinSize(wxSize(FromDIP(560), -1));
      SetMaxSize(wxSize(FromDIP(560), -1));
 
-     SetBackgroundColour(*wxWHITE);
+     SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      auto m_sizer_main    = new wxBoxSizer(wxVERTICAL);
      auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(400), 1));
      m_line_top->SetBackgroundColour(wxColour(166, 169, 170));

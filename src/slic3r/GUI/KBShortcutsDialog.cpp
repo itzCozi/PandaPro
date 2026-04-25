@@ -1,4 +1,5 @@
 #include "libslic3r/libslic3r.h"
+#include "Widgets/StateColor.hpp"
 #include "KBShortcutsDialog.hpp"
 #include "I18N.hpp"
 #include "libslic3r/Utils.hpp"
@@ -26,7 +27,7 @@ KBShortcutsDialog::KBShortcutsDialog()
     SetFont(font);
 
     this->SetSizeHints(wxDefaultSize, wxDefaultSize);
-    this->SetBackgroundColour(wxColour(255, 255, 255));
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *m_sizer_top = new wxBoxSizer(wxVERTICAL);
 

@@ -1,4 +1,5 @@
 #include "CalibrationWizardSavePage.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 #include "Widgets/Label.hpp"
 #include "MsgDialog.hpp"
@@ -136,7 +137,7 @@ CaliPASaveAutoPanel::CaliPASaveAutoPanel(
     long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_top_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -150,7 +151,7 @@ CaliPASaveAutoPanel::CaliPASaveAutoPanel(
 void CaliPASaveAutoPanel::create_panel(wxWindow* parent)
 {
     m_complete_text_panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_complete_text_panel->SetBackgroundColour(*wxWHITE);
+    m_complete_text_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_complete_text_panel->Hide();
     wxBoxSizer* complete_text_sizer = new wxBoxSizer(wxVERTICAL);
     auto complete_text = new Label(m_complete_text_panel, _L("We found the best Flow Dynamics Calibration Factor"));
@@ -177,11 +178,11 @@ void CaliPASaveAutoPanel::create_panel(wxWindow* parent)
     m_top_sizer->AddSpacer(FromDIP(20));
 
     m_grid_panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_grid_panel->SetBackgroundColour(*wxWHITE);
+    m_grid_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_top_sizer->Add(m_grid_panel, 0, wxALIGN_CENTER);
 
     m_multi_extruder_grid_panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_multi_extruder_grid_panel->SetBackgroundColour(*wxWHITE);
+    m_multi_extruder_grid_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_top_sizer->Add(m_multi_extruder_grid_panel, 0, wxALIGN_CENTER);
 
     m_top_sizer->AddSpacer(FromDIP(10));
@@ -644,7 +645,7 @@ void CaliPASaveAutoPanel::sync_cali_result_for_multi_extruder(const std::vector<
 
         wxString tray_name = get_tray_name_by_tray_id(item.tray_id);
         wxButton *tray_title = new wxButton(m_multi_extruder_grid_panel, wxID_ANY, {}, wxDefaultPosition, wxSize(FromDIP(20), FromDIP(20)), wxBU_EXACTFIT | wxBU_AUTODRAW | wxBORDER_NONE);
-        tray_title->SetBackgroundColour(*wxWHITE);
+        tray_title->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         tray_title->SetBitmap(*get_extruder_color_icon(full_filament_ams_list[item.tray_id].opt_string("filament_colour", 0u), tray_name.ToStdString(), FromDIP(20), FromDIP(20)));
         tray_title->SetToolTip("");
 
@@ -794,7 +795,7 @@ CaliPASaveManualPanel::CaliPASaveManualPanel(
     long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_top_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -807,7 +808,7 @@ CaliPASaveManualPanel::CaliPASaveManualPanel(
 void CaliPASaveManualPanel::create_panel(wxWindow* parent)
 {
     auto complete_text_panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    complete_text_panel->SetBackgroundColour(*wxWHITE);
+    complete_text_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* complete_text_sizer = new wxBoxSizer(wxVERTICAL);
     m_complete_text = new Label(complete_text_panel, _L("Please find the best line on your plate"));
     m_complete_text->SetFont(Label::Head_14);
@@ -991,7 +992,7 @@ CaliPASaveP1PPanel::CaliPASaveP1PPanel(
     long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_top_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -1004,7 +1005,7 @@ CaliPASaveP1PPanel::CaliPASaveP1PPanel(
 void CaliPASaveP1PPanel::create_panel(wxWindow* parent)
 {
     auto complete_text_panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    complete_text_panel->SetBackgroundColour(*wxWHITE);
+    complete_text_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* complete_text_sizer = new wxBoxSizer(wxVERTICAL);
     m_complete_text = new Label(complete_text_panel, _L("Please find the best line on your plate"));
     m_complete_text->SetFont(Label::Head_14);
@@ -1105,7 +1106,7 @@ CaliSavePresetValuePanel::CaliSavePresetValuePanel(
     long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_top_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -1179,7 +1180,7 @@ void CaliSavePresetValuePanel::msw_rescale()
 CalibrationPASavePage::CalibrationPASavePage(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : CalibrationCommonSavePage(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_cali_mode = CalibMode::Calib_PA_Line;
 
@@ -1311,7 +1312,7 @@ void CalibrationPASavePage::msw_rescale()
 CalibrationFlowX1SavePage::CalibrationFlowX1SavePage(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : CalibrationCommonSavePage(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_cali_mode = CalibMode::Calib_Flow_Rate;
 
@@ -1340,7 +1341,7 @@ void CalibrationFlowX1SavePage::create_page(wxWindow* parent)
     m_top_sizer->Add(m_step_panel, 0, wxEXPAND, 0);
 
     m_complete_text_panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_complete_text_panel->SetBackgroundColour(*wxWHITE);
+    m_complete_text_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_complete_text_panel->Hide();
     wxBoxSizer* complete_text_sizer = new wxBoxSizer(wxVERTICAL);
     auto complete_text = new Label(m_complete_text_panel, _L("We found the best flow ratio for you"));
@@ -1367,7 +1368,7 @@ void CalibrationFlowX1SavePage::create_page(wxWindow* parent)
     m_top_sizer->AddSpacer(FromDIP(20));
 
     m_grid_panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_grid_panel->SetBackgroundColour(*wxWHITE);
+    m_grid_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_top_sizer->Add(m_grid_panel, 0, wxALIGN_CENTER);
 
     m_action_panel = new CaliPageActionPanel(parent, m_cali_mode, CaliPageType::CALI_PAGE_FLOW_SAVE);
@@ -1555,7 +1556,7 @@ void CalibrationFlowX1SavePage::msw_rescale()
 CalibrationFlowCoarseSavePage::CalibrationFlowCoarseSavePage(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : CalibrationCommonSavePage(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_cali_mode = CalibMode::Calib_Flow_Rate;
 
@@ -1614,7 +1615,7 @@ void CalibrationFlowCoarseSavePage::create_page(wxWindow* parent)
     m_top_sizer->AddSpacer(FromDIP(20));
 
     auto checkBox_panel = new wxPanel(parent);
-    checkBox_panel->SetBackgroundColour(*wxWHITE);
+    checkBox_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto cb_sizer = new wxBoxSizer(wxHORIZONTAL);
     checkBox_panel->SetSizer(cb_sizer);
     m_checkBox_skip_calibration = new CheckBox(checkBox_panel);
@@ -1632,7 +1633,7 @@ void CalibrationFlowCoarseSavePage::create_page(wxWindow* parent)
     m_top_sizer->Add(checkBox_panel, 0, 0, 0);
 
     auto save_panel = new wxPanel(parent);
-    save_panel->SetBackgroundColour(*wxWHITE);
+    save_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto save_sizer = new wxBoxSizer(wxVERTICAL);
     save_panel->SetSizer(save_sizer);
 
@@ -1791,7 +1792,7 @@ void CalibrationFlowCoarseSavePage::msw_rescale()
 CalibrationFlowFineSavePage::CalibrationFlowFineSavePage(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : CalibrationCommonSavePage(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_cali_mode = CalibMode::Calib_Flow_Rate;
 
@@ -1934,7 +1935,7 @@ CalibrationMaxVolumetricSpeedSavePage::CalibrationMaxVolumetricSpeedSavePage(
     long style)
     : CalibrationCommonSavePage(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_cali_mode = CalibMode::Calib_Vol_speed_Tower;
 

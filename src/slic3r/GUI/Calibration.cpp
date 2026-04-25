@@ -1,4 +1,5 @@
 #include "Calibration.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -25,7 +26,7 @@ CalibrationDialog::CalibrationDialog(Plater *plater)
 {
     this->SetDoubleBuffered(true);
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -34,7 +35,7 @@ CalibrationDialog::CalibrationDialog(Plater *plater)
     wxBoxSizer *sizer_body = new wxBoxSizer(wxHORIZONTAL);
     auto        body_panel = new wxPanel(this, wxID_ANY);
 
-    body_panel->SetBackgroundColour(*wxWHITE);
+    body_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto cali_left_panel = new StaticBox(body_panel, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(303), -1));
     cali_left_panel->SetBackgroundColor(BG_COLOR);
     cali_left_panel->SetBorderColor(BG_COLOR);

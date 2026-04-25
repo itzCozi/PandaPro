@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////
 
 #include "MonitorBasePanel.h"
+#include "Widgets/StateColor.hpp"
 #include "Printer/PrinterFileSystem.h"
 #include "Widgets/Label.hpp"
 
@@ -25,7 +26,7 @@ MonitorBasePanel::MonitorBasePanel(wxWindow* parent, wxWindowID id, const wxPoin
 	m_splitter->SetMinimumPaneSize(182);
 
 	m_panel_splitter_left = new wxPanel(m_splitter, wxID_ANY, wxDefaultPosition, wxSize(182, -1), wxTAB_TRAVERSAL);
-	m_panel_splitter_left->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_splitter_left->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_left_top;
 	bSizer_left_top = new wxBoxSizer(wxHORIZONTAL);
@@ -35,7 +36,7 @@ MonitorBasePanel::MonitorBasePanel(wxWindow* parent, wxWindowID id, const wxPoin
 
 	bSizerleft->SetMinSize(wxSize(182, 833));
 	m_panel_printer = new wxPanel(m_panel_splitter_left, wxID_ANY, wxDefaultPosition, wxSize(182, 87), wxTAB_TRAVERSAL);
-	m_panel_printer->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_printer->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_printer_top;
 	bSizer_printer_top = new wxBoxSizer(wxVERTICAL);
@@ -101,7 +102,7 @@ MonitorBasePanel::MonitorBasePanel(wxWindow* parent, wxWindowID id, const wxPoin
 	bSizerleft->Add(m_staticline1, 0, wxEXPAND | wxRIGHT | wxLEFT, 14);
 
 	m_panel_status_tab = new wxPanel(m_panel_splitter_left, wxID_ANY, wxDefaultPosition, wxSize(182, 52), wxTAB_TRAVERSAL);
-	m_panel_status_tab->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_status_tab->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_status_caption;
 	bSizer_status_caption = new wxBoxSizer(wxHORIZONTAL);
@@ -138,7 +139,7 @@ MonitorBasePanel::MonitorBasePanel(wxWindow* parent, wxWindowID id, const wxPoin
 	bSizerleft->Add(m_staticline2, 0, wxEXPAND | wxRIGHT | wxLEFT, 14);
 
 	m_panel_time_lapse_tab = new wxPanel(m_panel_splitter_left, wxID_ANY, wxDefaultPosition, wxSize(182, 52), wxTAB_TRAVERSAL);
-	m_panel_time_lapse_tab->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_time_lapse_tab->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_time_lapse_caption;
 	bSizer_time_lapse_caption = new wxBoxSizer(wxHORIZONTAL);
@@ -171,7 +172,7 @@ MonitorBasePanel::MonitorBasePanel(wxWindow* parent, wxWindowID id, const wxPoin
 	bSizerleft->Add(m_staticline3, 0, wxEXPAND | wxRIGHT | wxLEFT, 14);
 
 	m_panel_video_tab = new wxPanel(m_panel_splitter_left, wxID_ANY, wxDefaultPosition, wxSize(182, 52), wxTAB_TRAVERSAL);
-	m_panel_video_tab->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_video_tab->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_video_monitoring_caption;
 	bSizer_video_monitoring_caption = new wxBoxSizer(wxHORIZONTAL);
@@ -205,7 +206,7 @@ MonitorBasePanel::MonitorBasePanel(wxWindow* parent, wxWindowID id, const wxPoin
 	bSizerleft->Add(m_staticline4, 0, wxEXPAND | wxRIGHT | wxLEFT, 14);
 
 	m_panel_task_list_tab = new wxPanel(m_panel_splitter_left, wxID_ANY, wxDefaultPosition, wxSize(182, 52), wxTAB_TRAVERSAL);
-	m_panel_task_list_tab->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_task_list_tab->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_tasklist_caption;
 	bSizer_tasklist_caption = new wxBoxSizer(wxHORIZONTAL);
@@ -245,7 +246,7 @@ MonitorBasePanel::MonitorBasePanel(wxWindow* parent, wxWindowID id, const wxPoin
 	m_panel_splitter_left->Layout();
 	bSizer_left_top->Fit(m_panel_splitter_left);
 	m_panel_splitter_right = new wxPanel(m_splitter, wxID_ANY, wxDefaultPosition, wxSize(1258, 900), wxTAB_TRAVERSAL);
-	m_panel_splitter_right->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_splitter_right->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	m_splitter->SplitVertically(m_panel_splitter_left, m_panel_splitter_right, 182);
 	bSizer_top->Add(m_splitter, 1, wxALL | wxEXPAND, 0);
@@ -323,7 +324,7 @@ TaskListBasePanel::TaskListBasePanel(wxWindow* parent, wxWindowID id, const wxPo
 	bSizer_model_name->Add(m_panel_model_name_caption, 0, wxALL | wxEXPAND, 0);
 
 	m_panel_model_name_content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(496, 197), wxTAB_TRAVERSAL);
-	m_panel_model_name_content->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_model_name_content->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_model_name_content;
 	bSizer_model_name_content = new wxBoxSizer(wxVERTICAL);
@@ -399,7 +400,7 @@ TaskListBasePanel::TaskListBasePanel(wxWindow* parent, wxWindowID id, const wxPo
 	bSizer_plater->Add(m_panel_plater_caption, 0, wxEXPAND | wxALL, 0);
 
 	m_panel_plater_content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(496, 439), wxTAB_TRAVERSAL);
-	m_panel_plater_content->SetBackgroundColour(wxColour(255, 255, 255));
+	m_panel_plater_content->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	wxBoxSizer* bSizer_tasklist;
 	bSizer_tasklist = new wxBoxSizer(wxVERTICAL);

@@ -5,6 +5,7 @@
 // PLEASE DO *NOT* EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 #include "libslic3r/PresetBundle.hpp"
+#include "Widgets/StateColor.hpp"
 #include "libslic3r/Preset.hpp"
 #include "ParamsPanel.hpp"
 #include "Tab.hpp"
@@ -37,7 +38,7 @@ TipsDialog::TipsDialog(wxWindow *parent, const wxString &title, const wxString &
     : DPIDialog(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX),
     m_app_key(app_key)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
 
@@ -52,7 +53,7 @@ TipsDialog::TipsDialog(wxWindow *parent, const wxString &title, const wxString &
     m_msg->Wrap(-1);
     m_msg->SetFont(::Label::Body_13);
     m_msg->SetForegroundColour(wxColour(107, 107, 107));
-    m_msg->SetBackgroundColour(wxColour(255, 255, 255));
+    m_msg->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_sizer_main->Add(m_msg, 1, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(40));
 
@@ -230,7 +231,7 @@ ParamsPanel::ParamsPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos, c
     : wxPanel( parent, id, pos, size, style, name )
 {
     // BBS: new layout
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 #if __WXOSX__
     m_top_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_top_sizer->SetSizeHints(this);
@@ -385,7 +386,7 @@ ParamsPanel::ParamsPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos, c
     };
 
     m_page_view = new PageScrolledWindow(page_parent);
-    m_page_view->SetBackgroundColour(*wxWHITE);
+    m_page_view->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_page_sizer = new wxBoxSizer(wxVERTICAL);
 
     m_page_view->SetSizer(m_page_sizer);

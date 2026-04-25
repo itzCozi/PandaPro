@@ -1,4 +1,5 @@
 #include "Tab.hpp"
+#include "Widgets/StateColor.hpp"
 #include "Auxiliary.hpp"
 #include "libslic3r/Utils.hpp"
 #include "libslic3r/Model.hpp"
@@ -1071,7 +1072,7 @@ void AuxiliaryPanel::update_all_cover()
      wxBoxSizer *m_sizer_designer = new wxBoxSizer(wxHORIZONTAL);
      auto m_text_designer = new wxStaticText(this, wxID_ANY, _L("Author"), wxDefaultPosition, wxSize(180, -1), 0);
      m_text_designer->Wrap(-1);
-     m_text_designer->SetForegroundColour(*wxBLACK);
+     m_text_designer->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
      m_sizer_designer->Add(m_text_designer, 0, wxALIGN_CENTER, 0);
      m_input_designer =  new ::TextInput(this, wxEmptyString, wxEmptyString, wxEmptyString, wxDefaultPosition, wxSize(FromDIP(450), FromDIP(30)), wxTE_PROCESS_ENTER);
      m_input_designer->GetTextCtrl()->SetFont(::Label::Body_14);
@@ -1080,7 +1081,7 @@ void AuxiliaryPanel::update_all_cover()
 
      wxBoxSizer *m_sizer_model_name = new wxBoxSizer(wxHORIZONTAL);
      auto m_text_model_name = new wxStaticText(this, wxID_ANY, _L("Model Name"), wxDefaultPosition, wxSize(180, -1), 0);
-     m_text_model_name->SetForegroundColour(*wxBLACK);
+     m_text_model_name->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
      m_text_model_name->Wrap(-1);
      m_sizer_model_name->Add(m_text_model_name, 0, wxALIGN_CENTER, 0);
      m_input_model_name =  new ::TextInput(this, wxEmptyString, wxEmptyString, wxEmptyString, wxDefaultPosition,wxSize(FromDIP(450),FromDIP(30)), wxTE_PROCESS_ENTER);
@@ -1090,7 +1091,7 @@ void AuxiliaryPanel::update_all_cover()
 
      wxBoxSizer *m_sizer_license = new wxBoxSizer(wxHORIZONTAL);
      auto m_text_license = new wxStaticText(this, wxID_ANY, _L("License"), wxDefaultPosition, wxSize(180, -1), 0);
-     m_text_license->SetForegroundColour(*wxBLACK);
+     m_text_license->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
      m_text_license->Wrap(-1);
      m_sizer_license->Add(m_text_license, 0, wxALIGN_CENTER, 0);
      m_combo_license = new ComboBox(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(FromDIP(450), -1), 0, NULL, wxCB_READONLY);
@@ -1098,7 +1099,7 @@ void AuxiliaryPanel::update_all_cover()
 
      wxBoxSizer *m_sizer_description = new wxBoxSizer(wxHORIZONTAL);
      auto m_text_description = new wxStaticText(this, wxID_ANY, _L("Description:"), wxDefaultPosition, wxSize(170, -1), 0); // Using "Description:" with the : because that already exists in the Localizations files
-     m_text_description->SetForegroundColour(*wxBLACK);
+     m_text_description->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
      m_text_description->Wrap(-1);
      m_sizer_description->Add(m_text_description, 0, wxALIGN_TOP | wxRIGHT, FromDIP(10));
      m_input_description = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, 

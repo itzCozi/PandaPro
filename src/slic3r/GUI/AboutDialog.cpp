@@ -1,4 +1,5 @@
 #include "AboutDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -17,7 +18,7 @@ namespace GUI {
 AboutDialogLogo::AboutDialogLogo(wxWindow* parent)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->logo = ScalableBitmap(this, Slic3r::var("OrcaSlicer_192px.png"), wxBITMAP_TYPE_PNG);
     this->SetMinSize(this->logo.GetBmpSize());
 
@@ -48,7 +49,7 @@ CopyrightsDialog::CopyrightsDialog()
         wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
     this->SetFont(wxGetApp().normal_font());
-	this->SetBackgroundColour(*wxWHITE);
+	this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxStaticLine *staticline1 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
 
@@ -60,7 +61,7 @@ CopyrightsDialog::CopyrightsDialog()
     m_html = new wxHtmlWindow(this, wxID_ANY, wxDefaultPosition,
                               wxSize(40 * em_unit(), 20 * em_unit()), wxHW_SCROLLBAR_AUTO);
     m_html->SetMinSize(wxSize(FromDIP(870),FromDIP(520)));
-    m_html->SetBackgroundColour(*wxWHITE);
+    m_html->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxFont font = get_default_font(this);
     const int fs = font.GetPointSize();
     const int fs2 = static_cast<int>(1.2f*fs);
@@ -212,7 +213,7 @@ AboutDialog::AboutDialog()
         wxDefaultSize, /*wxCAPTION*/wxDEFAULT_DIALOG_STYLE)
 {
     SetFont(wxGetApp().normal_font());
-	SetBackgroundColour(*wxWHITE);
+	SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxPanel* m_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(560), FromDIP(125)), wxTAB_TRAVERSAL);
 
@@ -281,7 +282,7 @@ AboutDialog::AboutDialog()
     {
         auto staticText = new wxStaticText( this, wxID_ANY, wxEmptyString,wxDefaultPosition,wxSize(FromDIP(520), -1), wxALIGN_LEFT );
         staticText->SetForegroundColour(wxColour(107, 107, 107));
-        staticText->SetBackgroundColour(*wxWHITE);
+        staticText->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         staticText->SetMinSize(wxSize(FromDIP(520), -1));
         staticText->SetFont(Label::Body_12);
         if (is_zh) {

@@ -1,4 +1,5 @@
 #include "SelectMachinePop.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -325,7 +326,7 @@ SelectMachinePopup::SelectMachinePopup(wxWindow *parent)
 
 
     m_scrolledWindow = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, SELECT_MACHINE_LIST_SIZE, wxHSCROLL | wxVSCROLL);
-    m_scrolledWindow->SetBackgroundColour(*wxWHITE);
+    m_scrolledWindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scrolledWindow->SetMinSize(SELECT_MACHINE_LIST_SIZE);
     m_scrolledWindow->SetScrollRate(0, 5);
     auto m_sizxer_scrolledWindow = new wxBoxSizer(wxVERTICAL);
@@ -464,7 +465,7 @@ bool SelectMachinePopup::Show(bool show) {
 wxWindow *SelectMachinePopup::create_title_panel(wxString text)
 {
     auto m_panel_title_own = new wxWindow(m_scrolledWindow, wxID_ANY, wxDefaultPosition, SELECT_MACHINE_ITEM_SIZE, wxTAB_TRAVERSAL);
-    m_panel_title_own->SetBackgroundColour(*wxWHITE);
+    m_panel_title_own->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *m_sizer_title_own = new wxBoxSizer(wxHORIZONTAL);
 
@@ -873,7 +874,7 @@ void SelectMachinePopup::OnLeftUp(wxMouseEvent &event)
 EditDevNameDialog::EditDevNameDialog(Plater *plater /*= nullptr*/)
     : DPIDialog(static_cast<wxWindow *>(wxGetApp().mainframe), wxID_ANY, _L("Modifying the device name"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));

@@ -1,4 +1,5 @@
 #include "ExtrusionCalibration.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "MsgDialog.hpp"
 #include "libslic3r/Preset.hpp"
@@ -35,10 +36,10 @@ void ExtrusionCalibration::init_bitmaps()
 void ExtrusionCalibration::create()
 {
     init_bitmaps();
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* sizer_main = new wxBoxSizer(wxVERTICAL);
     m_step_1_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_step_1_panel->SetBackgroundColour(*wxWHITE);
+    m_step_1_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* step_1_sizer = new wxBoxSizer(wxVERTICAL);
 
     m_step_1_panel->SetSizer(step_1_sizer);
@@ -196,7 +197,7 @@ void ExtrusionCalibration::create()
 
 
     m_step_2_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_step_2_panel->SetBackgroundColour(*wxWHITE);
+    m_step_2_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* step_2_sizer = new wxBoxSizer(wxVERTICAL);
     m_step_2_panel->SetSizer(step_2_sizer);
 

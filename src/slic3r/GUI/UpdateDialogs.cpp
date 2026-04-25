@@ -1,4 +1,5 @@
 #include "UpdateDialogs.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <cstring>
 #include <boost/format.hpp>
@@ -100,7 +101,7 @@ MsgUpdateConfig::MsgUpdateConfig(const std::vector<Update> &updates, bool force_
 	auto  title = force_before_wizard ? _L("Configuration update") : _L("Configuration update");
 	SetTitle(title);
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));

@@ -1,4 +1,5 @@
 #include "SingleChoiceDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
@@ -10,7 +11,7 @@ namespace Slic3r { namespace GUI {
 SingleChoiceDialog::SingleChoiceDialog(const wxString &message, const wxString &caption, const wxArrayString &choices, int initialSelection, wxWindow *parent)
     : DPIDialog(parent ? parent : static_cast<wxWindow *>(wxGetApp().mainframe), wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     const int   dlg_width = 200;
     wxBoxSizer *bSizer    = new wxBoxSizer(wxVERTICAL);

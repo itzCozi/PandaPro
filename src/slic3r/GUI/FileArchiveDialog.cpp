@@ -1,4 +1,5 @@
 #include "FileArchiveDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include "I18N.hpp"
 #include "GUI_App.hpp"
@@ -176,7 +177,7 @@ FileArchiveDialog::FileArchiveDialog(wxWindow* parent_window, mz_zip_archive* ar
     , m_selected_paths_w_size (selected_paths_w_size)
 {
 #ifdef _WIN32
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxGetApp().UpdateDarkUI(this);
     wxGetApp().UpdateDlgDarkUI(this);
 #else

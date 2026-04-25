@@ -1,6 +1,7 @@
 // #include "libslic3r/GCodeSender.hpp"
 //#include "slic3r/Utils/Serial.hpp"
 #include "Tab.hpp"
+#include "Widgets/StateColor.hpp"
 #include "PresetHints.hpp"
 #include "libslic3r/PresetBundle.hpp"
 #include "libslic3r/PrintConfig.hpp"
@@ -140,7 +141,7 @@ Tab::Tab(ParamsPanel* parent, const wxString& title, Preset::Type type) :
     this->SetFont(Slic3r::GUI::wxGetApp().normal_font());
 
     wxGetApp().UpdateDarkUI(this);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_compatible_printers.type			= Preset::TYPE_PRINTER;
     m_compatible_printers.key_list		= "compatible_printers";
@@ -244,7 +245,7 @@ void Tab::create_preset_tab()
 
     m_top_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     // BBS: open this tab by select first
-    m_top_panel->SetBackgroundColour(*wxWHITE);
+    m_top_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_top_panel->Bind(wxEVT_LEFT_UP, [this](auto & e) {
         restore_last_select_item();
     });

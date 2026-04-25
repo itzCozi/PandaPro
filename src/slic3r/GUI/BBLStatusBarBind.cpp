@@ -1,4 +1,5 @@
 #include "BBLStatusBarBind.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <wx/timer.h>
 #include <wx/gauge.h>
@@ -21,7 +22,7 @@ BBLStatusBarBind::BBLStatusBarBind(wxWindow *parent, int id)
  : m_self{new wxPanel(parent, id == -1 ? wxID_ANY : id)} 
     , m_sizer(new wxBoxSizer(wxHORIZONTAL))
 {
-    m_self->SetBackgroundColour(wxColour(255,255,255));
+    m_self->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_self->SetMinSize(wxSize(m_self->FromDIP(450), m_self->FromDIP(30)));
 
     m_prog = new wxGauge(m_self, wxID_ANY, 100, wxDefaultPosition, wxSize(m_self->FromDIP(400), m_self->FromDIP(6)), wxGA_HORIZONTAL);

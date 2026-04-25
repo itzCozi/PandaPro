@@ -1,4 +1,5 @@
 #include "Preferences.hpp"
+#include "Widgets/StateColor.hpp"
 #include "OptionsGroup.hpp"
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
@@ -1223,7 +1224,7 @@ wxBoxSizer* PreferencesDialog::create_item_link_association( wxString url_prefix
 PreferencesDialog::PreferencesDialog(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, long style)
     : DPIDialog(parent, id, _L("Preferences"), pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize(DESIGN_WINDOW_SIZE);
     create();
     wxGetApp().UpdateDlgDarkUI(this);
@@ -1235,7 +1236,7 @@ void PreferencesDialog::create()
 
     m_parent = new MyscrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
     m_parent->SetScrollRate(5, 5);
-    m_parent->SetBackgroundColour(*wxWHITE);
+    m_parent->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_sizer_body = new wxBoxSizer(wxVERTICAL);
 

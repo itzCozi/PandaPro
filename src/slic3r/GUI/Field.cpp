@@ -1,4 +1,5 @@
 #include "GUI.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "I18N.hpp"
 #include "Field.hpp"
@@ -1071,7 +1072,7 @@ void CheckBox::BUILD() {
     static Builder<::CheckBox> builder;
 	auto temp = builder.build(m_parent);
 	if (!wxOSX) temp->SetBackgroundStyle(wxBG_STYLE_PAINT);
-	//temp->SetBackgroundColour(*wxWHITE);
+	//temp->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 	temp->SetValue(check_value);
 
 	temp->Bind(wxEVT_TOGGLEBUTTON, ([this](wxCommandEvent & e) {
@@ -1934,7 +1935,7 @@ void ColourPicker::draw_bmp_btn(wxColourPickerCtrl* field, wxColour color)
 
     if (!btn->GetBitmap().IsOk()) return;
     btn->SetWindowStyle(wxBORDER_NONE); // ORCA just in case to prevent any overflow
-    btn->SetBackgroundColour(*wxWHITE);
+    btn->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxGetApp().UpdateDarkUI(btn);
 
     auto create_bitmap = [btn](const wxColour& picker_color,const wxColour& bg_color, bool focus) -> wxBitmap {

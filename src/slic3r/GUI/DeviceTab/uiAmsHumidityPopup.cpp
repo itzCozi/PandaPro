@@ -33,14 +33,14 @@ void uiAmsPercentHumidityDryPopup::Create()
     drying_img = ScalableBitmap(this, "ams_is_drying", 16);
 
     // background 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     // create title sizer
     wxSizer* title_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     Label* title = new Label(this, _L("Current AMS humidity"));
-    title->SetForegroundColour(*wxBLACK);
-    title->SetBackgroundColour(*wxWHITE);
+    title->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
+    title->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     title->SetFont(Label::Head_18);
 
     title_sizer->AddStretchSpacer();
@@ -56,8 +56,8 @@ void uiAmsPercentHumidityDryPopup::Create()
     m_dry_state_img->SetMinSize(wxSize(FromDIP(16), FromDIP(16)));
     m_dry_state_img->SetMaxSize(wxSize(FromDIP(16), FromDIP(16)));
     m_dry_state = new Label(this);
-    m_dry_state->SetForegroundColour(*wxBLACK);
-    m_dry_state->SetBackgroundColour(*wxWHITE);
+    m_dry_state->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
+    m_dry_state->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_dry_state->SetFont(Label::Body_14);
     dry_state_sizer->Add(m_dry_state_img, 1, wxALIGN_RIGHT);
     dry_state_sizer->Add(m_dry_state, 1, wxALIGN_LEFT);

@@ -1,4 +1,5 @@
 #include "BindDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 
 #include <wx/wx.h>
@@ -64,7 +65,7 @@ PingCodeBindDialog::PingCodeBindDialog(Plater* plater /*= nullptr*/)
 #endif //__WINDOWS__
     wxBoxSizer* sizer_main = new wxBoxSizer(wxVERTICAL);
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -88,11 +89,11 @@ PingCodeBindDialog::PingCodeBindDialog(Plater* plater /*= nullptr*/)
     binding_panel->SetMaxSize(wxSize(FromDIP(460), FromDIP(240)));
 
 
-    request_bind_panel->SetBackgroundColour(*wxWHITE);
-    binding_panel->SetBackgroundColour(*wxWHITE);
+    request_bind_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    binding_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_status_text = new Label(request_bind_panel, _L("Please Find the Pin Code in Account page on printer screen,\n and type in the Pin Code below."));
-    m_status_text->SetBackgroundColour(*wxWHITE);
+    m_status_text->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_status_text->SetFont(Label::Body_14);
     m_status_text->SetMaxSize(wxSize(FromDIP(440), -1));
     m_status_text->Wrap(FromDIP(440));
@@ -103,7 +104,7 @@ PingCodeBindDialog::PingCodeBindDialog(Plater* plater /*= nullptr*/)
 
     m_text_input_title = new wxStaticText(request_bind_panel, wxID_ANY, _L("Pin Code"));
     m_text_input_title->SetFont(Label::Body_14);
-    m_text_input_title->SetBackgroundColour(*wxWHITE);
+    m_text_input_title->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* ping_code_input = new wxBoxSizer(wxHORIZONTAL);
 
@@ -159,10 +160,10 @@ PingCodeBindDialog::PingCodeBindDialog(Plater* plater /*= nullptr*/)
 
 
     auto m_loading_txt = new Label(binding_panel, _L("Binding..."));
-    m_loading_txt->SetBackgroundColour(*wxWHITE);
+    m_loading_txt->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_loading_txt->SetFont(Label::Head_16);
     auto m_loading_tip_txt = new Label(binding_panel, _L("Please confirm on the printer screen"));
-    m_loading_tip_txt->SetBackgroundColour(*wxWHITE);
+    m_loading_tip_txt->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_loading_tip_txt->SetFont(Label::Body_15);
 
     wxBoxSizer* m_sizer_binding_button = new wxBoxSizer(wxHORIZONTAL);
@@ -326,7 +327,7 @@ PingCodeBindDialog::~PingCodeBindDialog() {
 
      m_tocken.reset(new int(0));
 
-     SetBackgroundColour(*wxWHITE);
+     SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
      auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);
      m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -346,7 +347,7 @@ PingCodeBindDialog::~PingCodeBindDialog() {
      m_printer_img->SetBackgroundColour(BIND_DIALOG_GREY200);
      m_printer_img->Hide();
      m_printer_name = new wxStaticText(m_panel_left, wxID_ANY, wxEmptyString);
-     m_printer_name->SetForegroundColour(*wxBLACK);
+     m_printer_name->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
      m_printer_name->SetBackgroundColour(BIND_DIALOG_GREY200);
      m_printer_name->SetFont(::Label::Head_14);
      m_sizere_left_v->Add(m_printer_img, 0, wxALIGN_CENTER, 0);
@@ -428,7 +429,7 @@ PingCodeBindDialog::~PingCodeBindDialog() {
 
      //agreement
      m_panel_agreement = new wxWindow(this,wxID_ANY);
-     m_panel_agreement->SetBackgroundColour(*wxWHITE);
+     m_panel_agreement->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      m_panel_agreement->SetMinSize(wxSize(FromDIP(450), -1));
      m_panel_agreement->SetMaxSize(wxSize(FromDIP(450), -1));
 
@@ -556,7 +557,7 @@ PingCodeBindDialog::~PingCodeBindDialog() {
 
      //show bind failed info
      m_sw_bind_failed_info = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(450), FromDIP(300)), wxVSCROLL);
-     m_sw_bind_failed_info->SetBackgroundColour(*wxWHITE);
+     m_sw_bind_failed_info->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      m_sw_bind_failed_info->SetScrollRate(5, 5);
      m_sw_bind_failed_info->SetMinSize(wxSize(FromDIP(450), FromDIP(90)));
      m_sw_bind_failed_info->SetMaxSize(wxSize(FromDIP(450), FromDIP(90)));
@@ -631,14 +632,14 @@ PingCodeBindDialog::~PingCodeBindDialog() {
      m_sizer_bind_failed_info->Add(sizer_extra_info, 0, wxLEFT, 0);
 
      m_simplebook = new wxSimplebook(this, wxID_ANY, wxDefaultPosition,BIND_DIALOG_BUTTON_PANEL_SIZE, 0);
-     m_simplebook->SetBackgroundColour(*wxWHITE);
+     m_simplebook->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
      m_status_bar = std::make_shared<BBLStatusBarBind>(m_simplebook);
 
      m_worker = std::make_unique<PlaterWorker<BoostThreadWorker>>(this, m_status_bar, "bind_worker");
 
      auto        button_panel   = new wxPanel(m_simplebook, wxID_ANY, wxDefaultPosition, BIND_DIALOG_BUTTON_PANEL_SIZE);
-     button_panel->SetBackgroundColour(*wxWHITE);
+     button_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      wxBoxSizer *m_sizer_button = new wxBoxSizer(wxHORIZONTAL);
      m_button_bind = new Button(button_panel, _L("Confirm"));
      m_button_bind->SetStyle(ButtonStyle::Confirm, ButtonType::Choice);
@@ -906,7 +907,7 @@ UnBindMachineDialog::UnBindMachineDialog(Plater *plater /*= nullptr*/)
  {
     m_tocken.reset(new int(0));
 
-     SetBackgroundColour(*wxWHITE);
+     SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
      auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);
      m_line_top->SetBackgroundColour(wxColour("#A6A9AA"));
@@ -927,7 +928,7 @@ UnBindMachineDialog::UnBindMachineDialog(Plater *plater /*= nullptr*/)
      m_printer_img->Hide();
      m_printer_name     = new wxStaticText(m_panel_left, wxID_ANY, wxEmptyString);
      m_printer_name->SetFont(::Label::Head_14);
-     m_printer_name->SetForegroundColour(*wxBLACK);
+     m_printer_name->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
      m_printer_name->SetBackgroundColour(BIND_DIALOG_GREY200);
      m_sizere_left_v->Add(m_printer_img, 0, wxALIGN_CENTER, 0);
      m_sizere_left_v->Add(0, 0, 0, wxTOP, 5);
@@ -946,7 +947,7 @@ UnBindMachineDialog::UnBindMachineDialog(Plater *plater /*= nullptr*/)
      m_panel_right->SetCornerRadius(FromDIP(8));
      m_panel_right->SetBackgroundColor(BIND_DIALOG_GREY200);
      m_user_name = new wxStaticText(m_panel_right, wxID_ANY, wxEmptyString);
-     m_user_name->SetForegroundColour(*wxBLACK);
+     m_user_name->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
      m_user_name->SetBackgroundColour(BIND_DIALOG_GREY200);
      m_user_name->SetFont(::Label::Head_14);
      wxBoxSizer *m_sizer_right_h = new wxBoxSizer(wxHORIZONTAL);

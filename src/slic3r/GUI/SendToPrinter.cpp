@@ -1,4 +1,5 @@
 #include "SendToPrinter.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -294,7 +295,7 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
 
     /*select storage*/
     m_storage_panel = new wxPanel(this);
-    m_storage_panel->SetBackgroundColour(*wxWHITE);
+    m_storage_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_storage_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_storage_panel->SetSizer(m_storage_sizer);
     m_storage_panel->Layout();
@@ -302,7 +303,7 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
     // try to connect
     m_statictext_printer_msg = new wxStaticText(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     m_statictext_printer_msg->SetFont(::Label::Body_13);
-    m_statictext_printer_msg->SetForegroundColour(*wxBLACK);
+    m_statictext_printer_msg->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_statictext_printer_msg->Hide();
 
     wxBoxSizer *m_sizer_connecting      = new wxBoxSizer(wxHORIZONTAL);
@@ -310,7 +311,7 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
 
     m_connecting_printer_msg = new wxStaticText(m_connecting_panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     m_connecting_printer_msg->SetFont(::Label::Body_13);
-    m_connecting_printer_msg->SetForegroundColour(*wxBLACK);
+    m_connecting_printer_msg->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_connecting_printer_msg->SetLabel(_L("Try to connect"));
     /*m_connecting_printer_msg->Hide();*/
     m_connecting_printer_msg->Show();
@@ -383,7 +384,7 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
 
     //show bind failed info
     m_sw_print_failed_info = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(380), FromDIP(125)), wxVSCROLL);
-    m_sw_print_failed_info->SetBackgroundColour(*wxWHITE);
+    m_sw_print_failed_info->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_sw_print_failed_info->SetScrollRate(0, 5);
     m_sw_print_failed_info->SetMinSize(wxSize(FromDIP(380), FromDIP(125)));
     m_sw_print_failed_info->SetMaxSize(wxSize(FromDIP(380), FromDIP(125)));
@@ -481,17 +482,17 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
     m_rename_switch_panel->SetMaxSize(wxSize(FromDIP(420), FromDIP(25)));
 
     m_rename_normal_panel = new wxPanel(m_rename_switch_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_rename_normal_panel->SetBackgroundColour(*wxWHITE);
+    m_rename_normal_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     rename_sizer_v = new wxBoxSizer(wxVERTICAL);
     rename_sizer_h = new wxBoxSizer(wxHORIZONTAL);
 
     m_rename_text = new wxStaticText(m_rename_normal_panel, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_END);
-    m_rename_text->SetForegroundColour(*wxBLACK);
+    m_rename_text->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_rename_text->SetFont(::Label::Body_13);
     m_rename_text->SetMaxSize(wxSize(FromDIP(390), -1));
     m_rename_button = new Button(m_rename_normal_panel, "", "rename_edit", wxBORDER_NONE, FromDIP(13)); // ORCA Match edit icon and its size
     m_rename_button->SetBackgroundColor(*wxWHITE);
-    m_rename_button->SetBackgroundColour(*wxWHITE);
+    m_rename_button->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     rename_sizer_h->Add(m_rename_text, 0, wxALIGN_CENTER, 0);
     rename_sizer_h->Add(m_rename_button, 0, wxALIGN_CENTER, 0);
@@ -502,7 +503,7 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
 
     //rename edit
     auto m_rename_edit_panel = new wxPanel(m_rename_switch_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_rename_edit_panel->SetBackgroundColour(*wxWHITE);
+    m_rename_edit_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto rename_edit_sizer_v = new wxBoxSizer(wxVERTICAL);
 
     m_rename_input = new ::TextInput(m_rename_edit_panel, wxEmptyString, wxEmptyString, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);

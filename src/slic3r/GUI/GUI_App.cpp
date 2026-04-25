@@ -1,4 +1,5 @@
 #include "libslic3r/Technologies.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "GUI_Init.hpp"
 #include "GUI_ObjectList.hpp"
@@ -6252,7 +6253,7 @@ int GUI_App::GetSingleChoiceIndex(const wxString& message,
 {
 #ifdef _WIN32
     wxSingleChoiceDialog dialog(nullptr, message, caption, choices);
-    dialog.SetBackgroundColour(*wxWHITE);
+    dialog.SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxGetApp().UpdateDlgDarkUI(&dialog);
 
     dialog.SetSelection(initialSelection);

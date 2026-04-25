@@ -1,4 +1,5 @@
 #include <algorithm>
+#include "Widgets/StateColor.hpp"
 #include <wx/display.h>
 #include <wx/sizer.h>
 #include "libslic3r/FlushVolCalc.hpp"
@@ -28,7 +29,7 @@ static void update_ui(wxWindow* window)
 RammingDialog::RammingDialog(wxWindow* parent,const std::string& parameters)
 : wxDialog(parent, wxID_ANY, _(L("Ramming customization")), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE/* | wxRESIZE_BORDER*/)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_panel_ramming  = new RammingPanel(this,parameters);
     m_panel_ramming->Show(true);
 
@@ -69,7 +70,7 @@ RammingDialog::RammingDialog(wxWindow* parent,const std::string& parameters)
 RammingPanel::RammingPanel(wxWindow* parent, const std::string& parameters)
 : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize/*,wxPoint(50,50), wxSize(800,350),wxBORDER_RAISED*/)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     update_ui(this);
 	auto sizer_chart = new wxBoxSizer(wxVERTICAL);
 	auto sizer_param = new wxBoxSizer(wxVERTICAL);
@@ -371,7 +372,7 @@ WipingDialog::WipingDialog(wxWindow* parent, const int max_flush_volume) :
 {
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(main_sizer);
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto filament_count= wxGetApp().preset_bundle->project_config.option<ConfigOptionStrings>("filament_colour")->values.size();
     wxSize extra_size = { FromDIP(100),FromDIP(235) };
     if (filament_count <= 2)

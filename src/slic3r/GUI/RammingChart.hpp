@@ -4,6 +4,7 @@
 #define RAMMING_CHART_H_
 
 #include <vector>
+#include "Widgets/StateColor.hpp"
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
@@ -19,7 +20,7 @@ public:
         wxWindow(parent,wxID_ANY,rect.GetTopLeft(),rect.GetSize()),
         scale_unit(scale_unit), legend_side(5*scale_unit)
     {
-        SetBackgroundColour(*wxWHITE);
+        SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         SetBackgroundStyle(wxBG_STYLE_PAINT);
         m_rect = wxRect(wxPoint(legend_side,0),rect.GetSize()-wxSize(legend_side,legend_side));
         visible_area = wxRect2DDouble(0.0, 0.0, sampling*ramming_speed_size, 60.);

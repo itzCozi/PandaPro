@@ -1,4 +1,5 @@
 #include "MainFrame.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <wx/panel.h>
 #include <wx/notebook.h>
@@ -1235,7 +1236,7 @@ void MainFrame::init_tabpanel() {
     wxBoxSizer *side_tools = create_side_tools();
     m_tabpanel = new Notebook(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, side_tools,
                               wxNB_TOP | wxTAB_TRAVERSAL | wxNB_NOPAGETHEME);
-    m_tabpanel->SetBackgroundColour(*wxWHITE);
+    m_tabpanel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 #ifndef __WXOSX__ // Don't call SetFont under OSX to avoid name cutting in ObjectList
     m_tabpanel->SetFont(Slic3r::GUI::wxGetApp().normal_font());
@@ -1315,7 +1316,7 @@ void MainFrame::init_tabpanel() {
     }
 
     m_plater = new Plater(this, this);
-    m_plater->SetBackgroundColour(*wxWHITE);
+    m_plater->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_plater->Hide();
 
     wxGetApp().plater_ = m_plater;
@@ -1324,7 +1325,7 @@ void MainFrame::init_tabpanel() {
 
         //BBS add pages
     m_monitor = new MonitorPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_monitor->SetBackgroundColour(*wxWHITE);
+    m_monitor->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_tabpanel->AddPage(m_monitor, _L("Device"), std::string("tab_monitor_active"), std::string("tab_monitor_active"), false);
 
     m_printer_view = new PrinterWebView(m_tabpanel);
@@ -1338,17 +1339,17 @@ void MainFrame::init_tabpanel() {
 
     if (wxGetApp().is_enable_multi_machine()) {
         m_multi_machine = new MultiMachinePage(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-        m_multi_machine->SetBackgroundColour(*wxWHITE);
+        m_multi_machine->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         // TODO: change the bitmap
         m_tabpanel->AddPage(m_multi_machine, _L("Multi-device"), std::string("tab_multi_active"), std::string("tab_multi_active"), false);
     }
 
     m_project = new ProjectPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_project->SetBackgroundColour(*wxWHITE);
+    m_project->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_tabpanel->AddPage(m_project, _L("Project"), std::string("tab_auxiliary_active"), std::string("tab_auxiliary_active"), false);
 
     m_calibration = new CalibrationPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_calibration->SetBackgroundColour(*wxWHITE);
+    m_calibration->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_tabpanel->AddPage(m_calibration, _L("Calibration"), std::string("tab_calibration_active"), std::string("tab_calibration_active"), false);
 
     if (m_plater) {
@@ -1382,7 +1383,7 @@ void MainFrame::show_device(bool bBBLPrinter) {
         // Create/insert monitor page
         if (!m_monitor) {
             m_monitor = new MonitorPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-            m_monitor->SetBackgroundColour(*wxWHITE);
+            m_monitor->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         }
         m_monitor->Show(false);
         m_tabpanel->InsertPage(tpMonitor, m_monitor, _L("Device"), std::string("tab_monitor_active"), std::string("tab_monitor_active"));
@@ -1390,7 +1391,7 @@ void MainFrame::show_device(bool bBBLPrinter) {
         if (wxGetApp().is_enable_multi_machine()) {
             if (!m_multi_machine) {
                 m_multi_machine = new MultiMachinePage(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-                m_multi_machine->SetBackgroundColour(*wxWHITE);
+                m_multi_machine->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
             }
             // TODO: change the bitmap
             m_multi_machine->Show(false);
@@ -1399,7 +1400,7 @@ void MainFrame::show_device(bool bBBLPrinter) {
         }
         if (!m_calibration) {
             m_calibration = new CalibrationPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-            m_calibration->SetBackgroundColour(*wxWHITE);
+            m_calibration->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         }
         m_calibration->Show(false);
         // Calibration is always the last page, so don't use InsertPage here. Otherwise, if multi_machine page is not enabled,

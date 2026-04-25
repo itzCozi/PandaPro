@@ -1,4 +1,5 @@
 #include "SelectMachine.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -157,7 +158,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     });*/
 
     m_basic_panel = new wxPanel(m_scroll_area, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_basic_panel->SetBackgroundColour(*wxWHITE);
+    m_basic_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_basicl_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     /*basic info*/
@@ -171,7 +172,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_thumbnailPanel->SetSize(wxSize(FromDIP(198), FromDIP(198)));
     m_thumbnailPanel->SetMinSize(wxSize(FromDIP(198), FromDIP(198)));
     m_thumbnailPanel->SetMaxSize(wxSize(FromDIP(198), FromDIP(198)));
-    m_thumbnailPanel->SetBackgroundColour(*wxWHITE);
+    m_thumbnailPanel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_sizer_thumbnail->Add(m_thumbnailPanel, 0, wxALIGN_CENTER, 0);
     m_panel_image->SetSizer(m_sizer_thumbnail);
     m_panel_image->Layout();
@@ -186,19 +187,19 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     auto sizer_rename = new wxBoxSizer(wxHORIZONTAL);
 
     m_rename_switch_panel = new wxSimplebook(m_basic_panel);
-    m_rename_switch_panel->SetBackgroundColour(*wxWHITE);
+    m_rename_switch_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_rename_switch_panel->SetSize(wxSize(FromDIP(360), FromDIP(25)));
     m_rename_switch_panel->SetMinSize(wxSize(FromDIP(360), FromDIP(25)));
     m_rename_switch_panel->SetMaxSize(wxSize(FromDIP(360), FromDIP(25)));
 
     m_rename_normal_panel = new wxPanel(m_rename_switch_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_rename_normal_panel->SetBackgroundColour(*wxWHITE);
+    m_rename_normal_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     rename_sizer_v = new wxBoxSizer(wxVERTICAL);
     rename_sizer_h = new wxBoxSizer(wxHORIZONTAL);
 
     m_rename_text = new wxStaticText(m_rename_normal_panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_END);
     m_rename_text->SetFont(::Label::Head_14);
-    m_rename_text->SetBackgroundColour(*wxWHITE);
+    m_rename_text->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_rename_text->SetMaxSize(wxSize(FromDIP(340), -1));
     rename_editable       = new ScalableBitmap(m_scroll_area, "rename_edit", FromDIP(13)); // ORCA Match edit icon and its size
     rename_editable_light = new ScalableBitmap(m_scroll_area, "rename_edit", FromDIP(13)); // ORCA Match edit icon and its size
@@ -215,7 +216,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     rename_sizer_v->Fit(m_rename_normal_panel);
 
     auto m_rename_edit_panel = new wxPanel(m_rename_switch_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_rename_edit_panel->SetBackgroundColour(*wxWHITE);
+    m_rename_edit_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto rename_edit_sizer_v = new wxBoxSizer(wxVERTICAL);
 
     m_rename_input = new ::TextInput(m_rename_edit_panel, wxEmptyString, wxEmptyString, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
@@ -345,9 +346,9 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_ams_backup_tip = new Label(m_scroll_area, _L("Auto Refill"));
     m_ams_backup_tip->SetFont(::Label::Head_13);
     m_ams_backup_tip->SetForegroundColour(wxColour("#009688"));
-    m_ams_backup_tip->SetBackgroundColour(*wxWHITE);
+    m_ams_backup_tip->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     img_ams_backup = new wxStaticBitmap(m_scroll_area, wxID_ANY, create_scaled_bitmap("automatic_material_renewal", this, 16), wxDefaultPosition, wxSize(FromDIP(16), FromDIP(16)), 0);
-    img_ams_backup->SetBackgroundColour(*wxWHITE);
+    img_ams_backup->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_sizer_autorefill->Add(0, 0, 1, wxEXPAND, 0);
     m_sizer_autorefill->Add(img_ams_backup, 0, wxALL, FromDIP(3));
@@ -444,7 +445,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_link_edit_nozzle = new Label(m_scroll_area, wxEmptyString);
     m_link_edit_nozzle->SetFont(::Label::Body_13);
     m_link_edit_nozzle->SetForegroundColour("#009688");
-    m_link_edit_nozzle->SetBackgroundColour(*wxWHITE);
+    m_link_edit_nozzle->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_link_edit_nozzle->Bind(wxEVT_ENTER_WINDOW, [this](auto &e) { SetCursor(wxCURSOR_HAND); });
     m_link_edit_nozzle->Bind(wxEVT_LEAVE_WINDOW, [this](auto &e) { SetCursor(wxCURSOR_ARROW); });
     m_link_edit_nozzle->SetLabel(_L("Not satisfied with the grouping of filaments? Regroup and slice ->"));
@@ -465,7 +466,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
 
     m_check_ext_change_assist = new CheckBox(m_scroll_area, wxID_ANY);
     m_check_ext_change_assist->SetValue(false);
-    m_check_ext_change_assist->SetBackgroundColour(*wxWHITE);
+    m_check_ext_change_assist->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_check_ext_change_assist->SetToolTip(_L("Manually change external spool during printing for multi-color printing"));
     m_check_ext_change_assist->Hide();
     m_label_ext_change_assist = new Label(m_scroll_area, _L("Multi-color with external"));
@@ -473,7 +474,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_label_ext_change_assist->Hide();
     m_label_ext_change_assist->SetMaxSize(wxSize(FromDIP(200), -1));
     m_label_ext_change_assist->SetFont(::Label::Body_13);
-    m_label_ext_change_assist->SetBackgroundColour(*wxWHITE);
+    m_label_ext_change_assist->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_label_ext_change_assist->SetToolTip(_L("Manually change external spool during printing for multi-color printing"));
 
     wxSizer* suggestion_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -489,7 +490,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_txt_mapping_sugs->SetForegroundColour(wxColour(0xFF, 0x6F, 0x00));
     m_txt_mapping_sugs->SetMinSize(wxSize(FromDIP(580), -1));
     m_txt_mapping_sugs->SetMaxSize(wxSize(FromDIP(580), -1));
-    m_txt_mapping_sugs->SetBackgroundColour(*wxWHITE);
+    m_txt_mapping_sugs->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_txt_mapping_sugs->SetLabel(_L("Your filament grouping method in the sliced file is not optimal."));
     //m_mapping_sugs_sizer->Add(m_img_mapping_sugs, 0, wxALIGN_CENTER, 0);
     m_mapping_sugs_sizer->Add(m_txt_mapping_sugs, 0, wxALIGN_CENTER, 0);
@@ -501,7 +502,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_txt_change_filament_times->SetMinSize(wxSize(FromDIP(580), -1));
     m_txt_change_filament_times->SetMaxSize(wxSize(FromDIP(580), -1));
     m_txt_change_filament_times->SetForegroundColour(wxColour(0xFF, 0x6F, 0x00));
-    m_txt_change_filament_times->SetBackgroundColour(*wxWHITE);
+    m_txt_change_filament_times->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_txt_change_filament_times->SetLabel(wxEmptyString);
     //m_change_filament_times_sizer->Add(m_img_change_filament_times, 0, wxTOP, FromDIP(2));
     m_change_filament_times_sizer->Add(m_txt_change_filament_times, 0, wxTOP, 0);
@@ -623,7 +624,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
 
     //show bind failed info
     m_sw_print_failed_info = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxSize(SELECT_MACHINE_DIALOG_SIMBOOK_SIZE2.x, FromDIP(125)), wxVSCROLL);
-    m_sw_print_failed_info->SetBackgroundColour(*wxWHITE);
+    m_sw_print_failed_info->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_sw_print_failed_info->SetScrollRate(0, 5);
     m_sw_print_failed_info->SetMinSize(wxSize(SELECT_MACHINE_DIALOG_SIMBOOK_SIZE2.x, FromDIP(125)));
     m_sw_print_failed_info->SetMaxSize(wxSize(SELECT_MACHINE_DIALOG_SIMBOOK_SIZE2.x, FromDIP(125)));
@@ -5028,7 +5029,7 @@ void PrintOptionItem::setValue(std::string value)
      Bind(wxEVT_ENTER_WINDOW, [this](auto &e) { SetCursor(wxCURSOR_HAND); });
      Bind(wxEVT_LEAVE_WINDOW, [this](auto &e) { SetCursor(wxCURSOR_ARROW); });
 
-     SetBackgroundColour(*wxWHITE);
+     SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
      static Slic3r::GUI::BitmapCache cache;
      m_img_selected       = ScalableBitmap(this, "switch_send_mode_on", 28);
      m_img_unselected     = ScalableBitmap(this, "switch_send_mode_off", 28);
@@ -5313,7 +5314,7 @@ void PrinterInfoBox::Create()
     bed_staticbox->SetBorderColor(wxColour("#EEEEEE"));
 
     m_bed_image = new wxStaticBitmap(bed_staticbox, wxID_ANY, create_scaled_bitmap("bed_cool", this, 40));
-    m_bed_image->SetBackgroundColour(*wxWHITE);
+    m_bed_image->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_bed_image->SetMinSize(wxSize(FromDIP(40), FromDIP(40)));
     m_bed_image->SetMaxSize(wxSize(FromDIP(40), FromDIP(40)));
 

@@ -1,4 +1,5 @@
 #include "BBLStatusBarPrint.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <wx/timer.h>
 #include <wx/gauge.h>
@@ -22,14 +23,14 @@ BBLStatusBarPrint::BBLStatusBarPrint(wxWindow *parent, int id)
  : m_self{new wxPanel(parent, id == -1 ? wxID_ANY : id)}
     , m_sizer(new wxBoxSizer(wxHORIZONTAL))
 {
-    m_self->SetBackgroundColour(*wxWHITE);
+    m_self->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_body = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer *m_sizer_top = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer *m_sizer_bottom = new wxBoxSizer(wxHORIZONTAL);
 
 
     top_panel = new wxPanel(m_self, wxID_ANY);
-    top_panel->SetBackgroundColour(*wxWHITE);
+    top_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     top_panel->SetMinSize(wxSize(m_self->FromDIP(550), m_self->FromDIP(26)));
     top_panel->SetMaxSize(wxSize(m_self->FromDIP(550), m_self->FromDIP(26)));
 

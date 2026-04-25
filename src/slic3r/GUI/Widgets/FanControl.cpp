@@ -1,4 +1,5 @@
 #include "FanControl.hpp"
+#include "StateColor.hpp"
 #include "Label.hpp"
 #include "../BitmapCache.hpp"
 #include "../I18N.hpp"
@@ -32,7 +33,7 @@ void Fan::create(wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSi
     m_current_speeds  = 0;
 
     wxWindow::Create(parent, id, pos, size, wxBORDER_NONE);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_rotate_offsets.push_back(RotateOffSet{ 2.5, wxPoint(-FromDIP(16), FromDIP(11)) });
     m_rotate_offsets.push_back(RotateOffSet{ 2.2, wxPoint(-FromDIP(20), FromDIP(11)) });
@@ -176,7 +177,7 @@ FanOperate::FanOperate(wxWindow *parent, wxWindowID id, const wxPoint &pos, cons
 void FanOperate::create(wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size)
 {
     wxWindow::Create(parent, id, pos, size, wxBORDER_NONE);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_bitmap_add        = ScalableBitmap(this, "fan_control_add", 24);
     m_bitmap_decrease   = ScalableBitmap(this, "fan_control_decrease", 24);
@@ -626,7 +627,7 @@ static void nop_deleter_fan_control_popup(FanControlPopupNew *) {}
 FanControlPopupNew::FanControlPopupNew(wxWindow* parent, MachineObject* obj, const AirDuctData& data)
     : wxDialog(parent, wxID_ANY, wxEmptyString)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     init_names(obj);
 
     m_data = data;
@@ -644,7 +645,7 @@ FanControlPopupNew::FanControlPopupNew(wxWindow* parent, MachineObject* obj, con
     m_mode_sizer->Add(m_radio_btn_sizer, 0, wxALIGN_CENTRE_VERTICAL, 0);
 
     m_mode_text = new Label(this);
-    m_mode_text->SetBackgroundColour(*wxWHITE);
+    m_mode_text->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_sub_mode_panel = new wxPanel(this, wxID_ANY);
     m_sub_mode_panel->SetBackgroundColour(wxColour(248, 248, 248));

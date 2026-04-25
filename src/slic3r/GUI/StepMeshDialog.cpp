@@ -1,4 +1,5 @@
 #include "StepMeshDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <thread>
 #include <wx/event.h>
@@ -82,7 +83,7 @@ StepMeshDialog::StepMeshDialog(wxWindow* parent, Slic3r::Step& file, double line
 
     Bind(wxEVT_THREAD_DONE, &StepMeshDialog::on_task_done, this);
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
     bSizer->SetMinSize(wxSize(MIN_DIALOG_WIDTH, -1));

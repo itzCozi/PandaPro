@@ -1,4 +1,5 @@
 #include "BBLStatusBar.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <wx/timer.h>
 #include <wx/gauge.h>
@@ -32,13 +33,13 @@ BBLStatusBar::BBLStatusBar(wxWindow *parent, int id)
     , m_object_info_sizer(new wxBoxSizer(wxHORIZONTAL))
 {
     m_status_text = new wxStaticText(m_self, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_END);
-    m_status_text->SetForegroundColour(*wxBLACK);
+    m_status_text->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
 
     m_object_info = new wxStaticText(m_self, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_END);
-    m_object_info->SetForegroundColour(*wxBLACK);
+    m_object_info->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
 
     m_slice_info = new wxStaticText(m_self, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_END);
-    m_slice_info->SetForegroundColour(*wxBLACK);
+    m_slice_info->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
 
     wxStaticLine* seperator_1 = new wxStaticLine(m_self, wxID_ANY, wxDefaultPosition, wxSize(3, -1), wxLI_VERTICAL);
     wxStaticLine* seperator_2 = new wxStaticLine(m_self, wxID_ANY, wxDefaultPosition, wxSize(3, -1), wxLI_VERTICAL);

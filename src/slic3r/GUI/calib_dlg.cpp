@@ -1,4 +1,5 @@
 #include "calib_dlg.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "MsgDialog.hpp"
 #include "I18N.hpp"
@@ -70,7 +71,7 @@ std::vector<wxString> make_shaper_type_labels()
 PA_Calibration_Dlg::PA_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("PA Calibration"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -332,7 +333,7 @@ enum FILAMENT_TYPE : int
 Temp_Calibration_Dlg::Temp_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("Temperature calibration"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -523,7 +524,7 @@ void Temp_Calibration_Dlg::on_dpi_changed(const wxRect& suggested_rect) {
 MaxVolumetricSpeed_Test_Dlg::MaxVolumetricSpeed_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("Max volumetric speed test"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -629,7 +630,7 @@ VFA_Test_Dlg::VFA_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("VFA test"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
     , m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -738,7 +739,7 @@ void VFA_Test_Dlg::on_dpi_changed(const wxRect& suggested_rect)
 Retraction_Test_Dlg::Retraction_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("Retraction"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -844,7 +845,7 @@ void Retraction_Test_Dlg::on_dpi_changed(const wxRect& suggested_rect) {
 Input_Shaping_Freq_Test_Dlg::Input_Shaping_Freq_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("Input shaping Frequency test"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -1062,7 +1063,7 @@ void Input_Shaping_Freq_Test_Dlg::on_dpi_changed(const wxRect& suggested_rect) {
 Input_Shaping_Damp_Test_Dlg::Input_Shaping_Damp_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("Input shaping Damp test"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -1256,7 +1257,7 @@ void Input_Shaping_Damp_Test_Dlg::on_dpi_changed(const wxRect& suggested_rect) {
 Cornering_Test_Dlg::Cornering_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("Cornering test"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 
@@ -1442,7 +1443,7 @@ void Cornering_Test_Dlg::on_dpi_changed(const wxRect& suggested_rect) {
 FlowRateCalibrationDialog::FlowRateCalibrationDialog(wxWindow* parent, wxWindowID id, Plater* plater)
     : DPIDialog(parent, id, _L("Flow Ratio Calibration"), wxDefaultPosition, parent->FromDIP(wxSize(-1, 280)), wxDEFAULT_DIALOG_STYLE), m_plater(plater)
 {
-    SetBackgroundColour(*wxWHITE); // make sure background color set for dialog
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE)); // make sure background color set for dialog
     SetForegroundColour(wxColour("#363636"));
     SetFont(Label::Body_14);
 

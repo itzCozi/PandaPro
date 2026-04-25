@@ -1,4 +1,5 @@
 #include "AMSControl.hpp"
+#include "StateColor.hpp"
 #include "Label.hpp"
 #include "../BitmapCache.hpp"
 #include "../I18N.hpp"
@@ -36,12 +37,12 @@ AMSControl::AMSControl(wxWindow *parent, wxWindowID id, const wxPoint &pos, cons
         parse_object(obj);
     }
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     // normal mode
     //Freeze();
     wxBoxSizer *m_sizer_body = new wxBoxSizer(wxVERTICAL);
     m_amswin                 = new wxWindow(this, wxID_ANY);
-    m_amswin->SetBackgroundColour(*wxWHITE);
+    m_amswin->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_amswin->SetSize(wxSize(FromDIP(578), -1));
     m_amswin->SetMinSize(wxSize(FromDIP(578), -1));
 
@@ -121,8 +122,8 @@ AMSControl::AMSControl(wxWindow *parent, wxWindowID id, const wxPoint &pos, cons
     auto m_panel_option_left    = new wxPanel(m_amswin);
     auto m_panel_option_right   = new wxPanel(m_amswin);
 
-    m_panel_option_left->SetBackgroundColour(*wxWHITE);
-    m_panel_option_right->SetBackgroundColour(*wxWHITE);
+    m_panel_option_left->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    m_panel_option_right->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_panel_option_left->SetSizer(m_sizer_option_left);
     m_panel_option_right->SetSizer(m_sizer_option_right);

@@ -1,4 +1,5 @@
 #include "NetworkPluginDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
@@ -26,7 +27,7 @@ NetworkPluginDownloadDialog::NetworkPluginDownloadDialog(wxWindow* parent, Mode 
     , m_error_message(error_message)
     , m_error_details(error_details)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -288,7 +289,7 @@ NetworkPluginRestartDialog::NetworkPluginRestartDialog(wxWindow* parent)
     : DPIDialog(parent, wxID_ANY, _L("Restart Required"),
         wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 

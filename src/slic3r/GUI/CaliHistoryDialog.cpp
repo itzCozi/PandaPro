@@ -1,4 +1,5 @@
 #include "CaliHistoryDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -101,12 +102,12 @@ HistoryWindow::HistoryWindow(wxWindow* parent, const std::vector<PACalibResult>&
     , m_calib_results_history(calib_results_history)
     , m_show_history_dialog(show)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto main_sizer = new wxBoxSizer(wxVERTICAL);
 
     auto scroll_window = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL);
     scroll_window->SetScrollRate(5, 5);
-    scroll_window->SetBackgroundColour(*wxWHITE);
+    scroll_window->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     scroll_window->SetMinSize(HISTORY_WINDOW_SIZE);
     scroll_window->SetSize(HISTORY_WINDOW_SIZE);
     scroll_window->SetMaxSize(HISTORY_WINDOW_SIZE);
@@ -151,7 +152,7 @@ HistoryWindow::HistoryWindow(wxWindow* parent, const std::vector<PACalibResult>&
     scroll_sizer->AddSpacer(FromDIP(15));
 
     wxPanel* tips_panel = new wxPanel(scroll_window, wxID_ANY);
-    tips_panel->SetBackgroundColour(*wxWHITE);
+    tips_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto tips_sizer = new wxBoxSizer(wxVERTICAL);
     tips_panel->SetSizer(tips_sizer);
     m_tips = new Label(tips_panel, "");
@@ -163,7 +164,7 @@ HistoryWindow::HistoryWindow(wxWindow* parent, const std::vector<PACalibResult>&
     scroll_sizer->AddSpacer(FromDIP(15));
 
     m_history_data_panel = new wxPanel(scroll_window);
-    m_history_data_panel->SetBackgroundColour(*wxWHITE);
+    m_history_data_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     scroll_sizer->Add(m_history_data_panel, 1, wxEXPAND);
 
@@ -496,11 +497,11 @@ EditCalibrationHistoryDialog::EditCalibrationHistoryDialog(wxWindow             
 {
     curr_obj = obj;
 
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto main_sizer = new wxBoxSizer(wxVERTICAL);
 
     auto top_panel = new wxPanel(this);
-    top_panel->SetBackgroundColour(*wxWHITE);
+    top_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto panel_sizer = new wxBoxSizer(wxVERTICAL);
     top_panel->SetSizer(panel_sizer);
 
@@ -726,11 +727,11 @@ NewCalibrationHistoryDialog::NewCalibrationHistoryDialog(wxWindow *parent, const
 
     curr_obj = obj;
 
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto main_sizer = new wxBoxSizer(wxVERTICAL);
 
     auto top_panel = new wxPanel(this);
-    top_panel->SetBackgroundColour(*wxWHITE);
+    top_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     auto panel_sizer = new wxBoxSizer(wxVERTICAL);
     top_panel->SetSizer(panel_sizer);
 

@@ -1,4 +1,5 @@
 #include "PrivacyUpdateDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "BitmapCache.hpp"
 #include <wx/dcgraph.h>
@@ -34,7 +35,7 @@ static std::string url_encode(const std::string& value) {
 PrivacyUpdateDialog::PrivacyUpdateDialog(wxWindow* parent, wxWindowID id, const wxString& title, enum VisibleButtons btn_style, const wxPoint& pos, const wxSize& size, long style) // ORCA VisibleButtons instead ButtonStyle 
     :DPIDialog(parent, id, title, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(540), 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));

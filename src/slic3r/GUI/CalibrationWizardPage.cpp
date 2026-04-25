@@ -1,4 +1,5 @@
 #include "CalibrationWizardPage.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 #include "Widgets/Label.hpp"
 #include "MsgDialog.hpp"
@@ -253,7 +254,7 @@ CaliPageButton::CaliPageButton(wxWindow* parent, CaliPageActionType type, wxStri
         break;
     }
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetFont(Label::Body_13);
     SetMinSize(wxSize(-1, FromDIP(24)));
     SetCornerRadius(FromDIP(12));
@@ -271,7 +272,7 @@ FilamentComboBox::FilamentComboBox(wxWindow* parent, int index, const wxPoint& p
     : wxPanel(parent, wxID_ANY, pos, size, wxTAB_TRAVERSAL)
     , m_index(index)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* main_sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -390,13 +391,13 @@ CaliPageCaption::CaliPageCaption(wxWindow* parent, CalibMode cali_mode,
 {
     init_bitmaps();
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     auto top_sizer = new wxBoxSizer(wxVERTICAL);
     auto caption_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_prev_btn = new ScalableButton(this, wxID_ANY, "cali_page_caption_prev",
         wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true, 30);
-    m_prev_btn->SetBackgroundColour(*wxWHITE);
+    m_prev_btn->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     caption_sizer->Add(m_prev_btn, 0, wxALIGN_CENTER | wxRIGHT, FromDIP(10));
 
     wxString title = get_cali_mode_caption_string(cali_mode);
@@ -408,7 +409,7 @@ CaliPageCaption::CaliPageCaption(wxWindow* parent, CalibMode cali_mode,
     m_help_btn = new ScalableButton(this, wxID_ANY, "cali_page_caption_help",
         wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true, 30);
     m_help_btn->Hide();
-    m_help_btn->SetBackgroundColour(*wxWHITE);
+    m_help_btn->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     caption_sizer->Add(m_help_btn, 0, wxALIGN_CENTER);
 
     caption_sizer->AddStretchSpacer();
@@ -500,7 +501,7 @@ CaliPageStepGuide::CaliPageStepGuide(wxWindow* parent, wxArrayString steps,
     : wxPanel(parent, id, pos, size, style),
     m_steps(steps)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     auto top_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -532,7 +533,7 @@ void CaliPageStepGuide::set_steps(int index)
     for (Label* text_step : m_text_steps) {
         text_step->SetForegroundColour(wxColour(206, 206, 206));
     }
-    m_text_steps[index]->SetForegroundColour(*wxBLACK);
+    m_text_steps[index]->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
 
     wxGetApp().UpdateDarkUIWin(this);
 }
@@ -634,7 +635,7 @@ void PAPageHelpPanel::msw_rescale()
 void PAPageHelpPanel::create_pop_window()
 {
     m_pop_win = new PopupWindow(this);
-    m_pop_win->SetBackgroundColour(*wxWHITE);
+    m_pop_win->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* pop_sizer = new wxBoxSizer(wxVERTICAL);
     m_pop_win->SetSizer(pop_sizer);
 
@@ -810,7 +811,7 @@ void CaliPageActionPanel::msw_rescale()
 CaliPageSendingPanel::CaliPageSendingPanel(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : wxPanel(parent, id, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize({ FromDIP(475), FromDIP(200) });
     SetMaxSize({ FromDIP(475), FromDIP(200) });
 
@@ -833,7 +834,7 @@ void CaliPageSendingPanel::create(wxWindow* parent)
     panel_sizer->Add(m_send_progress_bar->get_panel(), 0, wxEXPAND);
 
     m_sw_print_failed_info = new wxScrolledWindow(parent, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(380), FromDIP(125)), wxVSCROLL);
-    m_sw_print_failed_info->SetBackgroundColour(*wxWHITE);
+    m_sw_print_failed_info->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_sw_print_failed_info->SetScrollRate(0, 5);
     m_sw_print_failed_info->SetMinSize(wxSize(FromDIP(380), FromDIP(125)));
     m_sw_print_failed_info->SetMaxSize(wxSize(FromDIP(380), FromDIP(125)));
@@ -961,7 +962,7 @@ CalibrationWizardPage::CalibrationWizardPage(wxWindow* parent, wxWindowID id, co
     : wxPanel(parent, id, pos, size, style)
     , m_parent(parent)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize({ MIN_CALIBRATION_PAGE_WIDTH, -1 });
 }
 

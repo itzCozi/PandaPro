@@ -1,4 +1,5 @@
 #include "SyncAmsInfoDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <thread>
 #include <wx/event.h>
@@ -662,13 +663,13 @@ SyncAmsInfoDialog::SyncAmsInfoDialog(wxWindow *parent, SyncInfo &info) :
     SetBackgroundColour(m_colour_def_color);
 
     m_pages = new wxSimplebook(this);
-    m_pages->SetBackgroundColour(*wxWHITE);
+    m_pages->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_pages->SetSize(wxSize(SyncAmsInfoDialogWidth, -1));
 
     m_loading_page = new wxPanel(m_pages);
     m_show_page    = new wxPanel(m_pages);
-    m_loading_page->SetBackgroundColour(*wxWHITE);
-    m_show_page->SetBackgroundColour(*wxWHITE);
+    m_loading_page->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
+    m_show_page->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_pages->AddPage(m_loading_page, wxEmptyString, true);
     m_pages->AddPage(m_show_page, wxEmptyString, false);
     {//generate m_loading_page
@@ -698,7 +699,7 @@ SyncAmsInfoDialog::SyncAmsInfoDialog(wxWindow *parent, SyncInfo &info) :
 
     //wxBoxSizer *m_scroll_sizer = new wxBoxSizer(wxVERTICAL);
     m_scrolledWindow = new wxScrolledWindow(m_show_page, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
-    m_scrolledWindow->SetBackgroundColour(*wxWHITE);
+    m_scrolledWindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scrolledWindow->SetScrollRate(0, 20);
     m_scrolledWindow->SetMinSize(wxSize(-1, SyncAmsInfoDialogHeightMAX));
     m_scrolledWindow->SetMaxSize(wxSize(-1, SyncAmsInfoDialogHeightMAX));
@@ -724,7 +725,7 @@ SyncAmsInfoDialog::SyncAmsInfoDialog(wxWindow *parent, SyncInfo &info) :
         m_reset_all_btn = new ScalableButton(m_scrolledWindow, wxID_ANY, "reset_gray", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER,
                                                         true, 14);
         m_reset_all_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent &e) { reset_all_ams_info(); });
-        m_reset_all_btn->SetBackgroundColour(*wxWHITE);
+        m_reset_all_btn->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         m_reset_all_btn->SetToolTip(_L("Reset all filament mapping"));
 
         m_mode_combox_sizer->Add(m_reset_all_btn, 0, wxEXPAND | wxALL, FromDIP(2));
@@ -736,7 +737,7 @@ SyncAmsInfoDialog::SyncAmsInfoDialog(wxWindow *parent, SyncInfo &info) :
     }
 
     m_basic_panel = new wxPanel(m_scrolledWindow, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_basic_panel->SetBackgroundColour(*wxWHITE);
+    m_basic_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_basicl_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     /*basic info right*/

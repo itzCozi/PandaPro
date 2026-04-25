@@ -1,4 +1,5 @@
 #include "FilamentMapDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "PartPlate.hpp"
 #include "Widgets/Button.hpp"
 #include "Widgets/DialogButtons.hpp"
@@ -131,7 +132,7 @@ FilamentMapDialog::FilamentMapDialog(wxWindow                       *parent,
                                      bool                            with_checkbox)
     : wxDialog(parent, wxID_ANY, _L("Filament grouping"), wxDefaultPosition, wxDefaultSize,wxDEFAULT_DIALOG_STYLE), m_filament_color(filament_color), m_filament_type(filament_type), m_filament_map(filament_map)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     SetMinSize(wxSize(FromDIP(580), -1));
     SetMaxSize(wxSize(FromDIP(580), -1));
@@ -184,7 +185,7 @@ FilamentMapDialog::FilamentMapDialog(wxWindow                       *parent,
     main_sizer->Add(panel_sizer, 0, wxEXPAND);
 
     wxPanel* bottom_panel = new wxPanel(this);
-    bottom_panel->SetBackgroundColour(*wxWHITE);
+    bottom_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *bottom_sizer = new wxBoxSizer(wxHORIZONTAL);
     bottom_panel->SetSizer(bottom_sizer);
     bottom_sizer->Fit(bottom_panel);

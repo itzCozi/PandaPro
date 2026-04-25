@@ -1,4 +1,5 @@
 #include "PrintOptionsDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 #include "GUI_App.hpp"
 #include "libslic3r/Utils.hpp"
@@ -24,13 +25,13 @@ PrintOptionsDialog::PrintOptionsDialog(wxWindow* parent)
     : DPIDialog(parent, wxID_ANY, _L("Print Options"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
     this->SetDoubleBuffered(true);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetSize(FromDIP(480),FromDIP(520));
 
 
     m_scrollwindow = new wxScrolledWindow(this, wxID_ANY);
     m_scrollwindow->SetScrollRate(0, FromDIP(10));
-    m_scrollwindow->SetBackgroundColour(*wxWHITE);
+    m_scrollwindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scrollwindow->SetMinSize(wxSize(FromDIP(480), wxDefaultCoord));
     m_scrollwindow->SetMaxSize(wxSize(FromDIP(480), wxDefaultCoord));
 
@@ -577,7 +578,7 @@ wxBoxSizer* PrintOptionsDialog::create_settings_group(wxWindow* parent)
 
     ai_refine_panel             = new wxPanel(parent);
     wxBoxSizer *ai_refine_sizer = new wxBoxSizer(wxVERTICAL);
-    ai_refine_panel->SetBackgroundColour(*wxWHITE);
+    ai_refine_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     // ai detections
     line_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1085,17 +1086,17 @@ bool PrintOptionsDialog::Show(bool show)
 PrinterPartsDialog::PrinterPartsDialog(wxWindow* parent)
 : DPIDialog(parent, wxID_ANY, _L("Printer Parts"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
     wxBoxSizer* single_sizer = new wxBoxSizer(wxVERTICAL);
     single_panel = new wxPanel(this);
-    single_panel->SetBackgroundColour(*wxWHITE);
+    single_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* multiple_sizer = new wxBoxSizer(wxVERTICAL);
     multiple_panel = new wxPanel(this);
-    multiple_panel->SetBackgroundColour(*wxWHITE);
+    multiple_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     /*single nozzle*/
     auto single_line = new wxPanel(single_panel, wxID_ANY, wxDefaultPosition, wxSize(-1, 1), wxTAB_TRAVERSAL);

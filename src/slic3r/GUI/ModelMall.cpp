@@ -1,4 +1,5 @@
 #include "ModelMall.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 
 #include <wx/wx.h>
@@ -26,14 +27,14 @@ namespace GUI {
         m_sizer_main->Add(m_line_top, 0, wxEXPAND, 0);
 
         m_web_control_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, MODEL_MALL_PAGE_CONTROL_SIZE, wxTAB_TRAVERSAL);
-        m_web_control_panel->SetBackgroundColour(*wxWHITE);
+        m_web_control_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         m_web_control_panel->SetSize(MODEL_MALL_PAGE_CONTROL_SIZE);
 
 
         wxBoxSizer* m_sizer_web_control = new wxBoxSizer(wxHORIZONTAL);
 
         auto m_control_back = new ScalableButton(m_web_control_panel, wxID_ANY, "mall_control_back", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
-        m_control_back->SetBackgroundColour(*wxWHITE);
+        m_control_back->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         m_control_back->SetSize(wxSize(FromDIP(25), FromDIP(30)));
         m_control_back->SetMinSize(wxSize(FromDIP(25), FromDIP(30)));
         m_control_back->SetMaxSize(wxSize(FromDIP(25), FromDIP(30)));
@@ -44,7 +45,7 @@ namespace GUI {
 
 
         auto m_control_forward = new ScalableButton(m_web_control_panel, wxID_ANY, "mall_control_forward", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
-        m_control_forward->SetBackgroundColour(*wxWHITE);
+        m_control_forward->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         m_control_forward->SetSize(wxSize(FromDIP(25), FromDIP(30)));
         m_control_forward->SetMinSize(wxSize(FromDIP(25), FromDIP(30)));
         m_control_forward->SetMaxSize(wxSize(FromDIP(25), FromDIP(30)));
@@ -54,7 +55,7 @@ namespace GUI {
         m_control_forward->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {SetCursor(wxCursor(wxCURSOR_ARROW)); });
 
         auto m_control_refresh = new ScalableButton(m_web_control_panel, wxID_ANY, "mall_control_refresh", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
-        m_control_refresh->SetBackgroundColour(*wxWHITE);
+        m_control_refresh->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         m_control_refresh->SetSize(wxSize(FromDIP(25), FromDIP(30)));
         m_control_refresh->SetMinSize(wxSize(FromDIP(25), FromDIP(30)));
         m_control_refresh->SetMaxSize(wxSize(FromDIP(25), FromDIP(30)));

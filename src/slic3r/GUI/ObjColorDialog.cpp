@@ -1,4 +1,5 @@
 #include <algorithm>
+#include "Widgets/StateColor.hpp"
 #include <sstream>
 //#include "libslic3r/FlushVolCalc.hpp"
 #include "ObjColorDialog.hpp"
@@ -92,7 +93,7 @@ ObjColorDialog::ObjColorDialog(wxWindow *parent, Slic3r::ObjDialogInOut &in_out,
     auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
 
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->SetMinSize(wxSize(MIN_OBJCOLOR_DIALOG_WIDTH, -1));
 
     m_main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -216,7 +217,7 @@ ObjColorPanel::ObjColorPanel(wxWindow *parent, Slic3r::ObjDialogInOut &in_out, c
     m_sizer_simple          = new wxBoxSizer(wxVERTICAL);
     m_page_simple			= new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     m_page_simple->SetSizer(m_sizer_simple);
-    m_page_simple->SetBackgroundColour(*wxWHITE);
+    m_page_simple->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     update_ui(m_page_simple);
     // BBS
@@ -351,7 +352,7 @@ ObjColorPanel::ObjColorPanel(wxWindow *parent, Slic3r::ObjDialogInOut &in_out, c
         m_sizer_simple->Add(matching_title_sizer, 0, wxEXPAND | wxTOP, FromDIP(15));// wxTop has FromDIP(10) margin
         //new color table
         m_scrolledWindow = new wxScrolledWindow(m_page_simple, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
-        m_scrolledWindow->SetBackgroundColour(*wxWHITE);
+        m_scrolledWindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
         m_scrolledWindow->SetScrollRate(0, 20);
         m_scrolledWindow->EnableScrolling(false, true);
         m_scrolledWindow->ShowScrollbars(wxScrollbarVisibility::wxSHOW_SB_NEVER, wxScrollbarVisibility::wxSHOW_SB_DEFAULT);

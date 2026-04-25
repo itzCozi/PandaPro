@@ -1,4 +1,5 @@
 #include "AMSSetting.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include "I18N.hpp"
 
@@ -26,7 +27,7 @@ void AMSSetting::create()
 {
     wxBoxSizer *m_sizer_main;
     m_sizer_main = new wxBoxSizer(wxVERTICAL);
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_static_ams_settings = new wxStaticText(this, wxID_ANY, _L("AMS Settings"), wxDefaultPosition, wxDefaultSize, 0);
     m_static_ams_settings->SetFont(::Label::Head_14);
@@ -34,7 +35,7 @@ void AMSSetting::create()
 
 
     m_panel_body = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, -1), wxTAB_TRAVERSAL);
-    m_panel_body->SetBackgroundColour(*wxWHITE);
+    m_panel_body->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizerl_body = new wxBoxSizer(wxVERTICAL);
 
     m_ams_type = new AMSSettingTypePanel(m_panel_body, this);
@@ -44,7 +45,7 @@ void AMSSetting::create()
     //m_ams_arrange_order->Show(false);
 
     m_panel_Insert_material = new wxPanel(m_panel_body, wxID_ANY, wxDefaultPosition, wxSize(-1, -1), wxTAB_TRAVERSAL);
-    m_panel_Insert_material->SetBackgroundColour(*wxWHITE);
+    m_panel_Insert_material->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* m_sizer_main_Insert_material = new wxBoxSizer(wxVERTICAL);
 
     // checkbox area 1
@@ -600,14 +601,14 @@ void AMSSettingTypePanel::CreateGui()
     wxBoxSizer* h_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     Label* title = new Label(this, ::Label::Head_13, _L("AMS Type"));
-    title->SetBackgroundColour(*wxWHITE);
+    title->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_type_combobox = new ComboBox(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(240, -1), 0, nullptr, wxCB_READONLY);
     m_type_combobox->SetMinSize(wxSize(240, -1));
     m_type_combobox->Bind(wxEVT_COMBOBOX, &AMSSettingTypePanel::OnAmsTypeChanged, this);
 
     m_switching_tips = new Label(this, ::Label::Body_14);
-    m_switching_tips->SetBackgroundColour(*wxWHITE);
+    m_switching_tips->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_switching_tips->Show(false);
 
     std::vector<std::string> list{ "ams_rfid_1", "ams_rfid_2", "ams_rfid_3", "ams_rfid_4" };
@@ -746,10 +747,10 @@ void AMSSettingArrangeAMSOrder::CreateGui()
 {
     wxBoxSizer* h_sizer = new wxBoxSizer(wxHORIZONTAL);
     Label* title = new Label(this, ::Label::Head_13, _L("Arrange AMS Order"));
-    title->SetBackgroundColour(*wxWHITE);
+    title->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_btn_rearrange = new ScalableButton(this, wxID_ANY, "dev_ams_rearrange");
-    m_btn_rearrange->SetBackgroundColour(*wxWHITE);
+    m_btn_rearrange->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_btn_rearrange->SetMinSize(wxSize(FromDIP(13), FromDIP(13)));
     m_btn_rearrange->Bind(wxEVT_BUTTON, &AMSSettingArrangeAMSOrder::OnBtnRearrangeClicked, this);
     h_sizer->Add(title, 0);

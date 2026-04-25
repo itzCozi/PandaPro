@@ -1,4 +1,5 @@
 #include "libslic3r/Utils.hpp"
+#include "StateColor.hpp"
 #include "Label.hpp"
 #include "StaticBox.hpp"
 #include <wx/intl.h> // For wxLocale
@@ -291,7 +292,7 @@ Label::Label(wxWindow *parent, wxFont const &font, wxString const &text, long st
     this->m_font = font;
     this->m_text = text;
     SetFont(font);
-    SetForegroundColour(*wxBLACK);
+    SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     SetBackgroundColour(StaticBox::GetParentBackgroundColor(parent));
     SetForegroundColour("#262E30");
     if (style & LB_PROPAGATE_MOUSE_EVENT) {

@@ -1,4 +1,5 @@
 #include "OAuthDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include "GUI_App.hpp"
 #include "Jobs/BoostThreadWorker.hpp"
@@ -17,7 +18,7 @@ OAuthDialog::OAuthDialog(wxWindow* parent, OAuthParams params)
     , _params(params)
 {
     SetFont(wxGetApp().normal_font());
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_worker = std::make_unique<PlaterWorker<BoostThreadWorker>>(this, nullptr, "auth_worker");
 
@@ -26,7 +27,7 @@ OAuthDialog::OAuthDialog(wxWindow* parent, OAuthParams params)
 
     const auto message_sizer = new wxBoxSizer(wxVERTICAL);
     const auto message = new wxStaticText(this, wxID_ANY, _L("Authorizing..."), wxDefaultPosition, wxDefaultSize, 0);
-    message->SetForegroundColour(*wxBLACK);
+    message->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     message_sizer->Add(message, 0, wxEXPAND | wxLEFT | wxTOP | wxBOTTOM, BORDER_W);
 
     const auto topSizer = new wxBoxSizer(wxVERTICAL);

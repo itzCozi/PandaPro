@@ -1,4 +1,5 @@
 #include "CreatePresetsDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include <boost/log/trivial.hpp>
 #include <vector>
 #include <set>
@@ -662,7 +663,7 @@ CreateFilamentPresetDialog::CreateFilamentPresetDialog(wxWindow *parent)
     m_create_type.base_filament_preset = _L("Copy Current Filament Preset ");
     get_all_filament_presets();
 
-	this->SetBackgroundColour(*wxWHITE);
+	this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->SetSize(wxSize(FromDIP(600), FromDIP(480)));
 
 	wxBoxSizer *m_main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -697,7 +698,7 @@ CreateFilamentPresetDialog::CreateFilamentPresetDialog(wxWindow *parent)
 
     m_scrolled_preset_panel = new wxScrolledWindow(this, wxID_ANY);
     m_scrolled_preset_panel->SetMaxSize(wxSize(-1, FromDIP(350)));
-    m_scrolled_preset_panel->SetBackgroundColour(*wxWHITE);
+    m_scrolled_preset_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scrolled_preset_panel->SetScrollRate(5, 5);
     m_scrolled_sizer = new wxBoxSizer(wxVERTICAL);
     m_scrolled_sizer->Add(create_item(FilamentOptionType::PRESET_FOR_PRINTER), 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, FromDIP(5));
@@ -1578,7 +1579,7 @@ CreatePrinterPresetDialog::CreatePrinterPresetDialog(wxWindow *parent)
     m_create_type.create_nozzle     = _L("Create Nozzle for Existing Printer");
     m_create_type.base_template     = _L("Create from Template");
     m_create_type.base_curr_printer = _L("Create Based on Current Printer");
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetSizeHints(wxDefaultSize, wxDefaultSize);
 
     wxBoxSizer *m_main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -1592,10 +1593,10 @@ CreatePrinterPresetDialog::CreatePrinterPresetDialog(wxWindow *parent)
     wxBoxSizer *page_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     m_page1 = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    m_page1->SetBackgroundColour(*wxWHITE);
+    m_page1->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_page1->SetScrollRate(5, 5);
     m_page2 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);\
-    m_page2->SetBackgroundColour(*wxWHITE);
+    m_page2->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     create_printer_page1(m_page1);
     create_printer_page2(m_page2);
@@ -1645,7 +1646,7 @@ wxBoxSizer *CreatePrinterPresetDialog::create_step_switch_item()
 
     wxBoxSizer *horizontal_sizer  = new wxBoxSizer(wxHORIZONTAL);
     wxPanel *   step_switch_panel = new wxPanel(this);
-    step_switch_panel->SetBackgroundColour(*wxWHITE);
+    step_switch_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     horizontal_sizer->Add(0, 0, 1, wxEXPAND,0);
     m_step_1 = new wxStaticBitmap(step_switch_panel, wxID_ANY, create_scaled_bitmap("step_1", nullptr, FromDIP(20)), wxDefaultPosition, wxDefaultSize);
     horizontal_sizer->Add(m_step_1, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(3));
@@ -1674,7 +1675,7 @@ wxBoxSizer *CreatePrinterPresetDialog::create_step_switch_item()
 
 void CreatePrinterPresetDialog::create_printer_page1(wxWindow *parent)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_page1_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -1682,7 +1683,7 @@ void CreatePrinterPresetDialog::create_printer_page1(wxWindow *parent)
     m_page1_sizer->Add(create_printer_item(parent), 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, FromDIP(5));
     m_page1_sizer->Add(create_nozzle_diameter_item(parent), 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, FromDIP(5));
     m_printer_info_panel = new wxPanel(parent);
-    m_printer_info_panel->SetBackgroundColour(*wxWHITE);
+    m_printer_info_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_printer_info_sizer = new wxBoxSizer(wxVERTICAL);
     m_printer_info_sizer->Add(create_bed_shape_item(m_printer_info_panel), 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, FromDIP(5));
     m_printer_info_sizer->Add(create_bed_size_item(m_printer_info_panel), 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, FromDIP(5));
@@ -2572,7 +2573,7 @@ void CreatePrinterPresetDialog::select_curr_radiobox(std::vector<std::pair<Radio
 
 void CreatePrinterPresetDialog::create_printer_page2(wxWindow *parent)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_page2_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -2660,7 +2661,7 @@ wxBoxSizer *CreatePrinterPresetDialog::create_presets_template_item(wxWindow *pa
 
     m_scrolled_preset_window = new wxScrolledWindow(parent);
     m_scrolled_preset_window->SetScrollRate(5, 5);
-    m_scrolled_preset_window->SetBackgroundColour(*wxWHITE);
+    m_scrolled_preset_window->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     //m_scrolled_preset_window->SetMinSize(wxSize(FromDIP(1500), FromDIP(-1)));
     m_scrolled_preset_window->SetMaxSize(wxSize(FromDIP(1500), FromDIP(-1)));
     m_scrolled_preset_window->SetSize(wxSize(FromDIP(1500), FromDIP(-1)));
@@ -3433,7 +3434,7 @@ wxString CreatePrinterPresetDialog::curr_create_printer_type() const
 CreatePresetSuccessfulDialog::CreatePresetSuccessfulDialog(wxWindow *parent, const SuccessType &create_success_type)
     : DPIDialog(parent ? parent : nullptr, wxID_ANY, PRINTER == create_success_type ? _L("Printer Created Successfully") : _L("Filament Created Successfully"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->SetSize(wxSize(FromDIP(450), FromDIP(200)));
 
     wxBoxSizer *m_main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -3521,7 +3522,7 @@ ExportConfigsDialog::ExportConfigsDialog(wxWindow *parent)
     m_exprot_type.filament_preset = _L("Filament presets(.zip)");
     m_exprot_type.process_preset  = _L("Process presets(.zip)");
 
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->SetSize(wxSize(FromDIP(600), FromDIP(600)));
 
     m_main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -4288,13 +4289,13 @@ wxBoxSizer *ExportConfigsDialog::create_select_printer(wxWindow *parent)
     horizontal_sizer->Add(optionSizer, 0, wxEXPAND | wxALL, FromDIP(10));
     m_scrolled_preset_window = new wxScrolledWindow(parent);
     m_scrolled_preset_window->SetScrollRate(5, 5);
-    m_scrolled_preset_window->SetBackgroundColour(*wxWHITE);
+    m_scrolled_preset_window->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scrolled_preset_window->SetMaxSize(wxSize(FromDIP(660), FromDIP(400)));
     m_scrolled_preset_window->SetSize(wxSize(FromDIP(660), FromDIP(400)));
     wxBoxSizer *scrolled_window = new wxBoxSizer(wxHORIZONTAL);
 
     m_presets_window = new wxPanel(m_scrolled_preset_window, wxID_ANY);
-    m_presets_window->SetBackgroundColour(*wxWHITE);
+    m_presets_window->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *select_printer_sizer  = new wxBoxSizer(wxVERTICAL);
 
     m_preset_sizer = new wxGridSizer(3, FromDIP(5), FromDIP(5));
@@ -4395,7 +4396,7 @@ EditFilamentPresetDialog::EditFilamentPresetDialog(wxWindow *parent, Filamentinf
 {
     m_preset_tree_creater = new PresetTree(this);
 
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->SetMinSize(wxSize(FromDIP(600), -1));
 
     m_main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -4803,7 +4804,7 @@ CreatePresetForPrinterDialog::CreatePresetForPrinterDialog(wxWindow *parent, std
     m_preset_bundle = std::make_shared<PresetBundle>(*(wxGetApp().preset_bundle));
     get_visible_printer_and_compatible_filament_presets();
 
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *main_sizer = new wxBoxSizer(wxVERTICAL);
     // top line
@@ -5003,7 +5004,7 @@ wxPanel *PresetTree::get_root_item(wxPanel *parent, const std::string &printer_n
     panel->SetBackgroundColour(backgroundColor);
     wxStaticText *preset_name = new wxStaticText(panel, wxID_ANY, from_u8(printer_name));
     preset_name->SetFont(Label::Body_11);
-    preset_name->SetForegroundColour(*wxBLACK);
+    preset_name->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     sizer->Add(preset_name, 0, wxEXPAND | wxALL, 5);
     panel->SetSizer(sizer);
 
@@ -5027,7 +5028,7 @@ wxPanel *PresetTree::get_child_item(wxPanel *parent, std::shared_ptr<Preset> pre
     wxStaticText *preset_name = new wxStaticText(panel, wxID_ANY, from_u8(preset->name));
     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " create child item: " << preset->name;
     preset_name->SetFont(Label::Body_10);
-    preset_name->SetForegroundColour(*wxBLACK);
+    preset_name->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     sizer->Add(preset_name, 0, wxEXPAND | wxALL, 5);
     bool base_id_error = false;
     if (preset->inherits() == "" && preset->base_id != "") base_id_error = true;

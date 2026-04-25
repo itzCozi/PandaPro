@@ -1,4 +1,5 @@
 #include "PlateSettingsDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "MsgDialog.hpp"
 #include "Widgets/DialogButtons.hpp"
 
@@ -178,7 +179,7 @@ OtherLayersSeqPanel::OtherLayersSeqPanel(wxWindow* parent)
     m_bmp_delete = ScalableBitmap(this, "delete_filament");
     m_bmp_add = ScalableBitmap(this, "add_filament");
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* top_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -366,7 +367,7 @@ void OtherLayersSeqPanel::sync_layers_print_seq(int selection, const std::vector
 PlateSettingsDialog::PlateSettingsDialog(wxWindow* parent, const wxString& title, bool only_layer_seq, const wxPoint& pos, const wxSize& size, long style)
 :DPIDialog(parent, wxID_ANY, title, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer* m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto m_line_top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(650), -1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
@@ -644,7 +645,7 @@ std::vector<int> PlateSettingsDialog::get_first_layer_print_seq()
 PlateNameEditDialog::PlateNameEditDialog(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, long style)
     : DPIDialog(parent, id, title, pos, size, style)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     wxBoxSizer *m_sizer_main = new wxBoxSizer(wxVERTICAL);
     auto        m_line_top   = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(400), -1));
     m_line_top->SetBackgroundColour(wxColour(166, 169, 170));

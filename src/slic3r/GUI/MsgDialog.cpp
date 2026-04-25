@@ -1,4 +1,5 @@
 #include "MsgDialog.hpp"
+#include "Widgets/StateColor.hpp"
 
 #include <wx/settings.h>
 #include <wx/sizer.h>
@@ -299,7 +300,7 @@ static void add_msg_content(wxWindow   *parent,
                 info_width = msg_sz.GetX();
             }
             wxScrolledWindow *scrolledWindow = new wxScrolledWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
-            scrolledWindow->SetBackgroundColour(*wxWHITE);
+            scrolledWindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
             scrolledWindow->SetScrollRate(0, 20);
             scrolledWindow->EnableScrolling(false, true);
             wxBoxSizer *sizer_scrolled = new wxBoxSizer(wxHORIZONTAL);
@@ -507,7 +508,7 @@ void DownloadDialog::SetExtendedMessage(const wxString &extendedMessage)
 DeleteConfirmDialog::DeleteConfirmDialog(wxWindow *parent, const wxString &title, const wxString &msg)
     : DPIDialog(parent ? parent : nullptr, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     this->SetSize(wxSize(FromDIP(450), FromDIP(200)));
 
     wxBoxSizer *m_main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -553,7 +554,7 @@ Newer3mfVersionDialog::Newer3mfVersionDialog(wxWindow *parent, const Semver *fil
     , m_cloud_version(cloud_version)
     , m_new_keys(new_keys)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer *main_sizer = new wxBoxSizer(wxVERTICAL);
     // top line
@@ -653,7 +654,7 @@ wxBoxSizer *Newer3mfVersionDialog::get_btn_sizer()
 NetworkErrorDialog::NetworkErrorDialog(wxWindow* parent)
     : DPIDialog(parent ? parent : nullptr, wxID_ANY, _L("Server Exception"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     wxBoxSizer* sizer_main = new wxBoxSizer(wxVERTICAL);
 

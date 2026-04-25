@@ -1,4 +1,5 @@
 #include "MediaPlayCtrl.h"
+#include "Widgets/StateColor.hpp"
 #include "Widgets/Button.hpp"
 #include "Widgets/CheckBox.hpp"
 #include "Widgets/Label.hpp"
@@ -43,7 +44,7 @@ MediaPlayCtrl::MediaPlayCtrl(wxWindow *parent, wxMediaCtrl2 *media_ctrl, const w
     , m_media_ctrl(media_ctrl)
 {
     SetLabel("MediaPlayCtrl");
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_media_ctrl->Bind(wxEVT_MEDIA_STATECHANGED, &MediaPlayCtrl::onStateChanged, this);
 
     m_button_play = new Button(this, "", "media_play", wxBORDER_NONE);

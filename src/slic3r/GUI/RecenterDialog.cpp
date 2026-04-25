@@ -1,4 +1,5 @@
 #include "RecenterDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include <slic3r/GUI/I18N.hpp>
 #include <wx/dcgraph.h>
@@ -20,7 +21,7 @@ RecenterDialog::RecenterDialog(wxWindow* parent, wxWindowID id, const wxString& 
 
     init_bitmap();
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     auto* main_sizer = new wxBoxSizer(wxVERTICAL);
     auto* button_sizer = new wxBoxSizer(wxHORIZONTAL);

@@ -1,4 +1,5 @@
 #include <wx/dcgraph.h>
+#include "Widgets/StateColor.hpp"
 #include "GUI.hpp"
 #include "GUI_App.hpp"
 #include "MainFrame.hpp"
@@ -205,7 +206,7 @@ SelectMObjectPopup::SelectMObjectPopup(wxWindow* parent)
 
 
     m_scrolledWindow = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, SELECT_MACHINE_LIST_SIZE, wxHSCROLL | wxVSCROLL);
-    m_scrolledWindow->SetBackgroundColour(*wxWHITE);
+    m_scrolledWindow->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_scrolledWindow->SetMinSize(SELECT_MACHINE_LIST_SIZE);
     m_scrolledWindow->SetScrollRate(0, 5);
     auto m_sizxer_scrolledWindow = new wxBoxSizer(wxVERTICAL);
@@ -451,7 +452,7 @@ CalibrationPanel::CalibrationPanel(wxWindow* parent, wxWindowID id, const wxPoin
     : wxPanel(parent, id, pos, size, style),
     m_mobjectlist_popup(SelectMObjectPopup(this))
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     init_tabpanel();
 

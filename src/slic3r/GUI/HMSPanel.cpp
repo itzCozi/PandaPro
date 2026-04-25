@@ -1,4 +1,5 @@
 #include "HMS.hpp"
+#include "Widgets/StateColor.hpp"
 #include "HMSPanel.hpp"
 #include <slic3r/GUI/Widgets/SideTools.hpp>
 #include <slic3r/GUI/Widgets/Label.hpp>
@@ -25,7 +26,7 @@ HMSNotifyItem::HMSNotifyItem(const std::string& dev_id, wxWindow *parent, DevHMS
 {
     init_bitmaps();
 
-    this->SetBackgroundColour(*wxWHITE);
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     auto main_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -38,7 +39,7 @@ HMSNotifyItem::HMSNotifyItem(const std::string& dev_id, wxWindow *parent, DevHMS
     m_bitmap_notify->SetBitmap(get_notify_bitmap());
 
     m_hms_content = new wxStaticText(m_panel_hms, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_END);
-    m_hms_content->SetForegroundColour(*wxBLACK);
+    m_hms_content->SetForegroundColour(StateColor::darkModeColorFor(*wxBLACK));
     m_hms_content->SetSize(HMS_NOTIFY_ITEM_TEXT_SIZE);
     m_hms_content->SetMinSize(HMS_NOTIFY_ITEM_TEXT_SIZE);
     m_hms_content->SetLabelText(wxGetApp().get_hms_query()->query_hms_msg(dev_id, m_hms_item.get_long_error_code()));

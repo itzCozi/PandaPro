@@ -1,4 +1,5 @@
 #include "GUI_Utils.hpp"
+#include "Widgets/StateColor.hpp"
 #include "GUI_App.hpp"
 #include <wx/panel.h>
 #include <wx/bitmap.h>
@@ -57,7 +58,7 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
     buf << put_time(std::localtime(&t), "%a_%b_%d_%H_%M_%S/");
     m_timestamp = buf.str();
 
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -71,7 +72,7 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
     m_simplebook->SetMaxSize(wxSize(FromDIP(720), FromDIP(535)));
     m_book_first_panel = new wxPanel(m_simplebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     m_book_third_panel = new wxPanel(m_simplebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_book_third_panel->SetBackgroundColour(*wxWHITE);
+    m_book_third_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_dlg_sizer         = new wxBoxSizer(wxVERTICAL);
     m_dlg_content_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_canvas_sizer      = new wxBoxSizer(wxVERTICAL);
@@ -130,11 +131,11 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
     m_all_checkbox          = new CheckBox(m_book_third_panel, wxID_ANY);
     m_all_checkbox->SetValue(false);
     m_all_checkbox->SetMinSize(wxSize(FromDIP(18), FromDIP(18)));
-    m_all_checkbox->SetBackgroundColour(*wxWHITE);
+    m_all_checkbox->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_all_label = new Label(m_book_third_panel, _L("Select All"));
     m_all_label->Wrap(-1);
     m_all_label->SetMinSize(wxSize(-1, FromDIP(18)));
-    m_all_label->SetBackgroundColour(*wxWHITE);
+    m_all_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_all_label->SetMinSize(wxSize(267, -1));
     m_all_label->SetMaxSize(wxSize(267, -1));
@@ -150,7 +151,7 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
     m_list_view->SetScrollRate(5, 5);
     m_list_view->SetMinSize(wxSize(FromDIP(267), FromDIP(378)));
     m_list_view->SetMaxSize(wxSize(FromDIP(267), FromDIP(378)));
-    m_list_view->SetBackgroundColour(*wxWHITE);
+    m_list_view->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_scroll_sizer = new wxBoxSizer(wxVERTICAL);
     m_list_view->SetSizer(m_scroll_sizer);
@@ -161,7 +162,7 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
 
     m_cnt_label = new Label(m_book_third_panel, wxEmptyString);
     m_cnt_label->Wrap(-1);
-    m_cnt_label->SetBackgroundColour(*wxWHITE);
+    m_cnt_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_cnt_label->SetForegroundColour(wxColour(0, 150, 136));
     m_cnt_label->SetFont(Label::Head_16);
     m_cnt_label->SetSize(wxSize(-1, FromDIP(20)));
@@ -169,7 +170,7 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
 
     m_tot_label = new Label(m_book_third_panel, wxEmptyString);
     m_tot_label->Wrap(-1);
-    m_tot_label->SetBackgroundColour(*wxWHITE);
+    m_tot_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_tot_label->SetMinSize(wxSize(FromDIP(200), FromDIP(20)));
 
     m_apply_btn = new Button(m_book_third_panel, _L("Skip"));
@@ -204,7 +205,7 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
     m_dlg_placeholder = new wxPanel(m_book_third_panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     m_dlg_placeholder->SetMinSize(wxSize(-1, FromDIP(15)));
     m_dlg_placeholder->SetMaxSize(wxSize(-1, FromDIP(15)));
-    m_dlg_placeholder->SetBackgroundColour(*wxWHITE);
+    m_dlg_placeholder->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_dlg_sizer->Add(m_dlg_content_sizer, 1, wxEXPAND, FromDIP(0));
     // m_dlg_sizer->Add( 0, 0, 1, wxEXPAND, FromDIP(0));
@@ -217,14 +218,14 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
 
     // page 2
     m_book_second_panel = new wxPanel(m_simplebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    m_book_second_panel->SetBackgroundColour(*wxWHITE);
+    m_book_second_panel->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_book_second_sizer     = new wxBoxSizer(wxVERTICAL);
     m_book_second_btn_sizer = new wxBoxSizer(wxHORIZONTAL);
 
     m_retry_bitmap = new wxStaticBitmap(m_book_second_panel, -1, create_scaled_bitmap("partskip_retry", m_book_second_panel, 200), wxDefaultPosition, wxDefaultSize);
     m_retry_label  = new Label(m_book_second_panel, _L("Load skipping objects information failed. Please try again."));
     m_retry_label->Wrap(-1);
-    m_retry_label->SetBackgroundColour(*wxWHITE);
+    m_retry_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_book_second_sizer->Add(0, 0, 1, wxEXPAND, 0);
     m_book_second_sizer->Add(m_retry_bitmap, 0, wxALIGN_CENTER_HORIZONTAL, 0);
     m_book_second_sizer->Add(m_retry_label, 0, wxALIGN_CENTER_HORIZONTAL, 0);
@@ -252,7 +253,7 @@ PartSkipDialog::PartSkipDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _
 
     m_loading_label = new Label(m_book_first_panel, _L("Loading..."));
     m_loading_label->Wrap(-1);
-    m_loading_label->SetBackgroundColour(*wxWHITE);
+    m_loading_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_loading_sizer->Add(m_loading_icon, 0, wxALIGN_CENTER_VERTICAL, FromDIP(0));
     m_loading_sizer->Add(m_loading_label, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, FromDIP(5));
@@ -924,7 +925,7 @@ int PartSkipDialog::GetAllSkippedPartsNum()
 
 PartSkipConfirmDialog::PartSkipConfirmDialog(wxWindow *parent) : DPIDialog(parent, wxID_ANY, _L("Skip Objects"), wxDefaultPosition, wxDefaultSize, wxCAPTION | wxCLOSE_BOX)
 {
-    SetBackgroundColour(*wxWHITE);
+    SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     SetMinSize(wxSize(FromDIP(480), FromDIP(215)));
     SetSizeHints(wxDefaultSize, wxDefaultSize);
 
@@ -940,11 +941,11 @@ PartSkipConfirmDialog::PartSkipConfirmDialog(wxWindow *parent) : DPIDialog(paren
 
     m_msg_label = new Label(this, _L("Skipping objects."));
     m_msg_label->Wrap(-1);
-    m_msg_label->SetBackgroundColour(*wxWHITE);
+    m_msg_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
     m_tip_label = new Label(this, _L("This action cannot be undone. Continue?"));
     m_tip_label->Wrap(-1);
-    m_tip_label->SetBackgroundColour(*wxWHITE);
+    m_tip_label->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
     m_tip_label->SetForegroundColour(wxColor(92, 92, 92));
 
     m_sizer->Add(m_msg_label, 0, wxLEFT, FromDIP(29));

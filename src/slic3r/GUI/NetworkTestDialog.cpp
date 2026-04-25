@@ -1,4 +1,5 @@
 #include "NetworkTestDialog.hpp"
+#include "Widgets/StateColor.hpp"
 #include "I18N.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -24,7 +25,7 @@ NetworkTestDialog::NetworkTestDialog(wxWindow* parent, wxWindowID id, const wxSt
             wxSize(1000, 700),
             /*wxCAPTION*/wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxRESIZE_BORDER)
 {
-    this->SetBackgroundColour(wxColour(255, 255, 255));
+    this->SetBackgroundColour(StateColor::darkModeColorFor(*wxWHITE));
 
 	this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 
