@@ -474,6 +474,13 @@ public:
     void parse_state_changed_event();
     void parse_home_flag(int flag);
 
+    /* completion-notification tracking */
+    std::string m_notify_last_print_status;
+    bool        m_notify_last_calibration_done{false};
+    bool        m_notify_last_axes_homed{false};
+    bool        m_notify_state_initialized{false};
+    void        check_completion_notifications();
+
     /* printing status */
     std::string print_status;      /* enum string: FINISH, SLICING, RUNNING, PAUSE, INIT, FAILED */
     int queue_number = 0;
