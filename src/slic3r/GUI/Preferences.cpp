@@ -1419,6 +1419,15 @@ void PreferencesDialog::create_items()
     auto item_multi_machine    = create_item_checkbox(_L("Multi device management"), _L("With this option enabled, you can send a task to multiple devices at the same time and manage multiple devices."), "enable_multi_machine", _L("(Requires restart)"));
     g_sizer->Add(item_multi_machine);
 
+    auto item_notify_print     = create_item_checkbox(_L("Notify when print finishes"), _L("Show a desktop notification when a print job completes on the device page."), "notify_on_print_finish");
+    g_sizer->Add(item_notify_print);
+
+    auto item_notify_cali      = create_item_checkbox(_L("Notify when calibration finishes"), _L("Show a desktop notification when a calibration sequence completes on the device page."), "notify_on_calibration_finish");
+    g_sizer->Add(item_notify_cali);
+
+    auto item_notify_home      = create_item_checkbox(_L("Notify when homing finishes"), _L("Show a desktop notification when a homing sequence completes on the device page."), "notify_on_homing_finish");
+    g_sizer->Add(item_notify_home);
+
 #if 0
     g_sizer->Add(create_item_title(_L("Filament Grouping")), 1, wxEXPAND);
     //temporarily disable it

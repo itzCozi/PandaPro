@@ -242,6 +242,15 @@ void AppConfig::set_defaults()
     if (get("enable_multi_machine").empty())
         set_bool("enable_multi_machine", false);
 
+    if (get("notify_on_print_finish").empty())
+        set_bool("notify_on_print_finish", true);
+
+    if (get("notify_on_calibration_finish").empty())
+        set_bool("notify_on_calibration_finish", true);
+
+    if (get("notify_on_homing_finish").empty())
+        set_bool("notify_on_homing_finish", true);
+
     if (get("drc_bits").empty())
         set("drc_bits", DRC_BITS_DEFAULT_STR);
 

@@ -20,6 +20,8 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <wx/dir.h>
+#include <wx/notifmsg.h>
+#include "libslic3r/AppConfig.hpp"
 #include "fast_float/fast_float.h"
 
 #include "DeviceCore/DevFilaSystem.h"
@@ -974,6 +976,7 @@ void MachineObject::parse_state_changed_event()
         }
     }
     last_mc_print_stage = mc_print_stage;
+    check_completion_notifications();
 }
 
 void MachineObject::parse_home_flag(int flag)
@@ -1056,6 +1059,55 @@ void MachineObject::parse_home_flag(int flag)
     is_support_agora = ((flag >> 30) & 0x1) != 0;
     if (is_support_agora)
         is_support_tunnel_mqtt = false;
+
+    check_completion_notifications();
+}
+
+void MachineObject::check_completion_notifications()
+{
+    AppConfig* cfg = GUI::wxGetApp().app_config;
+    if (!cfg) return;
+
+    const bool axes_homed = (m_home_flag & 0x7) == 0x7;
+
+    if (!m_notify_state_initialized) {
+        m_notify_last_print_status      = print_status;
+        m_notify_last_calibration_done  = calibration_done;
+        m_notify_last_axes_homed        = axes_homed;
+        m_notify_state_initialized      = true;
+        return;
+    }
+
+    auto show_notification = [](const wxString& title, const wxString& body) {
+        wxNotificationMessage notif(title, body);
+        notif.Show(wxNotificationMessage::Timeout_Auto);
+    };
+
+    const wxString printer_label = dev_name.empty() ? wxString(_L("Printer")) : wxString::FromUTF8(dev_name);
+
+    if (print_status != m_notify_last_print_status) {
+        if (print_status == "FINISH" && cfg->get_bool("notify_on_print_finish")) {
+            show_notification(_L("Print finished"),
+                              wxString::Format(_L("%s has finished printing."), printer_label));
+        }
+        m_notify_last_print_status = print_status;
+    }
+
+    if (calibration_done && !m_notify_last_calibration_done) {
+        if (cfg->get_bool("notify_on_calibration_finish")) {
+            show_notification(_L("Calibration complete"),
+                              wxString::Format(_L("%s has finished its calibration sequence."), printer_label));
+        }
+    }
+    m_notify_last_calibration_done = calibration_done;
+
+    if (axes_homed && !m_notify_last_axes_homed) {
+        if (cfg->get_bool("notify_on_homing_finish")) {
+            show_notification(_L("Homing complete"),
+                              wxString::Format(_L("%s has finished homing."), printer_label));
+        }
+    }
+    m_notify_last_axes_homed = axes_homed;
 }
 
 int MachineObject::get_bed_temperature_limit()
@@ -2392,6 +2444,7 @@ void MachineObject::reset()
 void MachineObject::set_print_state(std::string status)
 {
     print_status = status;
+    check_completion_notifications();
 }
 
 int MachineObject::connect(bool use_openssl)
