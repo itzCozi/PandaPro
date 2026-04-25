@@ -589,8 +589,9 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
 
     m_staticText_profile_value->SetForegroundColour(0x6B6B6B);
 
-    auto progress_lr_panel = new wxPanel(parent, wxID_ANY);
-    progress_lr_panel->SetBackgroundColour(*wxWHITE);
+    m_progress_lr_panel = new wxPanel(parent, wxID_ANY);
+    m_progress_lr_panel->SetBackgroundColour(*wxWHITE);
+    auto progress_lr_panel = m_progress_lr_panel;
 
     m_gauge_progress = new ProgressBar(progress_lr_panel, wxID_ANY, 100, wxDefaultPosition, wxDefaultSize);
     m_gauge_progress->SetValue(0);
@@ -653,8 +654,10 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
     wxBoxSizer *bSizer_buttons = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer *bSizer_text = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer *bSizer_finish_time = new wxBoxSizer(wxHORIZONTAL);
-    wxPanel* penel_text = new wxPanel(progress_lr_panel);
-    wxPanel* penel_finish_time = new wxPanel(progress_lr_panel);
+    m_panel_progress_text = new wxPanel(progress_lr_panel);
+    m_panel_finish_time = new wxPanel(progress_lr_panel);
+    wxPanel* penel_text = m_panel_progress_text;
+    wxPanel* penel_finish_time = m_panel_finish_time;
 
     penel_text->SetBackgroundColour(*wxWHITE);
     penel_finish_time->SetBackgroundColour(*wxWHITE);
@@ -957,6 +960,8 @@ void PrintingTaskPanel::create_panel(wxWindow* parent)
         m_staticText_profile_value->Hide();
     }
 
+    update_panel_colors();
+
     parent->SetSizer(sizer);
     parent->Layout();
     parent->Fit();
@@ -1007,6 +1012,35 @@ void PrintingTaskPanel::msw_rescale()
     m_button_pause_resume->msw_rescale();
     m_button_abort->msw_rescale();
     m_bitmap_thumbnail->SetSize(TASK_THUMBNAIL_SIZE);
+    update_panel_colors();
+}
+
+// ORCA: Re-apply theme-aware colors to the printing-progress card. The original
+// design hardcoded a white card with dark text; in dark mode that left a stripe
+// of bright white panels with unreadable dark text. Routing every problem
+// surface through StateColor::darkModeColorFor() flips them in dark mode and
+// leaves them untouched in light mode.
+void PrintingTaskPanel::update_panel_colors()
+{
+    const wxColour panel_bg = StateColor::darkModeColorFor(*wxWHITE);
+
+    if (m_progress_lr_panel)   m_progress_lr_panel->SetBackgroundColour(panel_bg);
+    if (m_panel_progress_text) m_panel_progress_text->SetBackgroundColour(panel_bg);
+    if (m_panel_finish_time)   m_panel_finish_time->SetBackgroundColour(panel_bg);
+    if (m_question_button)     m_question_button->SetBackgroundColour(panel_bg);
+
+    if (m_staticText_subtask_value)
+        m_staticText_subtask_value->SetForegroundColour(StateColor::darkModeColorFor(wxColour(44, 44, 46)));
+    if (m_staticText_progress_percent)
+        m_staticText_progress_percent->SetForegroundColour(StateColor::darkModeColorFor(wxColour(0, 150, 136)));
+    if (m_staticText_progress_percent_icon)
+        m_staticText_progress_percent_icon->SetForegroundColour(StateColor::darkModeColorFor(wxColour(0, 150, 136)));
+    if (m_printing_stage_value)
+        m_printing_stage_value->SetForegroundColour(StateColor::darkModeColorFor(STAGE_TEXT_COL));
+
+    if (m_progress_lr_panel)   m_progress_lr_panel->Refresh();
+    if (m_panel_progress_text) m_panel_progress_text->Refresh();
+    if (m_panel_finish_time)   m_panel_finish_time->Refresh();
 }
 
 void PrintingTaskPanel::init_bitmaps()

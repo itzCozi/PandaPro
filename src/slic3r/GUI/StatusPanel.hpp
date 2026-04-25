@@ -306,6 +306,9 @@ private:
     wxPanel *                     m_request_failed_panel;
     wxPanel                      *m_printing_stage_underline;
     wxPanel                      *m_printing_stage_panel;
+    wxPanel                      *m_progress_lr_panel{nullptr};
+    wxPanel                      *m_panel_progress_text{nullptr};
+    wxPanel                      *m_panel_finish_time{nullptr};
 
     // score page
     int                           m_star_count;
@@ -328,6 +331,10 @@ public:
     void show_error_msg(wxString msg);
     void reset_printing_value();
     void msw_rescale();
+    // ORCA: re-apply theme-aware colors to the printing-progress card
+    // so that the white "card" backgrounds and dark-on-white text are flipped
+    // when running in dark mode (called on creation and on system theme change).
+    void update_panel_colors();
 
 public:
     void enable_partskip_button(MachineObject* obj, bool enable);
